@@ -1,18 +1,25 @@
-import { getStore } from "@netlify/blobs";
+const { getStore } = require("@netlify/blobs");
 
-export default async () => {
-  const store = getStore("coincollector");
-  const raw = await store.get("latest", { type: "text" });
+exports.handler = async () => {
+  try {
+    const store = getStore("coincollector");
+    const raw = await store.get("latest", { type: "text" });
 
-  if (!raw) {
-    return new Response(JSON.stringify({ ok: false, message: "No data yet" }), {
-      status: 200,
+    if (!raw) {
+      return {
+        statusCode: 200,
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ ok: false, message: "No data yet" }),
+      };
+    }
+
+    return {
+      statusCode: 200,
       headers: { "content-type": "application/json" },
-    });
+      body: raw,
+    };
+  } catch (err) {
+    console.error("LOAD_ERROR", err);
+    return { statusCode: 500, body: "Internal Server Error" };
   }
-
-  return new Response(raw, {
-    status: 200,
-    headers: { "content-type": "application/json" },
-  });
 };
