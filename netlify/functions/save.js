@@ -1,24 +1,45 @@
-import { getStore } from "@netlify/blobs";
+const { getStore } = require("@netlify/blobs");
 
-export default async (req) => {
-  if (req.method !== "POST") return new Response("Method Not Allowed", { status: 405 });
+exports.handler = async (event) => {
+  try {
+    if (event.httpMethod !== "POST") {
+      return { statusCode: 405, body: "Method Not Allowed" };
+    }
 
-  const auth = req.headers.get("authorization") || "";
-  const expected = process.env.ADMIN_KEY ? `Bearer ${process.env.ADMIN_KEY}` : "";
-  if (!process.env.ADMIN_KEY || auth !== expected) return new Response("Unauthorized", { status: 401 });
+    const auth = (event.headers && (event.headers.authorization || event.headers.Authorization)) || "";
+    const expected = process.env.ADMIN_KEY ? `Bearer ${process.env.ADMIN_KEY}` : "";
 
-  let body;
-  try { body = await req.json(); } catch { return new Response("Invalid JSON", { status: 400 }); }
-  if (!body || body.version !== 2 || !Array.isArray(body.collections) || !Array.isArray(body.coins)) {
-    return new Response("Bad backup format (expected v2)", { status: 400 });
+    if (!process.env.ADMIN_KEY || auth !== expected) {
+      return { statusCode: 401, body: "Unauthorized" };
+    }
+
+    let body;
+    try {
+      body = JSON.parse(event.body || "{}");
+    } catch {
+      return { statusCode: 400, body: "Invalid JSON" };
+    }
+
+    // Validation light backup v2
+    if (!body || body.version !== 2 || !Array.isArray(body.collections) || !Array.isArray(body.coins)) {
+      return { statusCode: 400, body: "Bad backup format (expected v2)" };
+    }
+
+    const store = getStore("coincollector");
+    const payload = { savedAt: new Date().toISOString(), backup: body };
+
+    await store.set("latest", JSON.stringify(payload), {
+      metadata: { contentType: "application/json" },
+    });
+
+    return {
+      statusCode: 200,
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ ok: true, savedAt: payload.savedAt }),
+    };
+  } catch (err) {
+    // Pour voir l'erreur dans les logs Netlify
+    console.error("SAVE_ERROR", err);
+    return { statusCode: 500, body: "Internal Server Error" };
   }
-
-  const store = getStore("coincollector");
-  const payload = { savedAt: new Date().toISOString(), backup: body };
-  await store.set("latest", JSON.stringify(payload), { metadata: { contentType: "application/json" } });
-
-  return new Response(JSON.stringify({ ok: true, savedAt: payload.savedAt }), {
-    status: 200,
-    headers: { "content-type": "application/json" },
-  });
 };
