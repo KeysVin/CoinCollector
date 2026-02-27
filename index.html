@@ -953,11 +953,11 @@ async function doExport() {
 /* =========================================================
    Netlify Sync (requires Netlify functions / save + load)
 ========================================================= */
-async function publishToNetlify() {
+asasync function publishToNetlify() {
   const key = prompt("Clé admin Netlify :");
   if (!key) return;
 
-  setProg("Publication… (création backup + upload)");
+  setProg("Publication…");
   const backup = await buildBackupV2FromDB();
 
   const resp = await fetch("/.netlify/functions/save", {
@@ -969,22 +969,30 @@ async function publishToNetlify() {
     body: JSON.stringify(backup)
   });
 
+  const raw = await resp.text();
+
   if (!resp.ok) {
     setProg("");
-    alert("Échec publication : " + resp.status);
+    alert(`Publication échouée (HTTP ${resp.status}).\n\n${raw.slice(0, 500)}`);
     return;
   }
 
-  const json = await resp.json().catch(()=> ({}));
+  let json;
+  try { json = JSON.parse(raw); } catch { json = null; }
+
   setProg("");
-  alert("Publié" + (json.savedAt ? (" (savedAt=" + json.savedAt + ")") : "."));
+  if (json?.ok) {
+    alert(`✅ Sauvegarde OK${json.savedAt ? " (" + json.savedAt + ")" : ""}`);
+  } else {
+    alert(`✅ Réponse OK (HTTP 200)\n\n${raw.slice(0, 500)}`);
+  }
 }
 
 async function loadFromNetlify() {
   setProg("Chargement depuis le site…");
 
   const resp = await fetch("/.netlify/functions/load");
-  const raw = await resp.text(); // IMPORTANT: on lit du texte d’abord
+  const raw = await resp.text();
 
   if (!resp.ok) {
     setProg("");
@@ -993,11 +1001,10 @@ async function loadFromNetlify() {
   }
 
   let json;
-  try {
-    json = JSON.parse(raw);
-  } catch (e) {
+  try { json = JSON.parse(raw); }
+  catch {
     setProg("");
-    alert("Load ne renvoie pas du JSON.\n\nDébut de la réponse :\n" + raw.slice(0, 500));
+    alert("Load ne renvoie pas du JSON.\n\nDébut:\n" + raw.slice(0, 500));
     return;
   }
 
@@ -1014,12 +1021,12 @@ async function loadFromNetlify() {
     return;
   }
 
-  const ok = confirm("Charger va écraser votre base locale. Continuer ?");
+  const ok = confirm(`Charger va écraser la base locale.\nSauvegarde distante: ${json.savedAt || "inconnue"}\n\nContinuer ?`);
   if (!ok) { setProg(""); return; }
 
   await importBackupObjectV2(backup);
   setProg("");
-  alert("Chargement terminé.");
+  alert("✅ Chargement terminé.");
 }
 
 /* =========================================================
