@@ -1,4 +1,4 @@
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
@@ -12,21 +12,22 @@ exports.handler = async (event, context) => {
     return { statusCode: 401, body: "Unauthorized" };
   }
 
-  let data;
   try {
-    data = JSON.parse(event.body);
-  } catch {
-    return { statusCode: 400, body: "Invalid JSON" };
+    const data = JSON.parse(event.body);
+
+    // Sauvegarde dans le stockage persistant Netlify Blobs
+    const blob = new Blob([JSON.stringify({
+      savedAt: new Date().toISOString(),
+      backup: data
+    })], { type: "application/json" });
+
+    await globalThis.NETLIFY_BLOBS.put("coincollector-latest", blob);
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ ok: true })
+    };
+  } catch (e) {
+    return { statusCode: 500, body: "Save error" };
   }
-
-  // Stockage persistant Netlify KV
-  await context.env.COIN_STORE.put("latest", JSON.stringify({
-    savedAt: new Date().toISOString(),
-    backup: data
-  }));
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ ok: true })
-  };
 };
