@@ -953,7 +953,7 @@ async function doExport() {
 /* =========================================================
    Netlify Sync (requires Netlify functions / save + load)
 ========================================================= */
-asasync function publishToNetlify() {
+async function publishToNetlify() {
   const key = prompt("Clé admin Netlify :");
   if (!key) return;
 
