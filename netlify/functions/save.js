@@ -15,18 +15,16 @@ exports.handler = async (event) => {
   try {
     const data = JSON.parse(event.body);
 
-    // Sauvegarde dans le stockage persistant Netlify Blobs
-    const blob = new Blob([JSON.stringify({
+    // Stockage simple via Netlify Cache API
+    const cache = await caches.open("coincollector");
+    const response = new Response(JSON.stringify({
       savedAt: new Date().toISOString(),
       backup: data
-    })], { type: "application/json" });
+    }), { headers: { "Content-Type": "application/json" } });
 
-    await globalThis.NETLIFY_BLOBS.put("coincollector-latest", blob);
+    await cache.put("latest", response);
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ ok: true })
-    };
+    return { statusCode: 200, body: JSON.stringify({ ok: true }) };
   } catch (e) {
     return { statusCode: 500, body: "Save error" };
   }
