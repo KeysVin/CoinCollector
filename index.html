@@ -332,6 +332,51 @@ function blobToBase64(blob) {
   });
 }
 
+function showProgress(label, percent = null, meta = "") {
+  const wrap = document.getElementById("progressWrap");
+  const bar  = document.getElementById("progressBar");
+  const lab  = document.getElementById("progressLabel");
+  const m    = document.getElementById("progressMeta");
+
+  wrap.style.display = "block";
+  lab.textContent = label;
+  m.textContent = meta || "";
+
+  if (percent == null) {
+    // Barre indéterminée : animation simple
+    bar.style.transition = "none";
+    bar.style.width = "30%";
+    bar.style.transform = "translateX(-40%)";
+    bar.style.animation = "indet 1s infinite ease-in-out";
+  } else {
+    bar.style.animation = "none";
+    bar.style.transform = "none";
+    bar.style.transition = "width .15s linear";
+    bar.style.width = `${Math.max(0, Math.min(100, percent))}%`;
+  }
+}
+
+function hideProgress() {
+  const wrap = document.getElementById("progressWrap");
+  const bar  = document.getElementById("progressBar");
+  wrap.style.display = "none";
+  bar.style.animation = "none";
+  bar.style.transform = "none";
+  bar.style.width = "0%";
+}
+
+(function addIndeterminateCSS(){
+  const css = document.createElement("style");
+  css.textContent = `
+    @keyframes indet { 
+      0% { transform: translateX(-60%); } 
+      50% { transform: translateX(120%); } 
+      100% { transform: translateX(-60%); } 
+    }
+  `;
+  document.head.appendChild(css);
+})();
+
 /* =========================================================
    App state + DOM refs
 ========================================================= */
@@ -964,8 +1009,14 @@ async function publishToNetlify() {
   const key = prompt("Clé admin Netlify :");
   if (!key) return;
 
-  setProg("Publication…");
+  showProgress("Préparation de la sauvegarde…", null);
   const backup = await buildBackupV2FromDB();
+
+  // Taille approximative envoyée
+  const bodyStr = JSON.stringify(backup);
+  const totalBytes = new TextEncoder().encode(bodyStr).length;
+
+  showProgress("Publication…", null, `${formatBytes(totalBytes)} à envoyer`);
 
   const resp = await fetch("/.netlify/functions/save", {
     method: "POST",
@@ -973,13 +1024,13 @@ async function publishToNetlify() {
       "content-type": "application/json",
       "authorization": `Bearer ${key}`
     },
-    body: JSON.stringify(backup)
+    body: bodyStr
   });
 
-  const raw = await resp.text();
+  const raw = await resp.text().catch(() => "");
 
   if (!resp.ok) {
-    setProg("");
+    hideProgress();
     alert(`Publication échouée (HTTP ${resp.status}).\n\n${raw.slice(0, 500)}`);
     return;
   }
@@ -987,53 +1038,90 @@ async function publishToNetlify() {
   let json;
   try { json = JSON.parse(raw); } catch { json = null; }
 
-  setProg("");
+  hideProgress();
   if (json?.ok) {
     alert(`✅ Sauvegarde OK${json.savedAt ? " (" + json.savedAt + ")" : ""}`);
   } else {
     alert(`✅ Réponse OK (HTTP 200)\n\n${raw.slice(0, 500)}`);
   }
 }
-
 async function loadFromNetlify() {
-  setProg("Chargement depuis le site…");
+  showProgress("Chargement depuis le site…", null);
 
   const resp = await fetch("/.netlify/functions/load");
-  const raw = await resp.text();
-
   if (!resp.ok) {
-    setProg("");
-    alert(`Load a échoué (HTTP ${resp.status}).\n\n${raw.slice(0, 500)}`);
+    const rawErr = await resp.text().catch(() => "");
+    hideProgress();
+    alert(`Load a échoué (HTTP ${resp.status}).\n\n${rawErr.slice(0, 500)}`);
     return;
+  }
+
+  // Essaye d’avoir la taille totale
+  const total = Number(resp.headers.get("content-length") || 0);
+
+  // Si streaming dispo, on calcule une progression
+  let raw = "";
+  if (resp.body && resp.body.getReader) {
+    const reader = resp.body.getReader();
+    const decoder = new TextDecoder();
+    let received = 0;
+
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      received += value.byteLength;
+      raw += decoder.decode(value, { stream: true });
+
+      if (total > 0) {
+        const pct = Math.round((received / total) * 100);
+        showProgress("Chargement depuis le site…", pct, `${formatBytes(received)} / ${formatBytes(total)}`);
+      } else {
+        showProgress("Chargement depuis le site…", null, `${formatBytes(received)} reçus`);
+      }
+    }
+    raw += decoder.decode(); // flush
+  } else {
+    // Fallback : pas de stream, pas de % fiable
+    raw = await resp.text();
   }
 
   let json;
   try { json = JSON.parse(raw); }
   catch {
-    setProg("");
+    hideProgress();
     alert("Load ne renvoie pas du JSON.\n\nDébut:\n" + raw.slice(0, 500));
     return;
   }
 
   if (json.ok === false) {
-    setProg("");
+    hideProgress();
     alert(json.message || "Aucune donnée publiée.");
     return;
   }
 
   const backup = json.backup && json.backup.version ? json.backup : (json.version ? json : null);
   if (!backup) {
-    setProg("");
+    hideProgress();
     alert("Format distant inattendu.");
     return;
   }
 
   const ok = confirm(`Charger va écraser la base locale.\nSauvegarde distante: ${json.savedAt || "inconnue"}\n\nContinuer ?`);
-  if (!ok) { setProg(""); return; }
+  if (!ok) { hideProgress(); return; }
 
+  showProgress("Import en cours…", null);
   await importBackupObjectV2(backup);
-  setProg("");
+
+  hideProgress();
   alert("✅ Chargement terminé.");
+}
+
+function formatBytes(bytes) {
+  if (!bytes || bytes < 0) return "0 B";
+  const units = ["B","KB","MB","GB"];
+  let i = 0, v = bytes;
+  while (v >= 1024 && i < units.length - 1) { v /= 1024; i++; }
+  return `${v.toFixed(i === 0 ? 0 : 1)} ${units[i]}`;
 }
 
 /* =========================================================
