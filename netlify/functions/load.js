@@ -1,15 +1,16 @@
 exports.handler = async () => {
   try {
-    const blob = await globalThis.NETLIFY_BLOBS.get("coincollector-latest");
+    const cache = await caches.open("coincollector");
+    const response = await cache.match("latest");
 
-    if (!blob) {
+    if (!response) {
       return {
         statusCode: 200,
         body: JSON.stringify({ ok: false, message: "No data yet" })
       };
     }
 
-    const text = await blob.text();
+    const text = await response.text();
 
     return {
       statusCode: 200,
