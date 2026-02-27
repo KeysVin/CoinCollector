@@ -1,15 +1,21 @@
-exports.handler = async (event, context) => {
-  const raw = await context.env.COIN_STORE.get("latest");
+exports.handler = async () => {
+  try {
+    const blob = await globalThis.NETLIFY_BLOBS.get("coincollector-latest");
 
-  if (!raw) {
+    if (!blob) {
+      return {
+        statusCode: 200,
+        body: JSON.stringify({ ok: false, message: "No data yet" })
+      };
+    }
+
+    const text = await blob.text();
+
     return {
       statusCode: 200,
-      body: JSON.stringify({ ok: false, message: "No data yet" })
+      body: text
     };
+  } catch (e) {
+    return { statusCode: 500, body: "Load error" };
   }
-
-  return {
-    statusCode: 200,
-    body: raw
-  };
 };
