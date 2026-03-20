@@ -1,4 +1,6 @@
-exports.handler = async (event) => {
+const { getStore } = require("@netlify/blobs");
+
+exports.handler = async (event, context) => {
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
@@ -15,17 +17,29 @@ exports.handler = async (event) => {
   try {
     const data = JSON.parse(event.body);
 
-    // Stockage simple via Netlify Cache API
-    const cache = await caches.open("coincollector");
-    const response = new Response(JSON.stringify({
+    const store = getStore({
+      name: "coincollector",
+      siteID: context.site?.id || process.env.SITE_ID,
+      token: process.env.NETLIFY_BLOBS_TOKEN || context.token,
+    });
+
+    const payload = {
       savedAt: new Date().toISOString(),
-      backup: data
-    }), { headers: { "Content-Type": "application/json" } });
+      backup: data,
+    };
 
-    await cache.put("latest", response);
+    await store.setJSON("latest", payload);
 
-    return { statusCode: 200, body: JSON.stringify({ ok: true }) };
+    return {
+      statusCode: 200,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ok: true, savedAt: payload.savedAt }),
+    };
   } catch (e) {
-    return { statusCode: 500, body: "Save error" };
+    console.error("Save error:", e);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ ok: false, error: e.message }),
+    };
   }
 };
