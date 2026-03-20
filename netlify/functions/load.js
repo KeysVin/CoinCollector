@@ -1,22 +1,33 @@
-exports.handler = async () => {
-  try {
-    const cache = await caches.open("coincollector");
-    const response = await cache.match("latest");
+const { getStore } = require("@netlify/blobs");
 
-    if (!response) {
+exports.handler = async (event, context) => {
+  try {
+    const store = getStore({
+      name: "coincollector",
+      siteID: context.site?.id || process.env.SITE_ID,
+      token: process.env.NETLIFY_BLOBS_TOKEN || context.token,
+    });
+
+    const data = await store.get("latest", { type: "json" });
+
+    if (!data) {
       return {
         statusCode: 200,
-        body: JSON.stringify({ ok: false, message: "No data yet" })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ok: false, message: "No data yet" }),
       };
     }
 
-    const text = await response.text();
-
     return {
       statusCode: 200,
-      body: text
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
     };
   } catch (e) {
-    return { statusCode: 500, body: "Load error" };
+    console.error("Load error:", e);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ ok: false, error: e.message }),
+    };
   }
 };
