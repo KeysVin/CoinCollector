@@ -1,8 +1,0 @@
-{
-  "name": "coincollector-functions",
-  "version": "1.0.0",
-  "description": "Netlify functions for CoinCollector",
-  "dependencies": {
-    "@netlify/blobs": "^8.0.0"
-  }
-}
