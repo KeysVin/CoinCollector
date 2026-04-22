@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>CoinCollector — Web (Netlify + IndexedDB)</title>
+  <title>CoinCollector — Web (GitHub + IndexedDB)</title>
   <style>
     :root { --b:#e7e7e7; --bg:#fafafa; --card:#fff; --txt:#111; --muted:#666; --accent:#111; }
     * { box-sizing:border-box; }
@@ -86,13 +86,16 @@
     <div id="folders" class="folders"></div>
 
     <div class="divider"></div>
-    <strong>Synchronisation (Netlify)</strong>
+    <strong>Synchronisation (GitHub)</strong>
     <div class="muted">
-      “Charger” récupère la dernière sauvegarde publiée. “Publier” envoie votre base actuelle au serveur Netlify.
+      Synchronisez votre collection via GitHub. “Charger” récupère la dernière version publiée. “Publier” envoie votre base actuelle.
     </div>
     <div class="row" style="margin-top:8px; flex-wrap:wrap;">
-      <button id="btnLoadRemote">Charger depuis le site</button>
-      <button id="btnPublishRemote" class="primary">Publier sur le site</button>
+      <button id="btnLoadRemote">⬇️ Charger depuis GitHub</button>
+      <button id="btnPublishRemote" class="primary">⬆️ Publier sur GitHub</button>
+    </div>
+    <div style="margin-top:8px;">
+      <button id="btnGithubConfig" style="font-size:11px; padding:4px 8px;">⚙️ Configurer GitHub</button>
     </div>
     <div id="progressWrap" style="display:none; margin:12px 0; padding:10px; border:1px solid #ddd; border-radius:10px;">
       <div id="progressLabel" style="font-size:14px; margin-bottom:6px;">Chargement…</div>
@@ -102,7 +105,7 @@
   <div id="progressMeta" style="font-size:12px; color:#666; margin-top:6px;"></div>
 </div>
     <div class="muted" style="margin-top:6px;">
-      La publication nécessite une clé admin (variable Netlify <code>ADMIN_KEY</code>).
+      Nécessite un <a href="https://github.com/settings/tokens/new?scopes=repo&description=CoinCollector" target="_blank">Personal Access Token GitHub</a> avec accès <code>repo</code>.
     </div>
 
     <div class="divider"></div>
@@ -227,7 +230,7 @@
    {version:2, exportedAt, collections[], coins:[{..., imagesBase64JPG:[] }]}
 ========================================================= */
 
-const DB_NAME = "coincollector_netlify_idb";
+const DB_NAME = "coincollector_github_idb";
 const DB_VERSION = 1;
 
 function uuid() { return crypto.randomUUID(); }
@@ -1003,119 +1006,266 @@ async function doExport() {
 }
 
 /* =========================================================
-   Netlify Sync (requires Netlify functions / save + load)
+   GitHub Sync
+   - Métadonnées : data/coins-meta.json dans le repo
+   - Images     : data/images/{coinId}/{imgId}.jpg dans le repo
+   - Lecture    : raw.githubusercontent.com (CDN public)
+   - Écriture   : API GitHub REST (PUT) avec PAT
 ========================================================= */
-async function publishToNetlify() {
-  const key = prompt("Clé admin Netlify :");
-  if (!key) return;
 
-  showProgress("Préparation de la sauvegarde…", null);
-  const backup = await buildBackupV2FromDB();
+const GH_CONFIG_KEY = "coincollector_github_config";
 
-  // Taille approximative envoyée
-  const bodyStr = JSON.stringify(backup);
-  const totalBytes = new TextEncoder().encode(bodyStr).length;
-
-  showProgress("Publication…", null, `${formatBytes(totalBytes)} à envoyer`);
-
-  const resp = await fetch("/.netlify/functions/save", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-      "authorization": `Bearer ${key}`
-    },
-    body: bodyStr
-  });
-
-  const raw = await resp.text().catch(() => "");
-
-  if (!resp.ok) {
-    hideProgress();
-    alert(`Publication échouée (HTTP ${resp.status}).\n\n${raw.slice(0, 500)}`);
-    return;
-  }
-
-  let json;
-  try { json = JSON.parse(raw); } catch { json = null; }
-
-  hideProgress();
-  if (json?.ok) {
-    alert(`✅ Sauvegarde OK${json.savedAt ? " (" + json.savedAt + ")" : ""}`);
-  } else {
-    alert(`✅ Réponse OK (HTTP 200)\n\n${raw.slice(0, 500)}`);
-  }
+function ghGetConfig() {
+  try { return JSON.parse(localStorage.getItem(GH_CONFIG_KEY) || "{}"); }
+  catch { return {}; }
 }
-async function loadFromNetlify() {
-  showProgress("Chargement depuis le site…", null);
 
-  const resp = await fetch("/.netlify/functions/load");
+function ghSaveConfig(cfg) {
+  localStorage.setItem(GH_CONFIG_KEY, JSON.stringify(cfg));
+}
+
+function ghRawBase(cfg) {
+  return `https://raw.githubusercontent.com/${cfg.owner}/${cfg.repo}/${cfg.branch || "main"}`;
+}
+
+function ghApiBase(cfg) {
+  return `https://api.github.com/repos/${cfg.owner}/${cfg.repo}`;
+}
+
+async function ghGetFileSha(cfg, path) {
+  const resp = await fetch(`${ghApiBase(cfg)}/contents/${path}`, {
+    headers: {
+      "Authorization": `Bearer ${cfg.token}`,
+      "Accept": "application/vnd.github+json"
+    }
+  });
+  if (resp.status === 404) return null;
+  if (!resp.ok) throw new Error(`GitHub API ${resp.status} sur ${path}`);
+  const data = await resp.json();
+  return data.sha;
+}
+
+async function ghPutFile(cfg, path, contentBase64, message, sha) {
+  const body = { message, content: contentBase64 };
+  if (sha) body.sha = sha;
+  if (cfg.branch) body.branch = cfg.branch;
+
+  const resp = await fetch(`${ghApiBase(cfg)}/contents/${path}`, {
+    method: "PUT",
+    headers: {
+      "Authorization": `Bearer ${cfg.token}`,
+      "Accept": "application/vnd.github+json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
+  });
   if (!resp.ok) {
-    const rawErr = await resp.text().catch(() => "");
-    hideProgress();
-    alert(`Load a échoué (HTTP ${resp.status}).\n\n${rawErr.slice(0, 500)}`);
+    const err = await resp.text();
+    throw new Error(`GitHub PUT échoué (${resp.status}) sur ${path}: ${err.slice(0,200)}`);
+  }
+  return await resp.json();
+}
+
+function blobToBase64GitHub(blob) {
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => {
+      const dataUrl = String(r.result);
+      const idx = dataUrl.indexOf("base64,");
+      resolve(idx >= 0 ? dataUrl.slice(idx + 7) : dataUrl);
+    };
+    r.onerror = reject;
+    r.readAsDataURL(blob);
+  });
+}
+
+function strToBase64(str) {
+  return btoa(unescape(encodeURIComponent(str)));
+}
+
+function openGithubConfigDialog() {
+  const cfg = ghGetConfig();
+  const owner = prompt("Nom d’utilisateur GitHub :", cfg.owner || "");
+  if (owner === null) return;
+  const repo = prompt("Nom du repository :", cfg.repo || "coincollector");
+  if (repo === null) return;
+  const branch = prompt("Branche :", cfg.branch || "main");
+  if (branch === null) return;
+  const token = prompt("Personal Access Token (scope: repo) :", cfg.token || "");
+  if (token === null) return;
+
+  ghSaveConfig({ owner: owner.trim(), repo: repo.trim(), branch: branch.trim() || "main", token: token.trim() });
+  alert("✅ Configuration GitHub sauvegardée !");
+}
+
+async function publishToGitHub() {
+  const cfg = ghGetConfig();
+  if (!cfg.owner || !cfg.repo || !cfg.token) {
+    alert("Configurez d’abord GitHub (⚙️ Configurer GitHub).");
     return;
   }
 
-  // Essaye d’avoir la taille totale
-  const total = Number(resp.headers.get("content-length") || 0);
+  showProgress("Préparation…", null);
+  await refreshMem();
 
-  // Si streaming dispo, on calcule une progression
-  let raw = "";
-  if (resp.body && resp.body.getReader) {
-    const reader = resp.body.getReader();
-    const decoder = new TextDecoder();
-    let received = 0;
+  const totalCoins = mem.coins.length;
+  const totalImages = mem.coins.reduce((s,c) => s + (c.imageIds||[]).length, 0);
+  let doneCoins = 0;
+  let doneImages = 0;
+  let errorCount = 0;
 
-    while (true) {
-      const { value, done } = await reader.read();
-      if (done) break;
-      received += value.byteLength;
-      raw += decoder.decode(value, { stream: true });
+  // 1. Construire les métadonnées (sans images)
+  const meta = {
+    version: 2,
+    savedAt: new Date().toISOString(),
+    collections: mem.collections,
+    coins: mem.coins.map(c => ({
+      id: c.id, name: c.name, location: c.location,
+      year: c.year, notes: c.notes, imageIds: c.imageIds || [],
+      createdAt: c.createdAt, updatedAt: c.updatedAt,
+      collectionId: c.collectionId || null
+    }))
+  };
 
-      if (total > 0) {
-        const pct = Math.round((received / total) * 100);
-        showProgress("Chargement depuis le site…", pct, `${formatBytes(received)} / ${formatBytes(total)}`);
-      } else {
-        showProgress("Chargement depuis le site…", null, `${formatBytes(received)} reçus`);
+  // 2. Upload images coin par coin
+  for (const coin of mem.coins) {
+    doneCoins++;
+    for (const imgId of (coin.imageIds || [])) {
+      doneImages++;
+      const pct = Math.round((doneImages / Math.max(1, totalImages)) * 80);
+      showProgress(`Upload images…`, pct,
+        `Pièce ${doneCoins}/${totalCoins} — ${coin.name} (img ${doneImages}/${totalImages})`);
+      try {
+        const img = await tx(db, ["images"], "readonly", async (images) => await idbGet(images, imgId));
+        if (!img?.blob) continue;
+        const path = `data/images/${coin.id}/${imgId}.jpg`;
+        const b64 = await blobToBase64GitHub(img.blob);
+        const sha = await ghGetFileSha(cfg, path);
+        await ghPutFile(cfg, path, b64, `img ${coin.id}/${imgId}`, sha);
+      } catch(e) {
+        console.warn("Image upload échoué:", imgId, e.message);
+        errorCount++;
       }
     }
-    raw += decoder.decode(); // flush
-  } else {
-    // Fallback : pas de stream, pas de % fiable
-    raw = await resp.text();
   }
 
-  let json;
-  try { json = JSON.parse(raw); }
-  catch {
+  // 3. Upload métadonnées
+  showProgress("Upload métadonnées…", 90);
+  try {
+    const metaPath = "data/coins-meta.json";
+    const metaB64 = strToBase64(JSON.stringify(meta, null, 2));
+    const metaSha = await ghGetFileSha(cfg, metaPath);
+    await ghPutFile(cfg, metaPath, metaB64, `sync ${meta.savedAt}`, metaSha);
+  } catch(e) {
     hideProgress();
-    alert("Load ne renvoie pas du JSON.\n\nDébut:\n" + raw.slice(0, 500));
+    alert("Erreur upload métadonnées : " + e.message);
     return;
   }
-
-  if (json.ok === false) {
-    hideProgress();
-    alert(json.message || "Aucune donnée publiée.");
-    return;
-  }
-
-  const backup = json.backup && json.backup.version ? json.backup : (json.version ? json : null);
-  if (!backup) {
-    hideProgress();
-    alert("Format distant inattendu.");
-    return;
-  }
-
-  const ok = confirm(`Charger va écraser la base locale.\nSauvegarde distante: ${json.savedAt || "inconnue"}\n\nContinuer ?`);
-  if (!ok) { hideProgress(); return; }
-
-  showProgress("Import en cours…", null);
-  await importBackupObjectV2(backup);
 
   hideProgress();
-  alert("✅ Chargement terminé.");
+  alert(errorCount > 0
+    ? `✅ Publié ! (${errorCount} image(s) en erreur — voir console)`
+    : `✅ Publié ! ${totalCoins} pièces, ${totalImages} images.`);
 }
 
+async function loadFromGitHub() {
+  const cfg = ghGetConfig();
+  if (!cfg.owner || !cfg.repo) {
+    alert("Configurez d’abord GitHub (⚙️ Configurer GitHub).");
+    return;
+  }
+
+  showProgress("Chargement métadonnées…", null);
+
+  // 1. Télécharger le JSON de métadonnées
+  const metaUrl = `${ghRawBase(cfg)}/data/coins-meta.json?t=${Date.now()}`;
+  let meta;
+  try {
+    const resp = await fetch(metaUrl);
+    if (!resp.ok) throw new Error(`HTTP ${resp.status} — vérifiez que le repo est public et que data/coins-meta.json existe`);
+    meta = await resp.json();
+  } catch(e) {
+    hideProgress();
+    alert("Impossible de charger depuis GitHub :
+" + e.message);
+    return;
+  }
+
+  if (!meta || meta.version !== 2) {
+    hideProgress();
+    alert("Format de métadonnées invalide.");
+    return;
+  }
+
+  const totalCoins = (meta.coins || []).length;
+  const ok = confirm(`Charger va écraser la base locale.
+Sauvegarde : ${meta.savedAt || "inconnue"}
+${totalCoins} pièces
+
+Continuer ?`);
+  if (!ok) { hideProgress(); return; }
+
+  // 2. Vider la base locale
+  showProgress("Réinitialisation…", null);
+  await tx(db, ["collections","coins","images"], "readwrite", async (a,b,c) => {
+    await idbClear(a); await idbClear(b); await idbClear(c);
+  });
+
+  // 3. Collections
+  await tx(db, ["collections"], "readwrite", async (collections) => {
+    for (const col of (meta.collections || [])) {
+      await idbPut(collections, { id: col.id || uuid(), name: String(col.name || ""), createdAt: col.createdAt || nowISO() });
+    }
+  });
+
+  // 4. Pièces + images
+  const totalImages = (meta.coins || []).reduce((s,c) => s + (c.imageIds||[]).length, 0);
+  let coinIdx = 0, imgIdx = 0;
+
+  for (const c of (meta.coins || [])) {
+    coinIdx++;
+    const imageIds = [];
+
+    for (const imgId of (c.imageIds || [])) {
+      imgIdx++;
+      const pct = Math.round((imgIdx / Math.max(1, totalImages)) * 100);
+      showProgress(`Téléchargement…`, pct,
+        `Pièce ${coinIdx}/${totalCoins} — ${c.name} (img ${imgIdx}/${totalImages})`);
+      try {
+        const imgUrl = `${ghRawBase(cfg)}/data/images/${c.id}/${imgId}.jpg?t=${Date.now()}`;
+        const resp = await fetch(imgUrl);
+        if (!resp.ok) { console.warn("Image 404:", imgUrl); continue; }
+        const blob = await resp.blob();
+        await tx(db, ["images"], "readwrite", async (images) => {
+          await idbPut(images, { id: imgId, coinId: c.id, blob, mime: "image/jpeg", createdAt: nowISO() });
+        });
+        imageIds.push(imgId);
+      } catch(e) {
+        console.warn("Image échouée:", imgId, e.message);
+      }
+    }
+
+    await tx(db, ["coins"], "readwrite", async (coinsStore) => {
+      await idbPut(coinsStore, {
+        id: c.id || uuid(),
+        name: String(c.name || ""),
+        location: String(c.location || ""),
+        year: Number.isFinite(+c.year) ? (+c.year) : 0,
+        notes: String(c.notes || ""),
+        imageIds,
+        createdAt: c.createdAt || nowISO(),
+        updatedAt: c.updatedAt || nowISO(),
+        collectionId: c.collectionId || null
+      });
+    });
+  }
+
+  await refreshMem();
+  currentFolderId = "ALL";
+  closeDetail(); closeForm(); render();
+  hideProgress();
+  alert(`✅ ${totalCoins} pièces importées !`);
+}
 function formatBytes(bytes) {
   if (!bytes || bytes < 0) return "0 B";
   const units = ["B","KB","MB","GB"];
@@ -1173,8 +1323,9 @@ document.getElementById("fileImport").addEventListener("change", async (e) => {
 document.getElementById("btnExport").onclick = doExport;
 document.getElementById("btnReset").onclick = resetDB;
 
-document.getElementById("btnPublishRemote").onclick = publishToNetlify;
-document.getElementById("btnLoadRemote").onclick = loadFromNetlify;
+document.getElementById("btnPublishRemote").onclick = publishToGitHub;
+document.getElementById("btnLoadRemote").onclick = loadFromGitHub;
+document.getElementById("btnGithubConfig").onclick = openGithubConfigDialog;
 
 elSearch.addEventListener("input", render);
 elSort.addEventListener("change", render);
