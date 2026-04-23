@@ -72,6 +72,32 @@
 .grid2 { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
 @media (max-width: 900px) { .wrap { grid-template-columns: 1fr; } .grid2 { grid-template-columns:1fr; } }
 
+/* Stats dashboard */
+#statsWrap { display:none; }
+#statsWrap.show { display:block; }
+.stats-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:12px; margin-bottom:16px; }
+.stat-card { background:#f5f5f5; border-radius:12px; padding:14px 16px; text-align:center; }
+.stat-card .num { font-size:28px; font-weight:700; line-height:1; }
+.stat-card .label { font-size:11px; color:var(--muted); margin-top:4px; }
+.stats-section { margin-bottom:20px; }
+.stats-section h3 { font-size:13px; font-weight:600; margin:0 0 10px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+.bar-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; font-size:13px; }
+.bar-row .bar-label { width:140px; flex:0 0 auto; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:12px; }
+.bar-row .bar-track { flex:1; background:#eee; border-radius:999px; height:10px; overflow:hidden; }
+.bar-row .bar-fill { height:10px; background:#111; border-radius:999px; transition:width .4s; }
+.bar-row .bar-count { width:28px; text-align:right; font-size:12px; color:var(--muted); flex:0 0 auto; }
+.decade-grid { display:flex; align-items:flex-end; gap:4px; height:80px; }
+.decade-col { display:flex; flex-direction:column; align-items:center; flex:1; }
+.decade-bar { width:100%; background:#111; border-radius:4px 4px 0 0; transition:height .4s; min-height:2px; }
+.decade-label { font-size:9px; color:var(--muted); margin-top:3px; writing-mode:vertical-rl; transform:rotate(180deg); white-space:nowrap; }
+.decade-count { font-size:9px; color:var(--muted); }
+.recent-list { display:flex; flex-direction:column; gap:6px; }
+.recent-item { display:flex; gap:10px; align-items:center; padding:6px 8px; border-radius:10px; cursor:pointer; }
+.recent-item:hover { background:#f5f5f5; }
+.recent-thumb { width:40px; height:40px; border-radius:8px; object-fit:cover; background:#eee; flex:0 0 auto; display:flex; align-items:center; justify-content:center; font-size:18px; }
+.recent-info { flex:1; min-width:0; }
+.recent-name { font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.recent-meta { font-size:11px; color:var(--muted); }
 /* Tabs */
 .tabs { display:flex; gap:0; border-bottom:1px solid var(--b); margin-bottom:12px; }
 .tab { padding:8px 18px; cursor:pointer; font-size:14px; font-weight:500; border-bottom:2px solid transparent; color:var(--muted); background:none; border-top:none; border-left:none; border-right:none; border-radius:0; }
@@ -162,6 +188,7 @@
     <div class="tabs">
       <button class="tab active" id="tabList" onclick="switchTab('list')">📋 Liste</button>
       <button class="tab" id="tabMap" onclick="switchTab('map')">🗺️ Carte</button>
+      <button class="tab" id="tabStats" onclick="switchTab('stats')">📊 Stats</button>
     </div>
 
 ```
@@ -186,6 +213,9 @@
   <div class="muted" style="margin-bottom:8px;" id="mapStatus">Géocodage des lieux en cours…</div>
   <div id="map"></div>
 </div>
+
+<!-- Stats -->
+<div id="statsWrap"></div>
 ```
 
   </div>
@@ -1365,9 +1395,12 @@ function switchTab(tab) {
   currentTab = tab;
   document.getElementById("tabList").classList.toggle("active", tab === "list");
   document.getElementById("tabMap").classList.toggle("active", tab === "map");
-  document.getElementById("coinsWrap").classList.toggle("hide", tab === "map");
+  document.getElementById("tabStats").classList.toggle("active", tab === "stats");
+  document.getElementById("coinsWrap").classList.toggle("hide", tab !== "list");
   document.getElementById("mapWrap").classList.toggle("show", tab === "map");
+  document.getElementById("statsWrap").classList.toggle("show", tab === "stats");
   if (tab === "map") initMap();
+  if (tab === "stats") renderStats();
 }
 
 async function geocodeLocation(location) {
@@ -1497,6 +1530,184 @@ function openDetailFromMap(coinId) {
   // Ouvrir le détail
   const coin = mem.coins.find(c => c.id === coinId);
   if (coin) openDetail(coin.id);
+}
+
+
+/* =========================================================
+   Onglet Stats — Tableau de bord
+========================================================= */
+
+async function renderStats() {
+  const wrap = document.getElementById("statsWrap");
+  wrap.innerHTML = "<div class='muted'>Calcul des statistiques…</div>";
+
+  await refreshMem();
+  const coins = mem.coins;
+  const collections = mem.collections;
+  const total = coins.length;
+  const totalCollections = collections.length;
+
+  // ── Données dérivées ──────────────────────────────────
+  // Pays : extraire la dernière partie après la dernière virgule du champ location
+  const countryCounts = {};
+  const cityCounts = {};
+  for (const c of coins) {
+    const loc = (c.location || "").trim();
+    if (!loc) continue;
+    const parts = loc.split(",").map(s => s.trim()).filter(Boolean);
+    const country = parts[parts.length - 1] || loc;
+    const city = parts[0] || loc;
+    countryCounts[country] = (countryCounts[country] || 0) + 1;
+    cityCounts[city] = (cityCounts[city] || 0) + 1;
+  }
+
+  // Décennies
+  const decadeCounts = {};
+  let noYear = 0;
+  for (const c of coins) {
+    if (!c.year || c.year === 0) { noYear++; continue; }
+    const decade = Math.floor(c.year / 10) * 10;
+    decadeCounts[decade] = (decadeCounts[decade] || 0) + 1;
+  }
+  const decades = Object.keys(decadeCounts).map(Number).sort((a,b) => a-b);
+  const maxDecade = Math.max(...Object.values(decadeCounts), 1);
+
+  // Collections
+  const colCounts = collections.map(col => ({
+    name: col.name,
+    count: coins.filter(c => c.collectionId === col.id).length
+  })).sort((a,b) => b.count - a.count);
+
+  // Top pays (max 10)
+  const topCountries = Object.entries(countryCounts)
+    .sort((a,b) => b[1]-a[1]).slice(0, 10);
+  const maxCountry = topCountries[0]?.[1] || 1;
+
+  // Top villes (max 8)
+  const topCities = Object.entries(cityCounts)
+    .sort((a,b) => b[1]-a[1]).slice(0, 8);
+  const maxCity = topCities[0]?.[1] || 1;
+
+  // Pièces récentes (5 dernières)
+  const recent = [...coins]
+    .sort((a,b) => (b.createdAt||"").localeCompare(a.createdAt||""))
+    .slice(0, 5);
+
+  // Pièces avec/sans photo
+  const avecPhoto = coins.filter(c => c.imageIds && c.imageIds.length > 0).length;
+  const sansLieu  = coins.filter(c => !c.location || c.location.trim() === "").length;
+
+  // Année min/max
+  const years = coins.map(c => c.year).filter(y => y && y > 1000);
+  const yearMin = years.length ? Math.min(...years) : "—";
+  const yearMax = years.length ? Math.max(...years) : "—";
+
+  // ── Rendu HTML ────────────────────────────────────────
+  let html = "";
+
+  // Chiffres clés
+  html += `<div class="stats-grid">
+    <div class="stat-card"><div class="num">${total}</div><div class="label">Pièces</div></div>
+    <div class="stat-card"><div class="num">${totalCollections}</div><div class="label">Collections</div></div>
+    <div class="stat-card"><div class="num">${Object.keys(countryCounts).length}</div><div class="label">Pays</div></div>
+    <div class="stat-card"><div class="num">${avecPhoto}</div><div class="label">Avec photo</div></div>
+    <div class="stat-card"><div class="num">${yearMin}</div><div class="label">Plus ancienne</div></div>
+    <div class="stat-card"><div class="num">${yearMax}</div><div class="label">Plus récente</div></div>
+  </div>`;
+
+  // Décennies
+  if (decades.length > 0) {
+    html += `<div class="stats-section">
+      <h3>Répartition par décennie</h3>
+      <div class="decade-grid">`;
+    for (const d of decades) {
+      const count = decadeCounts[d];
+      const pct = Math.round((count / maxDecade) * 100);
+      html += `<div class="decade-col">
+        <div class="decade-count" style="font-size:9px;color:#888;margin-bottom:2px;">${count}</div>
+        <div class="decade-bar" style="height:${pct}%;"></div>
+        <div class="decade-label">${d}s</div>
+      </div>`;
+    }
+    html += `</div></div>`;
+  }
+
+  // Top pays
+  if (topCountries.length > 0) {
+    html += `<div class="stats-section"><h3>Top pays</h3>`;
+    for (const [country, count] of topCountries) {
+      const pct = Math.round((count / maxCountry) * 100);
+      html += `<div class="bar-row">
+        <div class="bar-label" title="${country}">${country}</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
+        <div class="bar-count">${count}</div>
+      </div>`;
+    }
+    html += `</div>`;
+  }
+
+  // Top villes
+  if (topCities.length > 0) {
+    html += `<div class="stats-section"><h3>Top villes</h3>`;
+    for (const [city, count] of topCities) {
+      const pct = Math.round((count / maxCity) * 100);
+      html += `<div class="bar-row">
+        <div class="bar-label" title="${city}">${city}</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
+        <div class="bar-count">${count}</div>
+      </div>`;
+    }
+    html += `</div>`;
+  }
+
+  // Collections
+  if (colCounts.length > 0) {
+    const maxCol = colCounts[0].count || 1;
+    html += `<div class="stats-section"><h3>Par collection</h3>`;
+    for (const col of colCounts) {
+      const pct = Math.round((col.count / maxCol) * 100);
+      html += `<div class="bar-row">
+        <div class="bar-label" title="${escapeHtml(col.name)}">${escapeHtml(col.name)}</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
+        <div class="bar-count">${col.count}</div>
+      </div>`;
+    }
+    html += `</div>`;
+  }
+
+  // Ajouts récents
+  html += `<div class="stats-section"><h3>Derniers ajouts</h3><div class="recent-list">`;
+  for (const coin of recent) {
+    let thumbHtml = `<div class="recent-thumb">🪙</div>`;
+    if (coin.imageIds && coin.imageIds.length > 0) {
+      try {
+        const img = await tx(db, ["images"], "readonly", async (images) => await idbGet(images, coin.imageIds[0]));
+        if (img?.blob) {
+          const url = URL.createObjectURL(img.blob);
+          thumbHtml = `<img class="recent-thumb" src="${url}" style="width:40px;height:40px;border-radius:8px;object-fit:cover;" />`;
+        }
+      } catch(e) {}
+    }
+    const date = coin.createdAt ? new Date(coin.createdAt).toLocaleDateString("fr-FR") : "";
+    html += `<div class="recent-item" onclick="switchTab('list');openDetail('${coin.id}')">
+      ${thumbHtml}
+      <div class="recent-info">
+        <div class="recent-name">${escapeHtml(coin.name)}</div>
+        <div class="recent-meta">${escapeHtml(coin.location || "")}${coin.year ? " · " + coin.year : ""}${date ? " · " + date : ""}</div>
+      </div>
+    </div>`;
+  }
+  html += `</div></div>`;
+
+  // Infos manquantes
+  if (sansLieu > 0 || noYear > 0) {
+    html += `<div class="stats-section"><h3>À compléter</h3>`;
+    if (sansLieu > 0) html += `<div class="muted" style="margin-bottom:4px;">📍 ${sansLieu} pièce${sansLieu>1?"s":""} sans lieu</div>`;
+    if (noYear > 0)   html += `<div class="muted">📅 ${noYear} pièce${noYear>1?"s":""} sans année</div>`;
+    html += `</div>`;
+  }
+
+  wrap.innerHTML = html;
 }
 
 /* =========================================================
