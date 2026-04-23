@@ -4,7 +4,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>CoinCollector — Web (GitHub + IndexedDB)</title>
+  <title>CoinCollector</title>
+  <meta name="description" content="Ma collection de pièces" />
+  <meta name="theme-color" content="#111111" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="CoinCollector" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/icon-192.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <style>
@@ -72,6 +79,25 @@
 .grid2 { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
 @media (max-width: 900px) { .wrap { grid-template-columns: 1fr; } .grid2 { grid-template-columns:1fr; } }
 
+/* Share page */
+.share-page { font-family: system-ui, -apple-system, Arial; background:#fafafa; min-height:100vh; }
+.share-header { background:#111; color:#fff; padding:24px 32px; }
+.share-header h1 { margin:0 0 4px; font-size:22px; }
+.share-header .sub { font-size:13px; opacity:.6; }
+.share-body { max-width:1100px; margin:0 auto; padding:24px 16px; }
+.share-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap:16px; }
+.share-card-grid { background:#fff; border:1px solid #e0e0e0; border-radius:14px; overflow:hidden; cursor:pointer; transition:box-shadow .2s; }
+.share-card-grid:hover { box-shadow: 0 4px 16px rgba(0,0,0,.1); }
+.share-card-grid img { width:100%; aspect-ratio:1; object-fit:cover; background:#f0f0f0; display:block; }
+.share-card-grid .no-img { width:100%; aspect-ratio:1; background:#f0f0f0; display:flex; align-items:center; justify-content:center; font-size:36px; }
+.share-card-grid .info { padding:10px 12px; }
+.share-card-grid .name { font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.share-card-grid .meta { font-size:11px; color:#888; margin-top:2px; }
+.share-list-item { background:#fff; border:1px solid #e0e0e0; border-radius:12px; padding:12px; display:flex; gap:14px; margin-bottom:10px; }
+.share-list-thumb { width:72px; height:72px; border-radius:10px; object-fit:cover; background:#f0f0f0; flex:0 0 auto; display:flex; align-items:center; justify-content:center; font-size:28px; }
+.share-list-info { flex:1; }
+.share-list-name { font-size:15px; font-weight:600; }
+.share-list-meta { font-size:12px; color:#888; margin-top:3px; }
 /* Stats dashboard */
 #statsWrap { display:none; }
 #statsWrap.show { display:block; }
@@ -172,6 +198,14 @@
 <div id="prog" class="muted" style="margin-top:8px;"></div>
 
 <div class="divider"></div>
+<strong>Partager</strong>
+<div class="muted" style="margin-top:4px;">Générez une page publique ou un PDF de votre collection.</div>
+<div class="row" style="margin-top:8px; flex-wrap:wrap;">
+  <button id="btnShare">🔗 Page publique</button>
+  <button id="btnPDF">📄 Export PDF</button>
+</div>
+
+<div class="divider"></div>
 <button id="btnReset" class="danger">Effacer la base locale</button>
 ```
 
@@ -218,6 +252,38 @@
 <div id="statsWrap"></div>
 ```
 
+  </div>
+</div>
+
+<!-- Share Modal -->
+
+<div id="shareBack" class="modalBack" role="dialog" aria-modal="true">
+  <div class="modal" style="max-width:520px;">
+    <div class="modalHeader">
+      <strong>Partager la collection</strong>
+      <button id="btnCloseShare">Fermer</button>
+    </div>
+    <div class="modalBody" style="padding:16px; display:flex; flex-direction:column; gap:14px;">
+      <div>
+        <label style="font-weight:600; font-size:13px;">Que partager ?</label>
+        <select id="shareScope" style="margin-top:6px;">
+          <option value="ALL">Toute la collection</option>
+        </select>
+      </div>
+      <div>
+        <label style="font-weight:600; font-size:13px;">Mise en page</label>
+        <div class="row" style="margin-top:6px; gap:8px;">
+          <button id="layoutGrid" class="primary" onclick="setShareLayout('grid')" style="flex:1;">⊞ Galerie</button>
+          <button id="layoutList" onclick="setShareLayout('list')" style="flex:1;">☰ Catalogue</button>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="row" style="gap:8px; flex-wrap:wrap;">
+        <button id="btnDoShare" class="primary" style="flex:1;">🔗 Ouvrir la page</button>
+        <button id="btnDoPDF" style="flex:1;">📄 Télécharger PDF</button>
+      </div>
+      <div class="muted" style="font-size:11px;">La page publique s'ouvre dans un nouvel onglet. Le PDF se génère localement dans votre navigateur.</div>
+    </div>
   </div>
 </div>
 
@@ -1710,46 +1776,245 @@ async function renderStats() {
   wrap.innerHTML = html;
 }
 
+
 /* =========================================================
-   Wire UI
+   Partage — Page publique + PDF
 ========================================================= */
-document.getElementById("btnNewFolder").onclick = addFolder;
-document.getElementById("btnAdd").onclick = openFormCreate;
+let shareLayout = "grid";
 
-document.getElementById("btnCloseDetail").onclick = closeDetail;
-detailBack.addEventListener("click", (e) => { if (e.target === detailBack) closeDetail(); });
+function setShareLayout(layout) {
+  shareLayout = layout;
+  document.getElementById("layoutGrid").className = layout === "grid" ? "primary" : "";
+  document.getElementById("layoutList").className = layout === "list" ? "primary" : "";
+}
 
-document.getElementById("btnCloseForm").onclick = closeForm;
-formBack.addEventListener("click", (e) => { if (e.target === formBack) closeForm(); });
-
-document.getElementById("btnImport").onclick = () => document.getElementById("fileImport").click();
-document.getElementById("fileImport").addEventListener("change", async (e) => {
-  const file = e.target.files?.[0];
-  e.target.value = "";
-  if (file) {
-    try { await doImport(file); }
-    catch (err) { setProg(""); alert("Import impossible : " + (err?.message || err)); }
+function openShareModal() {
+  // Remplir le select avec les collections
+  const sel = document.getElementById("shareScope");
+  sel.innerHTML = '<option value="ALL">Toute la collection</option>';
+  for (const col of mem.collections.slice().sort((a,b) => a.name.localeCompare(b.name, "fr"))) {
+    const count = mem.coins.filter(c => c.collectionId === col.id).length;
+    sel.innerHTML += `<option value="${col.id}">${escapeHtml(col.name)} (${count})</option>`;
   }
+  setShareLayout("grid");
+  document.getElementById("shareBack").classList.add("show");
+}
+
+function closeShareModal() {
+  document.getElementById("shareBack").classList.remove("show");
+}
+
+async function getShareCoins() {
+  const scope = document.getElementById("shareScope").value;
+  await refreshMem();
+  return scope === "ALL"
+    ? mem.coins
+    : mem.coins.filter(c => c.collectionId === scope);
+}
+
+function getScopeLabel() {
+  const sel = document.getElementById("shareScope");
+  return sel.options[sel.selectedIndex].text;
+}
+
+// ── Générer le HTML de la page publique ───────────────────
+async function buildShareHTML(coins, layout) {
+  const label = getScopeLabel();
+  const date = new Date().toLocaleDateString("fr-FR", { year:"numeric", month:"long", day:"numeric" });
+  const total = coins.length;
+
+  let cardsHTML = "";
+
+  if (layout === "grid") {
+    cardsHTML = '<div class="share-grid">';
+    for (const coin of coins) {
+      let imgHTML = `<div class="no-img">🪙</div>`;
+      if (coin.imageIds && coin.imageIds.length > 0) {
+        try {
+          const img = await tx(db, ["images"], "readonly", async (images) => await idbGet(images, coin.imageIds[0]));
+          if (img?.blob) {
+            const b64 = await blobToBase64(img.blob);
+            imgHTML = `<img src="data:image/jpeg;base64,${b64}" loading="lazy" />`;
+          }
+        } catch(e) {}
+      }
+      const meta = [coin.location, coin.year].filter(Boolean).join(" · ");
+      cardsHTML += `<div class="share-card-grid">
+        ${imgHTML}
+        <div class="info">
+          <div class="name" title="${escapeHtml(coin.name)}">${escapeHtml(coin.name)}</div>
+          <div class="meta">${escapeHtml(meta)}</div>
+        </div>
+      </div>`;
+    }
+    cardsHTML += '</div>';
+  } else {
+    // list layout
+    for (const coin of coins) {
+      let imgHTML = `<div class="share-list-thumb">🪙</div>`;
+      if (coin.imageIds && coin.imageIds.length > 0) {
+        try {
+          const img = await tx(db, ["images"], "readonly", async (images) => await idbGet(images, coin.imageIds[0]));
+          if (img?.blob) {
+            const b64 = await blobToBase64(img.blob);
+            imgHTML = `<img class="share-list-thumb" src="data:image/jpeg;base64,${b64}" />`;
+          }
+        } catch(e) {}
+      }
+      const meta = [coin.location, coin.year ? `an ${coin.year}` : ""].filter(Boolean).join(" · ");
+      cardsHTML += `<div class="share-list-item">
+        ${imgHTML}
+        <div class="share-list-info">
+          <div class="share-list-name">${escapeHtml(coin.name)}</div>
+          <div class="share-list-meta">${escapeHtml(meta)}</div>
+        </div>
+      </div>`;
+    }
+  }
+
+  return `<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>${escapeHtml(label)} — CoinCollector</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:system-ui,-apple-system,Arial;background:#fafafa;color:#111;}
+.share-header{background:#111;color:#fff;padding:24px 32px;}
+.share-header h1{font-size:22px;margin-bottom:4px;}
+.share-header .sub{font-size:13px;opacity:.6;}
+.share-body{max-width:1100px;margin:0 auto;padding:24px 16px;}
+.share-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px;}
+.share-card-grid{background:#fff;border:1px solid #e0e0e0;border-radius:12px;overflow:hidden;}
+.share-card-grid img,.no-img{width:100%;aspect-ratio:1;object-fit:cover;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:36px;}
+.share-card-grid .info{padding:10px 12px;}
+.share-card-grid .name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.share-card-grid .meta{font-size:11px;color:#888;margin-top:2px;}
+.share-list-item{background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:12px;display:flex;gap:14px;margin-bottom:10px;}
+.share-list-thumb{width:72px;height:72px;border-radius:10px;object-fit:cover;background:#f0f0f0;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:28px;}
+img.share-list-thumb{display:block;}
+.share-list-name{font-size:15px;font-weight:600;}
+.share-list-meta{font-size:12px;color:#888;margin-top:3px;}
+.footer{text-align:center;padding:32px;font-size:12px;color:#aaa;}
+</style>
+
+</head>
+<body>
+<div class="share-header">
+  <h1>🪙 ${escapeHtml(label)}</h1>
+  <div class="sub">${total} pièce${total > 1 ? "s" : ""} · Généré le ${date}</div>
+</div>
+<div class="share-body">
+${cardsHTML}
+</div>
+<div class="footer">Généré avec CoinCollector</div>
+</body>
+</html>`;
+}
+
+async function doSharePage() {
+closeShareModal();
+showProgress(“Génération de la page…”, null);
+try {
+const coins = await getShareCoins();
+showProgress(“Chargement des images…”, null, `0 / ${coins.length}`);
+const html = await buildShareHTML(coins, shareLayout);
+hideProgress();
+const blob = new Blob([html], { type: “text/html” });
+const url = URL.createObjectURL(blob);
+window.open(url, “_blank”);
+} catch(e) {
+hideProgress();
+alert(“Erreur : “ + e.message);
+}
+}
+
+async function doPDF() {
+closeShareModal();
+showProgress(“Génération du PDF…”, null);
+try {
+const coins = await getShareCoins();
+const html = await buildShareHTML(coins, shareLayout);
+hideProgress();
+
+```
+// Ouvrir dans un iframe caché puis print
+const iframe = document.createElement("iframe");
+iframe.style.cssText = "position:fixed;left:-9999px;top:-9999px;width:210mm;height:297mm;";
+document.body.appendChild(iframe);
+iframe.contentDocument.open();
+iframe.contentDocument.write(html + `<style>@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}</style>`);
+iframe.contentDocument.close();
+iframe.contentWindow.focus();
+setTimeout(() => {
+  iframe.contentWindow.print();
+  setTimeout(() => document.body.removeChild(iframe), 2000);
+}, 800);
+```
+
+} catch(e) {
+hideProgress();
+alert(“Erreur : “ + e.message);
+}
+}
+
+/* =========================================================
+Wire UI
+========================================================= */
+document.getElementById(“btnNewFolder”).onclick = addFolder;
+document.getElementById(“btnAdd”).onclick = openFormCreate;
+
+document.getElementById(“btnCloseDetail”).onclick = closeDetail;
+detailBack.addEventListener(“click”, (e) => { if (e.target === detailBack) closeDetail(); });
+
+document.getElementById(“btnCloseForm”).onclick = closeForm;
+formBack.addEventListener(“click”, (e) => { if (e.target === formBack) closeForm(); });
+
+document.getElementById(“btnImport”).onclick = () => document.getElementById(“fileImport”).click();
+document.getElementById(“fileImport”).addEventListener(“change”, async (e) => {
+const file = e.target.files?.[0];
+e.target.value = “”;
+if (file) {
+try { await doImport(file); }
+catch (err) { setProg(””); alert(“Import impossible : “ + (err?.message || err)); }
+}
 });
 
-document.getElementById("btnExport").onclick = doExport;
-document.getElementById("btnReset").onclick = resetDB;
+document.getElementById(“btnExport”).onclick = doExport;
+document.getElementById(“btnShare”).onclick = openShareModal;
+document.getElementById(“btnPDF”).onclick = () => { openShareModal(); document.getElementById(“btnDoPDF”).onclick(); };
+document.getElementById(“btnCloseShare”).onclick = closeShareModal;
+document.getElementById(“shareBack”).addEventListener(“click”, e => { if (e.target === document.getElementById(“shareBack”)) closeShareModal(); });
+document.getElementById(“btnDoShare”).onclick = doSharePage;
+document.getElementById(“btnDoPDF”).onclick = doPDF;
+document.getElementById(“btnReset”).onclick = resetDB;
 
-document.getElementById("btnPublishRemote").onclick = publishToGitHub;
-document.getElementById("btnLoadRemote").onclick = loadFromGitHub;
-document.getElementById("btnGithubConfig").onclick = openGithubConfigDialog;
+document.getElementById(“btnPublishRemote”).onclick = publishToGitHub;
+document.getElementById(“btnLoadRemote”).onclick = loadFromGitHub;
+document.getElementById(“btnGithubConfig”).onclick = openGithubConfigDialog;
 
-elSearch.addEventListener("input", render);
-elSort.addEventListener("change", render);
+elSearch.addEventListener(“input”, render);
+elSort.addEventListener(“change”, render);
 
 /* =========================================================
-   Init
+Init
 ========================================================= */
 (async function init() {
-  db = await openDB();
-  await refreshMem();
-  render();
+db = await openDB();
+await refreshMem();
+render();
 })();
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js")
+      .then(r => console.log("SW enregistré:", r.scope))
+      .catch(e => console.warn("SW erreur:", e));
+  });
+}
 </script>
 
 </body>
