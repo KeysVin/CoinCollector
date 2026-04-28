@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-02-27T06:23:38.273Z",
+  "savedAt": "2026-04-28T21:18:33.600Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -78,6 +78,436 @@
       "createdAt": "2025-09-07T20:28:50Z"
     }
   ],
+  "geoMap": {
+    "Lourdes, France": {
+      "lat": 43.0940904,
+      "lon": -0.0464975
+    },
+    "Bioparc de Doué-la-Fontaine, 103 Rue de Cholet, Doué-la-Fontaine, 49700 Doué-en-Anjou, France": {
+      "lat": 47.1884688,
+      "lon": -0.2981323
+    },
+    "Île-d'Aix, France": {
+      "lat": 46.0121794,
+      "lon": -1.1737893
+    },
+    "Place de l'Église, , 29180 Locronan, France": {
+      "lat": 48.0983301,
+      "lon": -4.2083568
+    },
+    "Arc de triomphe, Place Charles de Gaulle\n75008 Paris\nFrance": {
+      "lat": 48.8737791,
+      "lon": 2.2950372
+    },
+    "Le Puy du Fou, 85590 Les Epesses, France": {
+      "lat": 46.8925411,
+      "lon": -0.9349161
+    },
+    "Fort Boyard, 17123 Île-d'Aix, France": {
+      "lat": 45.9996469,
+      "lon": -1.2139363
+    },
+    "Aachen, North Rhine-Westphalia, Germany": {
+      "lat": 50.776351,
+      "lon": 6.083862
+    },
+    "Square du Château de la Buzine, 13011 Marseille, France": {
+      "lat": 43.2951566,
+      "lon": 5.5042123
+    },
+    "Chateau De Clos Luce, 2 Rue du Clos Lucé, 37400 Amboise, France": {
+      "lat": 47.4103237,
+      "lon": 0.992109
+    },
+    "Viaduc de Millau, 12100 Millau, France": {
+      "lat": 44.0799775,
+      "lon": 3.0224087
+    },
+    "Île de Ré, France": {
+      "lat": 46.2005378,
+      "lon": -1.4002798
+    },
+    "Périgord, Les Ulis, France": {
+      "lat": 48.6804209,
+      "lon": 2.168069
+    },
+    "Mini Châteaux, Boulevard St Denis Hors, 37400 Amboise, France": {
+      "lat": 47.3922581,
+      "lon": 1.0025816
+    },
+    "Musée Grévin, 10 Boulevard Montmartre, 75009 Paris, France": {
+      "lat": 48.8718365,
+      "lon": 2.3420974
+    },
+    "Paris, France": {
+      "lat": 48.8588897,
+      "lon": 2.320041
+    },
+    "Castelnaud, , 24250 -la-Chapelle, France": {
+      "lat": 44.8160173,
+      "lon": 1.1480437
+    },
+    "United States": {
+      "lat": 39.7837304,
+      "lon": -100.445882
+    },
+    "Bonifacio, France": {
+      "lat": 41.3872348,
+      "lon": 9.1590609
+    },
+    "Disneyland Paris, , 77700 Chessy, France": {
+      "lat": 48.8700934,
+      "lon": 2.7740499
+    },
+    "Le Musée du Savon de Marseille, 25 Quai de Rive-Neuve, 13007 Marseille, France": {
+      "lat": 43.2927712,
+      "lon": 5.3694744
+    },
+    "Château des Ducs de Bretagne, 4 Place Marc Elder, 44000 Nantes, France": {
+      "lat": 47.2161171,
+      "lon": -1.5493127
+    },
+    "Locmariaquer, France": {
+      "lat": 47.5690209,
+      "lon": -2.9444155
+    },
+    "Château de Chambord, 41250 Chambord, France": {
+      "lat": 47.6160697,
+      "lon": 1.5170502
+    },
+    "Avenue du Château d'Amboise, 77340 Pontault-Combault, France": {
+      "lat": 48.7889669,
+      "lon": 2.5990733
+    },
+    "Rue de l'Usine, , 13014 Marseille, France": {
+      "lat": 43.3227055,
+      "lon": 5.3771059
+    },
+    "China": {
+      "lat": 30.047992,
+      "lon": -94.3357433
+    },
+    "Carcassonne, France": {
+      "lat": 43.2130358,
+      "lon": 2.3491069
+    },
+    "Site archéologique de Glanum, Avenue Vincent van Gogh, 13210 Saint-Rémy-de-Provence, France": {
+      "lat": 43.7743595,
+      "lon": 4.8317615
+    },
+    "La Roque Saint-Christophe, 24620 Peyzac-le-Moustier, France": {
+      "lat": 44.9890356,
+      "lon": 1.0687764
+    },
+    "Dordogne, France": {
+      "lat": 45.1429199,
+      "lon": 0.6321258
+    },
+    "17320 Marennes-Hiers-Brouage, France": {
+      "lat": 45.831291,
+      "lon": -1.1247012
+    },
+    "Piazza del Colosseo, Rome, Italy": {
+      "lat": 41.8902336,
+      "lon": 12.4911639
+    },
+    "Talmont-sur-Gironde, France": {
+      "lat": 45.5350413,
+      "lon": -0.9072627
+    },
+    "Zoo de la Palmyre, 6 Avenue de Royan, 17570 Les Mathes, France": {
+      "lat": 45.6871557,
+      "lon": -1.1657905
+    },
+    "Château, Versailles, France": {
+      "lat": 48.8056025,
+      "lon": 2.1201004
+    },
+    "Great Wall, Mutianyu, Mutianyu Great Wall, Mu Tian Yu Great Wall, Beijing, China": {
+      "lat": 40.4309411,
+      "lon": 116.5644116
+    },
+    "Oceanopolis, Port de Plaisance du Moulin blanc, 29200 Brest, France": {
+      "lat": 48.38992,
+      "lon": -4.435977
+    },
+    "Gordes, France": {
+      "lat": 43.9110641,
+      "lon": 5.2002043
+    },
+    "Parc du Futuroscope, 86360 Chasseneuil-du-Poitou, France": {
+      "lat": 46.6703886,
+      "lon": 0.3701107
+    },
+    "Monaco": {
+      "lat": 43.7323492,
+      "lon": 7.4276832
+    },
+    "Sainte-Radegonde, 12850 , France": {
+      "lat": 44.3373755,
+      "lon": 2.6264447
+    },
+    "Océarium du Croisic, Avenue de St-Goustan, 44490 Le Croisic, France": {
+      "lat": 47.2996223,
+      "lon": -2.5238237
+    },
+    "Segovia, Spain": {
+      "lat": 40.9481192,
+      "lon": -4.1172101
+    },
+    "Cap Fréhel, 22240 Plévenon, France": {
+      "lat": 48.6816345,
+      "lon": -2.3174253
+    },
+    "Musée National de la Marine, Château de Brest\nRue du château\n29200 Brest\nFrance": {
+      "lat": 48.381272,
+      "lon": -4.4923642
+    },
+    "Oceanographic Museum of Monaco, Avenue St-Martin, 98000 Monaco, Monaco": {
+      "lat": 43.7306805,
+      "lon": 7.4255127
+    },
+    "Paimpont, France": {
+      "lat": 48.0193594,
+      "lon": -2.1735324
+    },
+    "Parc zoologique de Champrépus, 493 Rue St-Gaud, 50800 Champrepus, France": {
+      "lat": 48.832333,
+      "lon": -1.3233607
+    },
+    "València, , Valencia, Spain": {
+      "lat": 39.4697065,
+      "lon": -0.3763353
+    },
+    "Vers-Pont-du-Gard, France": {
+      "lat": 43.9697668,
+      "lon": 4.5207875
+    },
+    "Rocamadour, France": {
+      "lat": 44.7995467,
+      "lon": 1.6181714
+    },
+    "Charente-Maritime, France": {
+      "lat": 45.7302268,
+      "lon": -0.7212876
+    },
+    "Parc Animalier de la Barben, Route du Château, 13330 La Barben, France": {
+      "lat": 43.6239243,
+      "lon": 5.210881
+    },
+    "Villedieu-les-Poêles, 50800 Villedieu-les-Poêles-Rouffigny, France": {
+      "lat": 48.8381226,
+      "lon": -1.2220882
+    },
+    "Zoo de la Flèche, Le Tertre Rouge, 72200 La Flèche, France": {
+      "lat": 47.6788426,
+      "lon": -0.0480439
+    },
+    "Planet Ocean Montpellier, Allée Ulysse\n34000 Montpellier\nFrance": {
+      "lat": 43.6028698,
+      "lon": 3.917154
+    },
+    "Stockholm, Sweden": {
+      "lat": 59.3251172,
+      "lon": 18.0710935
+    },
+    "Rue de l'Amphithéâtre, , 13200 Arles, France": {
+      "lat": 43.6790369,
+      "lon": 4.6304319
+    },
+    "Château de Chenonceau, , 37150 Chenonceaux, France": {
+      "lat": 47.3246222,
+      "lon": 1.0704175
+    },
+    "La Couvertoirade, France": {
+      "lat": 43.9135013,
+      "lon": 3.3164627
+    },
+    "Place du Palais, Monaco City, Monaco": {
+      "lat": 43.7308993,
+      "lon": 7.4213763
+    },
+    "Musée d'Orsay, Esplanade Valéry Giscard d'Estaing, 75007 Paris, France": {
+      "lat": 48.8606228,
+      "lon": 2.3254001
+    },
+    "Superdevoluy, 05250 Dévoluy, France": {
+      "lat": 44.6765415,
+      "lon": 5.9295878
+    },
+    "Bagnères-de-Luchon, France": {
+      "lat": 42.7910617,
+      "lon": 0.5912279
+    },
+    "Place de la Maison Carrée, 30000 Nîmes, France": {
+      "lat": 43.8381744,
+      "lon": 4.3557277
+    },
+    "Arènes de Nîmes, Boulevard des Arènes\n30000 Nîmes\nFrance": {
+      "lat": 43.8348854,
+      "lon": 4.3596245
+    },
+    "Branféré, , 56190 Le Guerno, France": {
+      "lat": 47.5957547,
+      "lon": -2.3976637
+    },
+    "Saint-Cirq-Lapopie, France": {
+      "lat": 44.4647712,
+      "lon": 1.6687454
+    },
+    "Rue de la Tour Magne, , 30000 Nîmes, France": {
+      "lat": 43.8400783,
+      "lon": 4.3524323
+    },
+    "Domme, France": {
+      "lat": 44.8022673,
+      "lon": 1.2140018
+    },
+    "Bryce Canyon, UT, United States": {
+      "lat": 37.6184069,
+      "lon": -112.1421787
+    },
+    "L'Abbaye, 50170 Le Mont-Saint-Michel, France": {
+      "lat": 48.635807,
+      "lon": -1.5115314
+    },
+    "La Croix des Trésors, , Coteaux-du-Blanzacais, France": {
+      "lat": 45.4816796,
+      "lon": 0.0350755
+    },
+    "Grand Canyon, AZ, United States": {
+      "lat": 36.0980405,
+      "lon": -112.0962787
+    },
+    "Îles Sanguinaires, Ajaccio, France": {
+      "lat": 41.8780061,
+      "lon": 8.5934321
+    },
+    "Montée de l'Église, , 13015 Marseille, France": {
+      "lat": 43.3727381,
+      "lon": 5.346827
+    },
+    "Montpellier, 34000 , France": {
+      "lat": 43.6112422,
+      "lon": 3.8767337
+    },
+    "Saint-Bertrand-de-Comminges, France": {
+      "lat": 43.0269283,
+      "lon": 0.5709114
+    },
+    "Guérande, France": {
+      "lat": 47.3282126,
+      "lon": -2.4298014
+    },
+    "Concarneau, France": {
+      "lat": 47.8757017,
+      "lon": -3.9223889
+    },
+    "Superbagnères, 31110 Saint-Aventin, France": {
+      "lat": 42.7683475,
+      "lon": 0.5772294
+    },
+    "Musée Jules Verne, 3 Rue de l'Hermitage, 44100 Nantes, France": {
+      "lat": 47.2016342,
+      "lon": -1.5773507
+    },
+    "Rochefort, France": {
+      "lat": 45.9366592,
+      "lon": -0.9616399
+    },
+    "Château de la Roche Courbon, 17250 Saint-Porchaire, France": {
+      "lat": 45.8363493,
+      "lon": -0.7807756
+    },
+    "Le lac d’ô": {
+      "lat": 50.6451414,
+      "lon": 1.6154138
+    },
+    "La Rochelle, France": {
+      "lat": 46.159732,
+      "lon": -1.1515951
+    },
+    "Place Terra Botanica, 49100 Angers, France": {
+      "lat": 47.4945335,
+      "lon": -0.5747941
+    },
+    "Château de Cheverny, Avenue du Château, 41700 Cheverny, France": {
+      "lat": 47.500231,
+      "lon": 1.4580181
+    },
+    "Eiffel Tower, 5 Avenue Anatole France, 75007 Paris, France": {
+      "lat": 48.8582599,
+      "lon": 2.2945006
+    },
+    "Roussillon, France": {
+      "lat": 45.3735991,
+      "lon": 4.8124049
+    },
+    "Faunia, Avenida Comunidades, 28, 28032 Madrid, Spain": {
+      "lat": 40.392296,
+      "lon": -3.6126058
+    },
+    "Corsica, France": {
+      "lat": 42.188098,
+      "lon": 9.0683139
+    },
+    "Panthéon, Place du , 75005 Paris, France": {
+      "lat": 48.8461947,
+      "lon": 2.3460507
+    },
+    "Pont St-Bénézet, 84000 Avignon, France": {
+      "lat": 43.9537507,
+      "lon": 4.8050631
+    },
+    "Mazangé, 41100 , France": {
+      "lat": 47.8221464,
+      "lon": 0.9471773
+    },
+    "Tower Bridge Road, London SE1, England": {
+      "lat": 51.5014768,
+      "lon": -0.0786705
+    },
+    "Allée des Alignements, 56340 Carnac, France": {
+      "lat": 47.5727755,
+      "lon": -3.0719697
+    },
+    "Château de Carrouges, 61320 Carrouges, France": {
+      "lat": 48.5608248,
+      "lon": -0.1526362
+    },
+    "Impasse de l'Église, 17250 Sainte-Radegonde, France": {
+      "lat": 45.8452504,
+      "lon": -0.8737531
+    },
+    "Sagrada Família, Barcelona, Spain": {
+      "lat": 41.4035046,
+      "lon": 2.1744283
+    },
+    "Île de Bréhat, Côtes-d'Armor, France": {
+      "lat": 48.8432094,
+      "lon": -3.0007713
+    },
+    "Château de Rambouillet, , 78120 Rambouillet, France": {
+      "lat": 48.6454127,
+      "lon": 1.8173244
+    },
+    "L'Île, 17190 Saint-Georges-d'Oléron, France": {
+      "lat": 45.9862278,
+      "lon": -1.3485718
+    },
+    "Disneyland Paris": {
+      "lat": 48.8700934,
+      "lon": 2.7740499
+    },
+    "Moulin de Boly": {
+      "lat": 43.0982444,
+      "lon": -0.0488606
+    },
+    "Cité des sciences Paris": {
+      "lat": 48.8956779,
+      "lon": 2.3879665
+    }
+  },
   "coins": [
     {
       "id": "00C5A4A3-1CA4-4811-B7C7-FCD587BBFAC6",
