@@ -4,7 +4,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>CoinCollector — Web (GitHub + IndexedDB)</title>
+  <title>CoinCollector</title>
+  <meta name="description" content="Ma collection de pièces" />
+  <meta name="theme-color" content="#111111" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="CoinCollector" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/icon-192.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <style>
@@ -170,6 +177,7 @@
 </div>
 
 <div id="prog" class="muted" style="margin-top:8px;"></div>
+
 
 <div class="divider"></div>
 <button id="btnReset" class="danger">Effacer la base locale</button>
@@ -1194,11 +1202,23 @@ async function publishToGitHub() {
   let doneImages = 0;
   let errorCount = 0;
 
-  // 1. Construire les métadonnées (sans images)
+  // 1. Géocoder tous les lieux uniques
+  const uniqueLocs = [...new Set(mem.coins.map(c => (c.location||"").trim()).filter(Boolean))];
+  const geoMap = {};
+  for (let i = 0; i < uniqueLocs.length; i++) {
+    const loc = uniqueLocs[i];
+    showProgress("Géocodage des lieux…", Math.round((i/Math.max(1,uniqueLocs.length))*15),
+      `${i+1}/${uniqueLocs.length} : ${loc}`);
+    const geo = await geocodeLocation(loc);
+    if (geo) geoMap[loc] = { lat: geo.lat, lon: geo.lon };
+  }
+
+  // 2. Construire les métadonnées (avec coordonnées)
   const meta = {
     version: 2,
     savedAt: new Date().toISOString(),
     collections: mem.collections,
+    geoMap,
     coins: mem.coins.map(c => ({
       id: c.id, name: c.name, location: c.location,
       year: c.year, notes: c.notes, imageIds: c.imageIds || [],
@@ -1212,7 +1232,7 @@ async function publishToGitHub() {
     doneCoins++;
     for (const imgId of (coin.imageIds || [])) {
       doneImages++;
-      const pct = Math.round((doneImages / Math.max(1, totalImages)) * 80);
+      const pct = 15 + Math.round((doneImages / Math.max(1, totalImages)) * 75);
       showProgress(`Upload images…`, pct,
         `Pièce ${doneCoins}/${totalCoins} — ${coin.name} (img ${doneImages}/${totalImages})`);
       try {
@@ -1275,6 +1295,9 @@ async function loadFromGitHub() {
     alert("Format de métadonnées invalide.");
     return;
   }
+
+  // Stocker le geoMap pour la carte
+  window._coinGeoMap = meta.geoMap || {};
 
   const totalCoins = (meta.coins || []).length;
   const ok = confirm(`Charger va écraser la base locale.
@@ -1431,96 +1454,102 @@ async function initMap() {
     }).addTo(mapInstance);
     mapInitialized = true;
   } else {
-    // Clear existing markers
     mapInstance.eachLayer(layer => {
       if (layer instanceof L.Marker || layer instanceof L.CircleMarker) mapInstance.removeLayer(layer);
     });
   }
 
-  // Grouper les pièces par lieu
+  const geoMap = window._coinGeoMap || {};
   const coinsByLocation = {};
-  for (const coin of mem.coins) {
-    const loc = (coin.location || "").trim();
+  for (const c of mem.coins) {
+    const loc = (c.location || "").trim();
     if (!loc) continue;
     if (!coinsByLocation[loc]) coinsByLocation[loc] = [];
-    coinsByLocation[loc].push(coin);
+    coinsByLocation[loc].push(c);
   }
 
-  const locations = Object.keys(coinsByLocation);
-  const total = locations.length;
-  let done = 0;
   const bounds = [];
+  const locsMissing = [];
 
-  document.getElementById("mapStatus").textContent = `Géocodage : 0 / ${total} lieux…`;
+  // Afficher instantanément les lieux déjà géocodés
+  for (const loc of Object.keys(coinsByLocation)) {
+    const geo = geoMap[loc];
+    if (geo) {
+      bounds.push([geo.lat, geo.lon]);
+      addMapMarker(loc, geo, coinsByLocation[loc]);
+    } else {
+      locsMissing.push(loc);
+    }
+  }
 
-  for (const loc of locations) {
-    done++;
-    document.getElementById("mapStatus").textContent = `Géocodage : ${done} / ${total} lieux…`;
+  if (bounds.length > 0) mapInstance.fitBounds(bounds, { padding: [40, 40] });
 
+  const nbSansLieu = mem.coins.filter(c => !c.location || c.location.trim() === "").length;
+
+  if (locsMissing.length === 0) {
+    document.getElementById("mapStatus").textContent =
+      `${bounds.length} lieu${bounds.length>1?"x":""} affiché${bounds.length>1?"s":""}` +
+      (nbSansLieu > 0 ? ` — ${nbSansLieu} pièce${nbSansLieu>1?"s":""} sans lieu` : "");
+    return;
+  }
+
+  // Géocoder en arrière-plan les nouveaux lieux non encore publiés
+  document.getElementById("mapStatus").textContent =
+    `${bounds.length} lieux affichés — géocodage de ${locsMissing.length} nouveau${locsMissing.length>1?"x":""} lieu…`;
+
+  for (const loc of locsMissing) {
     const geo = await geocodeLocation(loc);
     if (!geo) continue;
-
     bounds.push([geo.lat, geo.lon]);
-    const coins = coinsByLocation[loc];
-    const count = coins.length;
-
-    // Marqueur cercle avec nombre
-    const marker = L.circleMarker([geo.lat, geo.lon], {
-      radius: Math.min(8 + count * 2, 24),
-      fillColor: "#111",
-      color: "#fff",
-      weight: 2,
-      opacity: 1,
-      fillOpacity: 0.85
-    }).addTo(mapInstance);
-
-    // Label nombre
-    const icon = L.divIcon({
-      className: "",
-      html: `<div style="position:absolute;transform:translate(-50%,-50%);color:#fff;font-size:11px;font-weight:700;pointer-events:none;">${count}</div>`,
-      iconSize: [0, 0]
-    });
-    L.marker([geo.lat, geo.lon], { icon, interactive: false }).addTo(mapInstance);
-
-    // Popup avec liste des pièces
-    marker.on("click", async () => {
-      let html = `<div class="map-popup"><h4>📍 ${escapeHtml(loc)} <span style="color:#888;font-weight:400;">(${count} pièce${count > 1 ? "s" : ""})</span></h4>`;
-      for (const coin of coins) {
-        // Miniature
-        let thumbHtml = `<div class="coin-thumb" style="display:flex;align-items:center;justify-content:center;color:#ccc;">🪙</div>`;
-        if (coin.imageIds && coin.imageIds.length > 0) {
-          try {
-            const img = await tx(db, ["images"], "readonly", async (images) => await idbGet(images, coin.imageIds[0]));
-            if (img?.blob) {
-              const url = URL.createObjectURL(img.blob);
-              thumbHtml = `<img class="coin-thumb" src="${url}" />`;
-            }
-          } catch(e) {}
-        }
-        html += `<div class="coin-item" onclick="openDetailFromMap('${coin.id}')">
-          ${thumbHtml}
-          <div>
-            <div class="coin-name">${escapeHtml(coin.name)}</div>
-            <div class="coin-meta">${coin.year || ""}</div>
-          </div>
-        </div>`;
-      }
-      html += "</div>";
-      marker.bindPopup(html, { maxWidth: 300 }).openPopup();
-    });
-
-    // Petite pause pour ne pas surcharger Nominatim (max 1 req/s)
+    addMapMarker(loc, geo, coinsByLocation[loc]);
     await new Promise(r => setTimeout(r, 1100));
   }
 
-  if (bounds.length > 0) {
-    mapInstance.fitBounds(bounds, { padding: [40, 40] });
-  }
-
-  const nbSansLieu = mem.coins.filter(c => !c.location || c.location.trim() === "").length;
   document.getElementById("mapStatus").textContent =
-    `${bounds.length} lieu${bounds.length > 1 ? "x" : ""} affiché${bounds.length > 1 ? "s" : ""}` +
-    (nbSansLieu > 0 ? ` — ${nbSansLieu} pièce${nbSansLieu > 1 ? "s" : ""} sans lieu` : "");
+    `${bounds.length} lieu${bounds.length>1?"x":""} affiché${bounds.length>1?"s":""}` +
+    (nbSansLieu > 0 ? ` — ${nbSansLieu} pièce${nbSansLieu>1?"s":""} sans lieu` : "") +
+    " · Publiez sur GitHub pour accélérer la carte";
+}
+
+function addMapMarker(loc, geo, coins) {
+  const count = coins.length;
+  const marker = L.circleMarker([geo.lat, geo.lon], {
+    radius: Math.min(8 + count * 2, 24),
+    fillColor: "#111", color: "#fff",
+    weight: 2, opacity: 1, fillOpacity: 0.85
+  }).addTo(mapInstance);
+
+  const icon = L.divIcon({
+    className: "",
+    html: `<div style="position:absolute;transform:translate(-50%,-50%);color:#fff;font-size:11px;font-weight:700;pointer-events:none;">${count}</div>`,
+    iconSize: [0, 0]
+  });
+  L.marker([geo.lat, geo.lon], { icon, interactive: false }).addTo(mapInstance);
+
+  marker.on("click", async () => {
+    let html = `<div class="map-popup"><h4>📍 ${escapeHtml(loc)} <span style="color:#888;font-weight:400;">(${count} pièce${count>1?"s":""})</span></h4>`;
+    for (const coin of coins) {
+      let thumbHtml = `<div class="coin-thumb" style="display:flex;align-items:center;justify-content:center;color:#ccc;">🪙</div>`;
+      if (coin.imageIds && coin.imageIds.length > 0) {
+        try {
+          const img = await tx(db, ["images"], "readonly", async (images) => await idbGet(images, coin.imageIds[0]));
+          if (img?.blob) {
+            const url = URL.createObjectURL(img.blob);
+            thumbHtml = `<img class="coin-thumb" src="${url}" />`;
+          }
+        } catch(e) {}
+      }
+      html += `<div class="coin-item" onclick="openDetailFromMap('${coin.id}')">
+        ${thumbHtml}
+        <div>
+          <div class="coin-name">${escapeHtml(coin.name)}</div>
+          <div class="coin-meta">${coin.year || ""}</div>
+        </div>
+      </div>`;
+    }
+    html += "</div>";
+    marker.bindPopup(html, { maxWidth: 300 }).openPopup();
+  });
 }
 
 function openDetailFromMap(coinId) {
@@ -1710,6 +1739,7 @@ async function renderStats() {
   wrap.innerHTML = html;
 }
 
+
 /* =========================================================
    Wire UI
 ========================================================= */
@@ -1733,6 +1763,7 @@ document.getElementById("fileImport").addEventListener("change", async (e) => {
 });
 
 document.getElementById("btnExport").onclick = doExport;
+
 document.getElementById("btnReset").onclick = resetDB;
 
 document.getElementById("btnPublishRemote").onclick = publishToGitHub;
@@ -1750,6 +1781,16 @@ elSort.addEventListener("change", render);
   await refreshMem();
   render();
 })();
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js")
+      .then(r => console.log("SW enregistré:", r.scope))
+      .catch(e => console.warn("SW erreur:", e));
+  });
+}
 </script>
 
 </body>
