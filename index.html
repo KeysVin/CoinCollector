@@ -1281,6 +1281,9 @@ async function publishToGitHub() {
     const metaB64 = strToBase64(JSON.stringify(meta, null, 2));
     const metaSha = await ghGetFileSha(cfg, metaPath);
     await ghPutFile(cfg, metaPath, metaB64, `sync ${meta.savedAt}`, metaSha);
+    // Mettre à jour le geoMap local
+    window._coinGeoMap = meta.geoMap || {};
+    try { localStorage.setItem("coincollector_geomap", JSON.stringify(window._coinGeoMap)); } catch(e) {}
   } catch(e) {
     hideProgress();
     alert("Erreur upload métadonnées : " + e.message);
@@ -1322,8 +1325,9 @@ async function loadFromGitHub() {
     return;
   }
 
-  // Stocker le geoMap pour la carte
+  // Stocker le geoMap pour la carte (mémoire + localStorage)
   window._coinGeoMap = meta.geoMap || {};
+  try { localStorage.setItem("coincollector_geomap", JSON.stringify(window._coinGeoMap)); } catch(e) {}
 
   const totalCoins = (meta.coins || []).length;
   const ok = confirm(`Charger va écraser la base locale.
@@ -1485,6 +1489,10 @@ async function initMap() {
     });
   }
 
+  // Lire depuis localStorage si pas encore en mémoire
+  if (!window._coinGeoMap) {
+    try { window._coinGeoMap = JSON.parse(localStorage.getItem("coincollector_geomap") || "{}"); } catch(e) { window._coinGeoMap = {}; }
+  }
   const geoMap = window._coinGeoMap || {};
   const coinsByLocation = {};
   for (const c of mem.coins) {
