@@ -1614,14 +1614,46 @@ async function renderStats() {
   // Pays : extraire la dernière partie après la dernière virgule du champ location
   const countryCounts = {};
   const cityCounts = {};
+
+  // Liste de pays connus pour identifier le pays dans le champ location
+  const KNOWN_COUNTRIES = new Set([
+    "France","Allemagne","Germany","Espagne","Spain","Italie","Italy","Belgique","Belgium",
+    "Suisse","Switzerland","Portugal","Pays-Bas","Netherlands","Luxembourg","Monaco",
+    "Autriche","Austria","Grèce","Greece","Pologne","Poland","Hongrie","Hungary",
+    "République Tchèque","Czech Republic","Danemark","Denmark","Suède","Sweden",
+    "Norvège","Norway","Finlande","Finland","Irlande","Ireland","Royaume-Uni","United Kingdom",
+    "UK","États-Unis","United States","USA","US","Canada","Mexique","Mexico","Brésil","Brazil",
+    "Argentine","Argentina","Chili","Chile","Japon","Japan","Chine","China","Corée","Korea",
+    "Inde","India","Australie","Australia","Maroc","Morocco","Tunisie","Tunisia","Algérie",
+    "Algeria","Sénégal","Senegal","Côte d’Ivoire","Turquie","Turkey","Égypte","Egypt",
+    "Israël","Israel","Liban","Lebanon","Russie","Russia","Ukraine","Pologne","Poland",
+    "Vatican","Andorre","Andorra","San Marino","Liechtenstein","Malte","Malta","Chypre","Cyprus",
+    "Slovaquie","Slovakia","Slovénie","Slovenia","Croatie","Croatia","Serbie","Serbia",
+    "Roumanie","Romania","Bulgarie","Bulgaria","Estonie","Estonia","Lettonie","Latvia",
+    "Lituanie","Lithuania","Pérou","Peru","Colombie","Colombia","Nouvelle-Zélande","New Zealand"
+  ]);
+
   for (const c of coins) {
     const loc = (c.location || "").trim();
     if (!loc) continue;
     const parts = loc.split(",").map(s => s.trim()).filter(Boolean);
-    const country = parts[parts.length - 1] || loc;
-    const city = parts[0] || loc;
-    countryCounts[country] = (countryCounts[country] || 0) + 1;
-    cityCounts[city] = (cityCounts[city] || 0) + 1;
+
+    // Chercher un pays connu en partant de la fin
+    let country = null;
+    for (let i = parts.length - 1; i >= 0; i--) {
+      if (KNOWN_COUNTRIES.has(parts[i])) { country = parts[i]; break; }
+    }
+    // Sinon : dernier segment seulement s'il est court (< 25 chars, pas une adresse)
+    if (!country) {
+      const last = parts[parts.length - 1] || "";
+      country = (last.length < 25 && !/^\d/.test(last)) ? last : null;
+    }
+    if (country) countryCounts[country] = (countryCounts[country] || 0) + 1;
+
+    // Ville = premier segment court (pas une adresse numérotée)
+    let city = parts[0] || "";
+    if (/^\d/.test(city) || city.length > 30) city = parts[1] || parts[0] || "";
+    if (city) cityCounts[city] = (cityCounts[city] || 0) + 1;
   }
 
   // Décennies
