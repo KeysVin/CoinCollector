@@ -1196,24 +1196,49 @@ async function publishToGitHub() {
   showProgress("Préparation…", null);
   await refreshMem();
 
-  const totalCoins = mem.coins.length;
   const totalImages = mem.coins.reduce((s,c) => s + (c.imageIds||[]).length, 0);
-  let doneCoins = 0;
-  let doneImages = 0;
   let errorCount = 0;
 
-  // 1. Géocoder tous les lieux uniques
+  // 1. Récupérer meta distante pour savoir quelles images existent déjà
+  showProgress("Vérification des images existantes…", 0);
+  let existingImageIds = new Set();
+  let geoMap = {};
+  try {
+    const metaUrl = `${ghRawBase(cfg)}/data/coins-meta.json?t=${Date.now()}`;
+    const resp = await fetch(metaUrl);
+    if (resp.ok) {
+      const remoteMeta = await resp.json();
+      for (const c of (remoteMeta.coins || []))
+        for (const id of (c.imageIds || [])) existingImageIds.add(id);
+      geoMap = remoteMeta.geoMap || {};
+    }
+  } catch(e) { /* premier publish */ }
+
+  // Delta : nouvelles images seulement
+  const allLocalIds = new Set(mem.coins.flatMap(c => c.imageIds || []));
+  const toUpload = [...allLocalIds].filter(id => !existingImageIds.has(id));
+  const newCount = toUpload.length;
+  const skipCount = totalImages - newCount;
+
+  // Map imgId → coin
+  const imgToCoin = {};
+  for (const coin of mem.coins)
+    for (const imgId of (coin.imageIds || [])) imgToCoin[imgId] = coin;
+
+  // 2. Géocoder uniquement les nouveaux lieux
   const uniqueLocs = [...new Set(mem.coins.map(c => (c.location||"").trim()).filter(Boolean))];
-  const geoMap = {};
-  for (let i = 0; i < uniqueLocs.length; i++) {
-    const loc = uniqueLocs[i];
-    showProgress("Géocodage des lieux…", Math.round((i/Math.max(1,uniqueLocs.length))*15),
-      `${i+1}/${uniqueLocs.length} : ${loc}`);
+  const newLocs = uniqueLocs.filter(loc => !geoMap[loc]);
+  for (let i = 0; i < newLocs.length; i++) {
+    const loc = newLocs[i];
+    showProgress("Géocodage…", Math.round((i/Math.max(1,newLocs.length))*10), `${loc}`);
     const geo = await geocodeLocation(loc);
     if (geo) geoMap[loc] = { lat: geo.lat, lon: geo.lon };
   }
+  // Supprimer les lieux disparus
+  for (const loc of Object.keys(geoMap))
+    if (!uniqueLocs.includes(loc)) delete geoMap[loc];
 
-  // 2. Construire les métadonnées (avec coordonnées)
+  // 3. Construire les métadonnées
   const meta = {
     version: 2,
     savedAt: new Date().toISOString(),
@@ -1227,30 +1252,30 @@ async function publishToGitHub() {
     }))
   };
 
-  // 2. Upload images coin par coin
-  for (const coin of mem.coins) {
-    doneCoins++;
-    for (const imgId of (coin.imageIds || [])) {
-      doneImages++;
-      const pct = 15 + Math.round((doneImages / Math.max(1, totalImages)) * 75);
-      showProgress(`Upload images…`, pct,
-        `Pièce ${doneCoins}/${totalCoins} — ${coin.name} (img ${doneImages}/${totalImages})`);
-      try {
-        const img = await tx(db, ["images"], "readonly", async (images) => await idbGet(images, imgId));
-        if (!img?.blob) continue;
-        const path = `data/images/${coin.id}/${imgId}.jpg`;
-        const b64 = await blobToBase64GitHub(img.blob);
-        const sha = await ghGetFileSha(cfg, path);
-        await ghPutFile(cfg, path, b64, `img ${coin.id}/${imgId}`, sha);
-      } catch(e) {
-        console.warn("Image upload échoué:", imgId, e.message);
-        errorCount++;
-      }
+  // 4. Upload nouvelles images seulement
+  let doneNew = 0;
+  for (const imgId of toUpload) {
+    doneNew++;
+    const pct = 10 + Math.round((doneNew / Math.max(1, newCount)) * 80);
+    const coin = imgToCoin[imgId];
+    showProgress(`Upload…`, pct,
+      `${doneNew}/${newCount} nouvelles images — ${coin?.name || ""}` +
+      (skipCount > 0 ? ` (${skipCount} déjà à jour)` : ""));
+    try {
+      const img = await tx(db, ["images"], "readonly", async (images) => await idbGet(images, imgId));
+      if (!img?.blob || !coin) continue;
+      const path = `data/images/${coin.id}/${imgId}.jpg`;
+      const b64 = await blobToBase64GitHub(img.blob);
+      const sha = await ghGetFileSha(cfg, path);
+      await ghPutFile(cfg, path, b64, `img ${coin.id}/${imgId}`, sha);
+    } catch(e) {
+      console.warn("Image upload échoué:", imgId, e.message);
+      errorCount++;
     }
   }
 
-  // 3. Upload métadonnées
-  showProgress("Upload métadonnées…", 90);
+  // 5. Upload métadonnées
+  showProgress("Finalisation…", 95);
   try {
     const metaPath = "data/coins-meta.json";
     const metaB64 = strToBase64(JSON.stringify(meta, null, 2));
@@ -1263,11 +1288,12 @@ async function publishToGitHub() {
   }
 
   hideProgress();
-  alert(errorCount > 0
-    ? `✅ Publié ! (${errorCount} image(s) en erreur — voir console)`
-    : `✅ Publié ! ${totalCoins} pièces, ${totalImages} images.`);
+  alert(newCount === 0
+    ? `✅ Publié ! Tout était déjà à jour (${skipCount} images).`
+    : `✅ Publié ! ${newCount} nouvelle${newCount>1?"s":""} image${newCount>1?"s":""} uploadée${newCount>1?"s":""}` +
+      `${skipCount>0?" + "+skipCount+" déjà à jour":""}` +
+      `${errorCount>0?" — "+errorCount+" erreur(s)":""}.`);
 }
-
 async function loadFromGitHub() {
   const cfg = ghGetConfig();
   if (!cfg.owner || !cfg.repo) {
