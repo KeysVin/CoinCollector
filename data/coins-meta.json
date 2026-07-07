@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-07T07:12:26.112Z",
+  "savedAt": "2026-07-07T07:12:38.973Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -518,6 +518,10 @@
     "Château de la Roche Guyon, Rue de l'Audience, 95780, La Roche-Guyon, Les Verdières, Val-d'Oise, Île-de-France, France": {
       "lat": 49.0812769,
       "lon": 1.6280289
+    },
+    "Aquarium de Touraine, Route des Montils, 37400, Lussault-sur-Loire, Le Pommier, Indre-et-Loire, Centre-Val de Loire, France": {
+      "lat": 47.3879359,
+      "lon": 0.9114555
     }
   },
   "coins": [
@@ -4193,8 +4197,8 @@
     },
     {
       "id": "D9C59E4F-CFE7-4EAC-9DC7-DBD9D65616EA",
-      "name": "30 ans du Grand aquarium de Touraine ",
-      "location": "Grand Aquarium De Touraine, Route de Civray-de-Touraine, 37400 Amboise, France",
+      "name": "30 ans du Grand aquarium de Touraine",
+      "location": "Aquarium de Touraine, Route des Montils, 37400, Lussault-sur-Loire, Le Pommier, Indre-et-Loire, Centre-Val de Loire, France",
       "year": 2024,
       "notes": "",
       "imageIds": [
@@ -4202,8 +4206,17 @@
         "img_0260_001"
       ],
       "createdAt": "2025-09-07T20:01:22Z",
-      "updatedAt": "2025-09-13T09:48:44Z",
-      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673"
+      "updatedAt": "2026-07-07T07:12:38.973Z",
+      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "DA6B35F0-8DEA-45F2-81E7-C6671FAA5431",
