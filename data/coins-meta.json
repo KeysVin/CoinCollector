@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-07T07:13:02.669Z",
+  "savedAt": "2026-07-07T07:13:10.552Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -526,6 +526,10 @@
     "Notre-Dame de la Garde, 13006, Marseille, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France": {
       "lat": 43.2837395,
       "lon": 5.371237
+    },
+    "Abbaye de Silvacane, Route d'Eyguières au Puy-Sainte-Réparade, 13640, La Roque-d'Anthéron, Village Vacances de La Baume, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France": {
+      "lat": 43.7159087,
+      "lon": 5.3288504
     }
   },
   "coins": [
@@ -3470,8 +3474,8 @@
     },
     {
       "id": "B30148CD-536D-45AD-AF23-5192806D73E9",
-      "name": "Abbaye de silvacane ",
-      "location": "Abbaye de Silvacane, RD 561, 13640 La Roque-d'Anthéron, France",
+      "name": "Abbaye de silvacane",
+      "location": "Abbaye de Silvacane, Route d'Eyguières au Puy-Sainte-Réparade, 13640, La Roque-d'Anthéron, Village Vacances de La Baume, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France",
       "year": 2016,
       "notes": "",
       "imageIds": [
@@ -3479,8 +3483,17 @@
         "img_0205_001"
       ],
       "createdAt": "2025-09-14T10:43:56Z",
-      "updatedAt": "2025-09-14T10:43:56Z",
-      "collectionId": "FDDE85B4-5804-4BE1-AA6A-9E4ED7013AAC"
+      "updatedAt": "2026-07-07T07:13:10.551Z",
+      "collectionId": "FDDE85B4-5804-4BE1-AA6A-9E4ED7013AAC",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "B33D560E-EAFD-46F8-B9FB-6F01AF3D155E",
