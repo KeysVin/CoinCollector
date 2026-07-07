@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "savedAt": "2026-07-07T00:00:00.000Z",
+  "collections": [{"id":"demo","name":"Exemple","createdAt":"2026-07-07T00:00:00.000Z"}],
+  "geoMap": {"Paris, France":{"lat":48.8566,"lon":2.3522}},
+  "coins": [{"id":"demo-coin","name":"Pièce de démonstration","year":2026,"location":"Paris, France","notes":"Cette fiche disparaîtra dès que ton vrai fichier data/coins-meta.json sera présent.","imageIds":[],"collectionId":"demo","createdAt":"2026-07-07T00:00:00.000Z","updatedAt":"2026-07-07T00:00:00.000Z"}]
+}
