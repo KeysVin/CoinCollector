@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-07T07:13:39.718Z",
+  "savedAt": "2026-07-07T07:13:49.866Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -542,6 +542,10 @@
     "Le Grau-du-Roi, 30240, Gard, Occitanie, France": {
       "lat": 43.5360061,
       "lon": 4.1371755
+    },
+    "Calico Ghost Town, 92398, San Bernardino County, Californie, États-Unis d'Amérique": {
+      "lat": 34.9483727,
+      "lon": -116.864611
     }
   },
   "coins": [
@@ -3361,7 +3365,7 @@
     {
       "id": "A6A93A9B-07EA-4EE2-B6CB-79A6FFFE51FC",
       "name": "Calico Ghost Town",
-      "location": "Calico Ghost Town, 36600 Ghost Town Rd, Yermo, CA  92398, United States",
+      "location": "Calico Ghost Town, 92398, San Bernardino County, Californie, États-Unis d'Amérique",
       "year": 2022,
       "notes": "",
       "imageIds": [
@@ -3369,8 +3373,17 @@
         "img_0194_001"
       ],
       "createdAt": "2025-09-07T21:11:38Z",
-      "updatedAt": "2025-09-13T09:48:39Z",
-      "collectionId": "EE11585D-828E-452B-9AF2-F42696F2E6CA"
+      "updatedAt": "2026-07-07T07:13:49.866Z",
+      "collectionId": "EE11585D-828E-452B-9AF2-F42696F2E6CA",
+      "country": "États-Unis d'Amérique",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "A8119117-A765-4641-9D66-978C63D7C9C0",
