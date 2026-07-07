@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-07T07:12:38.973Z",
+  "savedAt": "2026-07-07T07:12:47.080Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -522,6 +522,10 @@
     "Aquarium de Touraine, Route des Montils, 37400, Lussault-sur-Loire, Le Pommier, Indre-et-Loire, Centre-Val de Loire, France": {
       "lat": 47.3879359,
       "lon": 0.9114555
+    },
+    "Notre-Dame de la Garde, 13006, Marseille, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France": {
+      "lat": 43.2837395,
+      "lon": 5.371237
     }
   },
   "coins": [
@@ -888,8 +892,8 @@
     },
     {
       "id": "1DFBF913-C657-4046-A7A5-721F1A8BF6B6",
-      "name": "800 ans de notre dame ",
-      "location": "Basilique Notre-Dame de la Garde, Rue Fort du Sanctuaire, 13006 Marseille, France",
+      "name": "800 ans de notre dame",
+      "location": "Notre-Dame de la Garde, 13006, Marseille, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France",
       "year": 2014,
       "notes": "",
       "imageIds": [
@@ -897,8 +901,17 @@
         "img_0026_001"
       ],
       "createdAt": "2025-09-14T18:51:26Z",
-      "updatedAt": "2025-09-14T18:51:26Z",
-      "collectionId": "FDDE85B4-5804-4BE1-AA6A-9E4ED7013AAC"
+      "updatedAt": "2026-07-07T07:12:47.080Z",
+      "collectionId": "FDDE85B4-5804-4BE1-AA6A-9E4ED7013AAC",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "1E36EE82-4C96-45C6-92BD-144F37A62A19",
