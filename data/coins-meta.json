@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-07T07:13:10.552Z",
+  "savedAt": "2026-07-07T07:13:17.247Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -530,6 +530,10 @@
     "Abbaye de Silvacane, Route d'Eyguières au Puy-Sainte-Réparade, 13640, La Roque-d'Anthéron, Village Vacances de La Baume, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France": {
       "lat": 43.7159087,
       "lon": 5.3288504
+    },
+    "OK Corral, Route de Riboux, 13780, Cuges-les-Pins, La Curasse, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France": {
+      "lat": 43.2681985,
+      "lon": 5.7312043
     }
   },
   "coins": [
@@ -1982,8 +1986,8 @@
     },
     {
       "id": "5FFE4E8E-BF39-4AA2-899D-6FFD8273EA89",
-      "name": "Alligator Island Ok corral ",
-      "location": "OK Corral, D8N, 13780 Cuges-les-Pins, France",
+      "name": "Alligator Island Ok corral",
+      "location": "OK Corral, Route de Riboux, 13780, Cuges-les-Pins, La Curasse, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France",
       "year": 2016,
       "notes": "",
       "imageIds": [
@@ -1991,8 +1995,17 @@
         "img_0100_001"
       ],
       "createdAt": "2025-09-14T18:41:53Z",
-      "updatedAt": "2025-09-14T18:41:53Z",
-      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD"
+      "updatedAt": "2026-07-07T07:13:17.247Z",
+      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "61A45C44-4791-4A77-80A4-FE50FEC1B456",
