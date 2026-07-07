@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-07T07:14:07.561Z",
+  "savedAt": "2026-07-07T07:14:26.228Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -550,6 +550,10 @@
     "Quimper, 29000, Finistère, Bretagne, France": {
       "lat": 47.9960325,
       "lon": -4.1024782
+    },
+    "Valence, Comarca de València, Communauté valencienne, Espagne": {
+      "lat": 39.4697065,
+      "lon": -0.3763353
     }
   },
   "coins": [
@@ -2958,8 +2962,8 @@
     },
     {
       "id": "918E4A2C-1867-4B1B-9135-8F24B520DDE0",
-      "name": "Cathédrale de Valence ",
-      "location": "Calle de la Catedral de Toledo, , 28054 Madrid, Spain",
+      "name": "Cathédrale de Valence",
+      "location": "Valence, Comarca de València, Communauté valencienne, Espagne",
       "year": 2023,
       "notes": "",
       "imageIds": [
@@ -2967,8 +2971,17 @@
         "img_0166_001"
       ],
       "createdAt": "2025-09-07T21:04:35Z",
-      "updatedAt": "2025-09-13T09:48:39Z",
-      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD"
+      "updatedAt": "2026-07-07T07:14:26.227Z",
+      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD",
+      "country": "Espagne",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "937FB349-4DE3-4490-A152-C1ED7EF6FC77",
