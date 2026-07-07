@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-07T07:14:33.970Z",
+  "savedAt": "2026-07-07T07:14:40.385Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -558,6 +558,10 @@
     "Château d'Angers, Boulevard du Général de Gaulle, 49100, Angers, Maine-et-Loire, Pays de la Loire, France": {
       "lat": 47.4700705,
       "lon": -0.5600722
+    },
+    "Château d'If, Chemin de Saint-Estève, 13007, Marseille, 7e Arrondissement, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France": {
+      "lat": 43.279856,
+      "lon": 5.325284
     }
   },
   "coins": [
@@ -3844,8 +3848,8 @@
     },
     {
       "id": "C2D4DAD9-C3CF-49DD-B5E4-72ED4B385302",
-      "name": "Château d’if ",
-      "location": "Château d'if, Île d'If, 13007 Marseille, France",
+      "name": "Château d’if",
+      "location": "Château d'If, Chemin de Saint-Estève, 13007, Marseille, 7e Arrondissement, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France",
       "year": 2025,
       "notes": "",
       "imageIds": [
@@ -3853,8 +3857,17 @@
         "img_0225_001"
       ],
       "createdAt": "2025-09-07T17:44:43Z",
-      "updatedAt": "2025-09-13T09:48:47Z",
-      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541"
+      "updatedAt": "2026-07-07T07:14:40.385Z",
+      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "C412B5A5-7731-465E-97A0-2587A27FD6C7",
