@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-07T06:33:54.097Z",
+  "savedAt": "2026-07-07T06:34:43.961Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -4704,28 +4704,6 @@
       "createdAt": "2026-02-27T06:23:24.415Z",
       "updatedAt": "2026-02-27T06:23:24.415Z",
       "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF"
-    },
-    {
-      "id": "c701a541-6ee1-451b-92cb-4b17bb36f95b",
-      "name": "Tié un tigre",
-      "year": 2026,
-      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD",
-      "location": "Marseille",
-      "country": "",
-      "denomination": "",
-      "metal": "",
-      "condition": "",
-      "mint": "",
-      "quantity": 1,
-      "estimatedValue": null,
-      "acquisitionDate": "",
-      "tags": [],
-      "notes": "",
-      "createdAt": "2026-07-07T06:33:52.848Z",
-      "updatedAt": "2026-07-07T06:33:52.848Z",
-      "imageIds": [
-        "b8a4a8d3-a5fd-495c-bd18-868acb7749c4"
-      ]
     }
   ]
 }
