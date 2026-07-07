@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-07T07:12:11.607Z",
+  "savedAt": "2026-07-07T07:12:26.112Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -514,6 +514,10 @@
     "Tour Eiffel, 5 Avenue Anatole France, 75007, Paris, Île-de-France, France": {
       "lat": 48.8582599,
       "lon": 2.2945006
+    },
+    "Château de la Roche Guyon, Rue de l'Audience, 95780, La Roche-Guyon, Les Verdières, Val-d'Oise, Île-de-France, France": {
+      "lat": 49.0812769,
+      "lon": 1.6280289
     }
   },
   "coins": [
@@ -2108,7 +2112,7 @@
     {
       "id": "6C62B5AA-4068-42D1-8CB8-728827819C0E",
       "name": "30 ans du château de la Roche Guyon",
-      "location": "Château de La Roche-Guyon, 1 Rue de l'Audience, 95780 La Roche-Guyon, France",
+      "location": "Château de la Roche Guyon, Rue de l'Audience, 95780, La Roche-Guyon, Les Verdières, Val-d'Oise, Île-de-France, France",
       "year": 2024,
       "notes": "",
       "imageIds": [
@@ -2116,8 +2120,17 @@
         "img_0112_001"
       ],
       "createdAt": "2025-09-07T18:08:47Z",
-      "updatedAt": "2025-09-13T09:48:47Z",
-      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541"
+      "updatedAt": "2026-07-07T07:12:26.112Z",
+      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "6C6FF6FA-C3AE-4D60-BBB6-9C56B74B4E96",
