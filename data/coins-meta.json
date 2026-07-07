@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-07T07:13:49.866Z",
+  "savedAt": "2026-07-07T07:14:07.561Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -546,6 +546,10 @@
     "Calico Ghost Town, 92398, San Bernardino County, Californie, États-Unis d'Amérique": {
       "lat": 34.9483727,
       "lon": -116.864611
+    },
+    "Quimper, 29000, Finistère, Bretagne, France": {
+      "lat": 47.9960325,
+      "lon": -4.1024782
     }
   },
   "coins": [
@@ -4135,8 +4139,8 @@
     },
     {
       "id": "D1AD92AB-199E-4A61-8D6A-E4FC15E907AA",
-      "name": "Cathédrale de Quimper ",
-      "location": "Quimper Cathedral, 25 Rue du Frout, 29000 Quimper, France",
+      "name": "Cathédrale de Quimper",
+      "location": "Quimper, 29000, Finistère, Bretagne, France",
       "year": 2025,
       "notes": "",
       "imageIds": [
@@ -4144,8 +4148,17 @@
         "img_0248_001"
       ],
       "createdAt": "2025-09-07T20:35:04Z",
-      "updatedAt": "2025-09-13T09:48:41Z",
-      "collectionId": "FDDE85B4-5804-4BE1-AA6A-9E4ED7013AAC"
+      "updatedAt": "2026-07-07T07:14:07.560Z",
+      "collectionId": "FDDE85B4-5804-4BE1-AA6A-9E4ED7013AAC",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "D1BEB076-E0CA-4A3B-833C-E9F6474D3225",
