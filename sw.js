@@ -1,10 +1,10 @@
-const CACHE = "coincollector-v4";
+const CACHE = "coincollector-v6";
 
 const ASSETS = [
   "/",
   "/index.html",
-  "/assets/css/styles.css",
-  "/assets/js/app.js",
+  "/assets/css/styles.css?v=6",
+  "/assets/js/app.js?v=6",
   "/assets/icons/coin.svg",
   "/manifest.webmanifest"
 ];
@@ -34,35 +34,31 @@ self.addEventListener("activate", event => {
 });
 
 self.addEventListener("fetch", event => {
-  if (event.request.method !== "GET") {
+  const request = event.request;
+
+  if (request.method !== "GET") {
     return;
   }
 
-  if (event.request.url.includes("/data/")) {
-    event.respondWith(
-      fetch(event.request).catch(() =>
-        caches.match(event.request)
-      )
-    );
+  const url = new URL(request.url);
 
+  if (url.origin !== self.location.origin) {
     return;
   }
 
   event.respondWith(
-    caches.match(event.request).then(cachedResponse => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
+    fetch(request)
+      .then(response => {
+        if (response.ok) {
+          const copy = response.clone();
 
-      return fetch(event.request).then(response => {
-        const copy = response.clone();
-
-        caches.open(CACHE).then(cache => {
-          cache.put(event.request, copy);
-        });
+          caches.open(CACHE).then(cache => {
+            cache.put(request, copy);
+          });
+        }
 
         return response;
-      });
-    })
+      })
+      .catch(() => caches.match(request))
   );
 });
