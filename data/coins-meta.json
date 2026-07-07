@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-07T07:13:17.247Z",
+  "savedAt": "2026-07-07T07:13:24.448Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -534,6 +534,10 @@
     "OK Corral, Route de Riboux, 13780, Cuges-les-Pins, La Curasse, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France": {
       "lat": 43.2681985,
       "lon": 5.7312043
+    },
+    "Aquarium de La Rochelle, Quai Louis Prunier, 17000, La Rochelle, Charente-Maritime, Nouvelle-Aquitaine, France": {
+      "lat": 46.153276,
+      "lon": -1.150621
     }
   },
   "coins": [
@@ -1406,8 +1410,8 @@
     },
     {
       "id": "38722A52-0061-4D90-B3FC-780BC8EB3A1D",
-      "name": "Aquarium de La Rochelle ",
-      "location": "Aquarium La Rochelle, 65 Quai Louis Prunier, 17000 La Rochelle, France",
+      "name": "Aquarium de La Rochelle",
+      "location": "Aquarium de La Rochelle, Quai Louis Prunier, 17000, La Rochelle, Charente-Maritime, Nouvelle-Aquitaine, France",
       "year": 2014,
       "notes": "",
       "imageIds": [
@@ -1415,8 +1419,17 @@
         "img_0059_001"
       ],
       "createdAt": "2025-09-11T20:23:35Z",
-      "updatedAt": "2025-09-13T09:48:38Z",
-      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673"
+      "updatedAt": "2026-07-07T07:13:24.447Z",
+      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "3ABB9F6D-0F86-4B30-9051-21438E132BAE",
