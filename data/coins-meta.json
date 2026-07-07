@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-07T07:14:26.228Z",
+  "savedAt": "2026-07-07T07:14:33.970Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -554,6 +554,10 @@
     "Valence, Comarca de València, Communauté valencienne, Espagne": {
       "lat": 39.4697065,
       "lon": -0.3763353
+    },
+    "Château d'Angers, Boulevard du Général de Gaulle, 49100, Angers, Maine-et-Loire, Pays de la Loire, France": {
+      "lat": 47.4700705,
+      "lon": -0.5600722
     }
   },
   "coins": [
@@ -574,7 +578,7 @@
     {
       "id": "020F4998-37BD-45B9-AB64-F008027E0B1E",
       "name": "Château d’Angers",
-      "location": "Chateau d'Angers, 2 Boulevard du Roi René, 49100 Angers, France",
+      "location": "Château d'Angers, Boulevard du Général de Gaulle, 49100, Angers, Maine-et-Loire, Pays de la Loire, France",
       "year": 2023,
       "notes": "",
       "imageIds": [
@@ -582,8 +586,17 @@
         "img_0001_001"
       ],
       "createdAt": "2025-09-07T17:42:04Z",
-      "updatedAt": "2025-09-13T09:48:48Z",
-      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541"
+      "updatedAt": "2026-07-07T07:14:33.969Z",
+      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "077432A2-ED41-4ADE-8059-731726F4E283",
