@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-07T07:13:24.448Z",
+  "savedAt": "2026-07-07T07:13:39.718Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -538,6 +538,10 @@
     "Aquarium de La Rochelle, Quai Louis Prunier, 17000, La Rochelle, Charente-Maritime, Nouvelle-Aquitaine, France": {
       "lat": 46.153276,
       "lon": -1.150621
+    },
+    "Le Grau-du-Roi, 30240, Gard, Occitanie, France": {
+      "lat": 43.5360061,
+      "lon": 4.1371755
     }
   },
   "coins": [
@@ -1804,8 +1808,8 @@
     },
     {
       "id": "53C863B7-965F-478F-99CE-C6E1422507C1",
-      "name": "Aquarium du grau du roi - Tortue ",
-      "location": "Aquarium L', 21 Quai Colbert, 30240 Le Grau-du-Roi, France",
+      "name": "Aquarium du grau du roi - Tortue",
+      "location": "Le Grau-du-Roi, 30240, Gard, Occitanie, France",
       "year": 2021,
       "notes": "",
       "imageIds": [
@@ -1813,8 +1817,17 @@
         "img_0086_001"
       ],
       "createdAt": "2025-09-14T18:16:50Z",
-      "updatedAt": "2025-09-14T18:32:18Z",
-      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673"
+      "updatedAt": "2026-07-07T07:13:39.718Z",
+      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "53FC6277-4144-48FE-8021-5DA7E5D56FB3",
