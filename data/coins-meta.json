@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-07T07:12:47.080Z",
+  "savedAt": "2026-07-07T07:12:50.974Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -1204,8 +1204,8 @@
     },
     {
       "id": "2E30C8BB-1494-48D9-A056-3325F6DAA1ED",
-      "name": "800 ans de notre dame ",
-      "location": "Basilique Notre-Dame de la Garde, Rue Fort du Sanctuaire, 13006 Marseille, France",
+      "name": "800 ans de notre dame",
+      "location": "Notre-Dame de la Garde, 13006, Marseille, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France",
       "year": 2014,
       "notes": "",
       "imageIds": [
@@ -1213,8 +1213,17 @@
         "img_0047_001"
       ],
       "createdAt": "2025-09-14T18:52:06Z",
-      "updatedAt": "2025-09-14T18:52:06Z",
-      "collectionId": "FDDE85B4-5804-4BE1-AA6A-9E4ED7013AAC"
+      "updatedAt": "2026-07-07T07:12:50.974Z",
+      "collectionId": "FDDE85B4-5804-4BE1-AA6A-9E4ED7013AAC",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "2E87D8FF-0A9C-498A-B26B-5AF1A233BB3E",
