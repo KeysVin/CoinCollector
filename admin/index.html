@@ -1,53 +1,320 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#173f35">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#173f35">
   <title>Administration — CoinCollector</title>
   <link rel="icon" href="/assets/icons/coin.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/css/styles.css">
-  <link rel="stylesheet" href="/admin/admin.css">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=7">
+  <link rel="stylesheet" href="/admin/admin.css?v=2">
 </head>
+
 <body class="admin-body">
-  <header class="admin-topbar"><a class="brand" href="/"><span class="brand-mark">C</span><span><strong>CoinCollector</strong><small>Administration</small></span></a><div class="admin-top-actions"><span id="connectionState" class="connection-state">Déconnecté</span><button id="logoutButton" class="button ghost" hidden>Déconnexion</button><a class="button ghost" href="/">Voir le site</a></div></header>
+  <header class="admin-topbar">
+    <a class="brand" href="/">
+      <span class="brand-mark">C</span>
+      <span>
+        <strong>CoinCollector</strong>
+        <small>Administration</small>
+      </span>
+    </a>
+
+    <div class="admin-top-actions">
+      <span id="connectionState" class="connection-state">Déconnecté</span>
+      <button id="logoutButton" class="button ghost" hidden>Déconnexion</button>
+      <a class="button ghost" href="/">Voir le site</a>
+    </div>
+  </header>
 
   <main>
     <section id="loginScreen" class="login-screen">
       <form id="loginForm" class="login-card">
-        <p class="eyebrow">Accès propriétaire</p><h1>Gérer la collection</h1>
-        <p>Connecte l’administration à ton dépôt GitHub. Le jeton reste uniquement dans l’onglet actuel et n’est jamais écrit dans les fichiers.</p>
-        <label>Propriétaire GitHub<input id="ownerInput" class="admin-input" value="KeysVin" required></label>
-        <label>Dépôt<input id="repoInput" class="admin-input" value="CoinCollector" required></label>
-        <label>Branche<input id="branchInput" class="admin-input" value="main" required></label>
-        <label>Token GitHub<input id="tokenInput" class="admin-input" type="password" autocomplete="off" placeholder="github_pat_…" required></label>
-        <button class="button primary wide" type="submit">Ouvrir l’administration</button>
-        <details><summary>Quel token utiliser ?</summary><p>Crée un token GitHub « fine-grained », limité au dépôt CoinCollector, avec la permission <strong>Contents: Read and write</strong>. Ne communique ce token à personne.</p></details>
+        <p class="eyebrow">Accès propriétaire</p>
+        <h1>Gérer la collection</h1>
+        <p>
+          Connecte l’administration à ton dépôt GitHub. Le jeton reste uniquement
+          dans l’onglet actuel et n’est jamais écrit dans les fichiers.
+        </p>
+
+        <label>
+          Propriétaire GitHub
+          <input id="ownerInput" class="admin-input" value="KeysVin" required>
+        </label>
+
+        <label>
+          Dépôt
+          <input id="repoInput" class="admin-input" value="CoinCollector" required>
+        </label>
+
+        <label>
+          Branche
+          <input id="branchInput" class="admin-input" value="main" required>
+        </label>
+
+        <label>
+          Token GitHub
+          <input
+            id="tokenInput"
+            class="admin-input"
+            type="password"
+            autocomplete="off"
+            placeholder="github_pat_…"
+            required
+          >
+        </label>
+
+        <button class="button primary wide" type="submit">
+          Ouvrir l’administration
+        </button>
+
+        <details>
+          <summary>Quel token utiliser ?</summary>
+          <p>
+            Crée un token GitHub « fine-grained », limité au dépôt CoinCollector,
+            avec la permission <strong>Contents: Read and write</strong>.
+            Ne communique ce token à personne.
+          </p>
+        </details>
+
         <div id="loginError" class="form-error"></div>
       </form>
     </section>
 
     <section id="adminApp" class="admin-app" hidden>
       <aside class="admin-sidebar">
-        <div class="sidebar-toolbar"><button id="newCoinButton" class="button primary">+ Nouvelle pièce</button><button id="collectionsButton" class="button ghost">Collections</button></div>
-        <input id="adminSearch" class="admin-input" type="search" placeholder="Rechercher une pièce…">
+        <div class="sidebar-toolbar">
+          <button id="newCoinButton" class="button primary">+ Nouvelle pièce</button>
+          <button id="collectionsButton" class="button ghost">Collections</button>
+        </div>
+
+        <input
+          id="adminSearch"
+          class="admin-input"
+          type="search"
+          placeholder="Rechercher une pièce…"
+        >
+
+        <label class="sidebar-filter">
+          <span>État sur la carte</span>
+          <select id="mapFilter" class="admin-select">
+            <option value="all">Toutes les pièces</option>
+            <option value="missing-map">Sans position sur la carte</option>
+            <option value="no-location">Sans lieu</option>
+            <option value="no-coordinates">Lieu sans coordonnées</option>
+            <option value="positioned">Correctement positionnées</option>
+          </select>
+        </label>
+
+        <div id="mapFilterSummary" class="map-filter-summary"></div>
         <div id="coinList" class="admin-coin-list"></div>
       </aside>
+
       <section class="admin-editor">
-        <div id="emptyEditor" class="editor-empty"><div>◉</div><h2>Sélectionne une pièce</h2><p>Ou crée une nouvelle fiche depuis le menu de gauche.</p></div>
+        <div id="emptyEditor" class="editor-empty">
+          <div>◉</div>
+          <h2>Sélectionne une pièce</h2>
+          <p>Ou crée une nouvelle fiche depuis le menu de gauche.</p>
+        </div>
+
         <form id="coinForm" hidden>
-          <div class="editor-header"><div><p class="eyebrow" id="editorKicker">Fiche pièce</p><h1 id="editorTitle">Nouvelle pièce</h1></div><div class="editor-actions"><button id="deleteCoinButton" type="button" class="button danger">Supprimer</button><button type="submit" class="button primary">Enregistrer et publier</button></div></div>
-          <input id="coinId" type="hidden">
-          <div class="form-layout">
-            <section class="form-card"><h2>Informations principales</h2><div class="admin-grid two"><label>Nom *<input id="coinName" class="admin-input" required></label><label>Année *<input id="coinYear" class="admin-input" type="number" required></label><label>Collection<select id="coinCollection" class="admin-select"></select></label><label>Lieu<input id="coinLocation" class="admin-input" placeholder="Paris, France"></label><label>Pays<input id="coinCountry" class="admin-input"></label><label>Valeur / dénomination<input id="coinDenomination" class="admin-input" placeholder="2 €, souvenir…"></label><label>Métal<input id="coinMetal" class="admin-input"></label><label>État<input id="coinCondition" class="admin-input" placeholder="Neuve, TTB, circulée…"></label><label>Atelier / fabricant<input id="coinMint" class="admin-input"></label><label>Quantité<input id="coinQuantity" class="admin-input" type="number" min="1"></label><label>Valeur estimée (€)<input id="coinEstimatedValue" class="admin-input" type="number" min="0" step="0.01"></label><label>Date d’acquisition<input id="coinAcquisitionDate" class="admin-input" type="date"></label></div><label>Tags séparés par des virgules<input id="coinTags" class="admin-input" placeholder="voyage, château, rare"></label><label>Notes<textarea id="coinNotes" class="admin-textarea" rows="6"></textarea></label></section>
-            <section class="form-card"><h2>Photos</h2><p class="help">Les nouvelles photos sont redimensionnées avant publication. Les fichiers existants ne sont pas supprimés du dépôt lorsque tu les retires de la fiche.</p><label class="upload-zone"><input id="photoInput" type="file" accept="image/*" multiple><strong>Ajouter des photos</strong><span>JPG, PNG, HEIC selon le navigateur</span></label><div id="imagePreview" class="admin-images"></div></section>
+          <div class="editor-header">
+            <div>
+              <p class="eyebrow" id="editorKicker">Fiche pièce</p>
+              <h1 id="editorTitle">Nouvelle pièce</h1>
+            </div>
+
+            <div class="editor-actions">
+              <button id="deleteCoinButton" type="button" class="button danger">
+                Supprimer
+              </button>
+              <button type="submit" class="button primary">
+                Enregistrer et publier
+              </button>
+            </div>
           </div>
+
+          <input id="coinId" type="hidden">
+
+          <div class="form-layout">
+            <section class="form-card">
+              <h2>Informations principales</h2>
+
+              <div class="admin-grid two">
+                <label>
+                  Nom *
+                  <input id="coinName" class="admin-input" required>
+                </label>
+
+                <label>
+                  Année *
+                  <input id="coinYear" class="admin-input" type="number" required>
+                </label>
+
+                <label>
+                  Collection
+                  <select id="coinCollection" class="admin-select"></select>
+                </label>
+
+                <label class="location-label">
+                  Lieu
+                  <div class="location-control">
+                    <input
+                      id="coinLocation"
+                      class="admin-input"
+                      placeholder="Commence à écrire un lieu…"
+                      autocomplete="off"
+                      aria-autocomplete="list"
+                      aria-controls="locationSuggestions"
+                      aria-expanded="false"
+                    >
+                    <div
+                      id="locationSuggestions"
+                      class="location-suggestions"
+                      role="listbox"
+                      hidden
+                    ></div>
+                  </div>
+                  <span id="locationStatus" class="location-status"></span>
+                </label>
+
+                <label>
+                  Pays
+                  <input id="coinCountry" class="admin-input">
+                </label>
+
+                <label>
+                  Valeur / dénomination
+                  <input
+                    id="coinDenomination"
+                    class="admin-input"
+                    placeholder="2 €, souvenir…"
+                  >
+                </label>
+
+                <label>
+                  Métal
+                  <input id="coinMetal" class="admin-input">
+                </label>
+
+                <label>
+                  État
+                  <input
+                    id="coinCondition"
+                    class="admin-input"
+                    placeholder="Neuve, TTB, circulée…"
+                  >
+                </label>
+
+                <label>
+                  Atelier / fabricant
+                  <input id="coinMint" class="admin-input">
+                </label>
+
+                <label>
+                  Quantité
+                  <input
+                    id="coinQuantity"
+                    class="admin-input"
+                    type="number"
+                    min="1"
+                  >
+                </label>
+
+                <label>
+                  Valeur estimée (€)
+                  <input
+                    id="coinEstimatedValue"
+                    class="admin-input"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                  >
+                </label>
+
+                <label>
+                  Date d’acquisition
+                  <input
+                    id="coinAcquisitionDate"
+                    class="admin-input"
+                    type="date"
+                  >
+                </label>
+              </div>
+
+              <p class="location-help">
+                Pour placer la pièce sur la carte, choisis une proposition dans la
+                liste. Les coordonnées sont enregistrées automatiquement.
+              </p>
+
+              <label>
+                Tags séparés par des virgules
+                <input
+                  id="coinTags"
+                  class="admin-input"
+                  placeholder="voyage, château, rare"
+                >
+              </label>
+
+              <label>
+                Notes
+                <textarea
+                  id="coinNotes"
+                  class="admin-textarea"
+                  rows="6"
+                ></textarea>
+              </label>
+            </section>
+
+            <section class="form-card">
+              <h2>Photos</h2>
+              <p class="help">
+                Les nouvelles photos sont redimensionnées avant publication.
+                Les fichiers existants ne sont pas supprimés du dépôt lorsque tu
+                les retires de la fiche.
+              </p>
+
+              <label class="upload-zone">
+                <input id="photoInput" type="file" accept="image/*" multiple>
+                <strong>Ajouter des photos</strong>
+                <span>JPG, PNG, HEIC selon le navigateur</span>
+              </label>
+
+              <div id="imagePreview" class="admin-images"></div>
+            </section>
+          </div>
+
           <div id="saveStatus" class="save-status"></div>
         </form>
       </section>
     </section>
   </main>
 
-  <dialog id="collectionsDialog" class="admin-dialog"><form method="dialog"><div class="dialog-admin-head"><h2>Gérer les collections</h2><button class="button ghost">Fermer</button></div></form><div class="collection-add"><input id="newCollectionName" class="admin-input" placeholder="Nouvelle collection"><button id="addCollectionButton" class="button primary">Ajouter</button></div><div id="collectionsList" class="collections-list"></div><p class="help">Les changements sont publiés immédiatement dans le fichier de données.</p></dialog>
-  <script type="module" src="/admin/admin.js"></script>
+  <dialog id="collectionsDialog" class="admin-dialog">
+    <form method="dialog">
+      <div class="dialog-admin-head">
+        <h2>Gérer les collections</h2>
+        <button class="button ghost">Fermer</button>
+      </div>
+    </form>
+
+    <div class="collection-add">
+      <input
+        id="newCollectionName"
+        class="admin-input"
+        placeholder="Nouvelle collection"
+      >
+      <button id="addCollectionButton" class="button primary">Ajouter</button>
+    </div>
+
+    <div id="collectionsList" class="collections-list"></div>
+
+    <p class="help">
+      Les changements sont publiés immédiatement dans le fichier de données.
+    </p>
+  </dialog>
+
+  <script type="module" src="/admin/admin.js?v=2"></script>
 </body>
 </html>
