@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-07T06:34:43.961Z",
+  "savedAt": "2026-07-07T07:11:48.122Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -506,6 +506,10 @@
     "Cité des sciences Paris": {
       "lat": 48.8956779,
       "lon": 2.3879665
+    },
+    "Pont transbordeur du Martrou, Avenue Jacques Demy, 17300, Rochefort, Martrou, Charente-Maritime, Nouvelle-Aquitaine, France": {
+      "lat": 45.9160979,
+      "lon": -0.9607072
     }
   },
   "coins": [
@@ -1514,8 +1518,8 @@
     },
     {
       "id": "477CFCC2-243F-4E79-AFE6-3112C9CB4AF1",
-      "name": "120 ans du pont transbordeur ",
-      "location": "Pont Transbordeur, 76 Avenue Jacques Demy, 17300 Rochefort, France",
+      "name": "120 ans du pont transbordeur",
+      "location": "Pont transbordeur du Martrou, Avenue Jacques Demy, 17300, Rochefort, Martrou, Charente-Maritime, Nouvelle-Aquitaine, France",
       "year": 2020,
       "notes": "",
       "imageIds": [
@@ -1523,8 +1527,17 @@
         "img_0072_001"
       ],
       "createdAt": "2025-09-14T17:21:08Z",
-      "updatedAt": "2025-09-14T18:30:35Z",
-      "collectionId": "3B2C2538-2699-48CA-982A-7FBFF537448B"
+      "updatedAt": "2026-07-07T07:11:48.121Z",
+      "collectionId": "3B2C2538-2699-48CA-982A-7FBFF537448B",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "48216C82-E945-4923-ABB1-E44BA30AA892",
