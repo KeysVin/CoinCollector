@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-07T07:11:56.589Z",
+  "savedAt": "2026-07-07T07:12:07.256Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -1161,7 +1161,7 @@
     {
       "id": "2DA89E5A-EA65-40A0-AAD6-6791DC4CA9B6",
       "name": "1er étage - Tour Eiffel - Paris",
-      "location": "Tour Eiffel-Champs de Mars, Paris, France",
+      "location": "Tour Eiffel, 5 Avenue Anatole France, 75007, Paris, Île-de-France, France",
       "year": 2025,
       "notes": "",
       "imageIds": [
@@ -1169,8 +1169,17 @@
         "img_0046_001"
       ],
       "createdAt": "2025-09-07T20:11:31Z",
-      "updatedAt": "2025-09-13T09:48:43Z",
-      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF"
+      "updatedAt": "2026-07-07T07:12:07.256Z",
+      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "2E30C8BB-1494-48D9-A056-3325F6DAA1ED",
