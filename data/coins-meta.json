@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:37:25.191Z",
+  "savedAt": "2026-07-16T06:37:29.517Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -4477,7 +4477,7 @@
     {
       "id": "C796F899-6773-4BF9-83F3-70F425C054AF",
       "name": "Notre dame de la garde Bateau",
-      "location": "Basilique Notre-Dame de la Garde, Rue Fort du Sanctuaire, 13006 Marseille, France",
+      "location": "Basilique Notre-Dame de la Garde, Montée de l'Oratoire, 13006, Marseille, 6e Arrondissement, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France",
       "year": 2014,
       "notes": "",
       "imageIds": [
@@ -4485,8 +4485,17 @@
         "img_0232_001"
       ],
       "createdAt": "2025-09-11T20:15:21Z",
-      "updatedAt": "2025-09-13T09:48:38Z",
-      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541"
+      "updatedAt": "2026-07-16T06:37:29.517Z",
+      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "C8993D1D-C0A3-4BFA-B0BB-510B1E407FCF",
