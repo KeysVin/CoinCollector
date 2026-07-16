@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:39:54.545Z",
+  "savedAt": "2026-07-16T06:39:58.757Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -2707,7 +2707,7 @@
     {
       "id": "6DE47A32-499A-428F-9ACE-89227DDBDDBB",
       "name": "Statue Équestre de Louis XII - Château de Blois",
-      "location": "Château Royal de Blois, 6 Place du Château, 41000 Blois, France",
+      "location": "Château Royal de Blois, Rampe des Fossés du Château, 41000, Blois, Centre, Loir-et-Cher, Centre-Val de Loire, France",
       "year": 2024,
       "notes": "",
       "imageIds": [
@@ -2715,8 +2715,17 @@
         "img_0115_001"
       ],
       "createdAt": "2025-09-07T18:18:05Z",
-      "updatedAt": "2025-09-13T09:48:46Z",
-      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541"
+      "updatedAt": "2026-07-16T06:39:58.757Z",
+      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "6E4977FC-F360-48E7-BDB4-F32CC7F1760C",
