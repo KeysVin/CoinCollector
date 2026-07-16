@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:32:36.280Z",
+  "savedAt": "2026-07-16T06:32:43.348Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -618,6 +618,10 @@
     "Collégiale Saint-Aubin, Place Jean XXIII, 44350, Guérande, Intramuros, Loire-Atlantique, Pays de la Loire, France": {
       "lat": 47.3280728,
       "lon": -2.4290546
+    },
+    "Zoo Aquarium de Madrid, Camino de Húmera, 28024, Madrid, Aravaca, Communauté de Madrid, Espagne": {
+      "lat": 40.4091046,
+      "lon": -3.7642658
     }
   },
   "coins": [
@@ -2025,8 +2029,8 @@
     },
     {
       "id": "591B0475-63BE-47B3-ABC4-0D5BBCE48371",
-      "name": "Dauphin - Zoo aquarium Madrid ",
-      "location": "Zoo Aquarium, Casa de Campo, s/n, 28011 Madrid, Spain",
+      "name": "Dauphin - Zoo aquarium Madrid",
+      "location": "Zoo Aquarium de Madrid, Camino de Húmera, 28024, Madrid, Aravaca, Communauté de Madrid, Espagne",
       "year": 2023,
       "notes": "",
       "imageIds": [
@@ -2034,8 +2038,17 @@
         "img_0091_001"
       ],
       "createdAt": "2025-09-07T20:02:53Z",
-      "updatedAt": "2025-09-13T09:48:44Z",
-      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673"
+      "updatedAt": "2026-07-16T06:32:43.347Z",
+      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673",
+      "country": "Espagne",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "598F16B8-8F0E-447A-BD8B-FC99D163DBB5",
