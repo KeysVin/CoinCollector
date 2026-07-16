@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:39:40.944Z",
+  "savedAt": "2026-07-16T06:39:46.231Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -734,6 +734,10 @@
     "Château Royal de Blois, Rampe des Fossés du Château, 41000, Blois, Centre, Loir-et-Cher, Centre-Val de Loire, France": {
       "lat": 47.5855886,
       "lon": 1.330242
+    },
+    "Le sous-marin Flore S645, Rue Henri Honoré d'Estienne d'Orves, 56100, Lorient, Lanveur, Morbihan, Bretagne, France": {
+      "lat": 47.7297344,
+      "lon": -3.3715573
     }
   },
   "coins": [
@@ -3229,8 +3233,8 @@
     },
     {
       "id": "83A03C5B-1B30-4E25-BE52-8A3FC5539A68",
-      "name": "Sous marin Flore - Lorient ",
-      "location": "Le Sous-Marin Flore - S645, Rue Roland Morillot\n56100 Lorient\nFrance",
+      "name": "Sous marin Flore - Lorient",
+      "location": "Le sous-marin Flore S645, Rue Henri Honoré d'Estienne d'Orves, 56100, Lorient, Lanveur, Morbihan, Bretagne, France",
       "year": 2020,
       "notes": "",
       "imageIds": [
@@ -3238,8 +3242,17 @@
         "img_0149_001"
       ],
       "createdAt": "2025-09-07T20:47:59Z",
-      "updatedAt": "2025-09-13T09:48:40Z",
-      "collectionId": "552BB707-A179-4DAA-9D21-46E20378008F"
+      "updatedAt": "2026-07-16T06:39:46.231Z",
+      "collectionId": "552BB707-A179-4DAA-9D21-46E20378008F",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "84D16043-8574-4067-9103-0EEEE037BA9A",
