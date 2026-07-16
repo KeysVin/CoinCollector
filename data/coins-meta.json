@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:42:07.643Z",
+  "savedAt": "2026-07-16T06:42:56.052Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -742,6 +742,10 @@
     "Parc animalier et botanique de Branféré, Kerouar, 56190, Le Guerno, Morbihan, Bretagne, France": {
       "lat": 47.5957547,
       "lon": -2.3976637
+    },
+    "Musée Grévin, 10 Boulevard Montmartre, 75009, Paris, Île-de-France, France": {
+      "lat": 48.8718365,
+      "lon": 2.3420974
     }
   },
   "coins": [
@@ -4293,8 +4297,8 @@
     },
     {
       "id": "B0F65EF6-9DE9-4AA1-886D-A52F3181CAD3",
-      "name": "Il était une fois la vie ",
-      "location": "",
+      "name": "Il était une fois la vie",
+      "location": "Musée Grévin, 10 Boulevard Montmartre, 75009, Paris, Île-de-France, France",
       "year": 2024,
       "notes": "",
       "imageIds": [
@@ -4302,8 +4306,17 @@
         "img_0204_001"
       ],
       "createdAt": "2025-09-07T20:57:14Z",
-      "updatedAt": "2025-09-13T09:48:40Z",
-      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD"
+      "updatedAt": "2026-07-16T06:42:56.052Z",
+      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "B30148CD-536D-45AD-AF23-5192806D73E9",
