@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:36:24.784Z",
+  "savedAt": "2026-07-16T06:36:30.850Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -694,6 +694,10 @@
     "Château d'Amboise, Rue de la Concorde, 37400, Amboise, La Ville-Sud, Indre-et-Loire, Centre-Val de Loire, France": {
       "lat": 47.4136291,
       "lon": 0.9859719
+    },
+    "Les Terres de Nataé, Pont Scave, 56602, Quéven, Kermerien, Morbihan, Bretagne, France": {
+      "lat": 47.8101511,
+      "lon": -3.4078997
     }
   },
   "coins": [
@@ -3763,8 +3767,8 @@
     },
     {
       "id": "A4F3F6D4-FF8B-4C49-944A-2834F0525DD9",
-      "name": "Les terres de Nataé ",
-      "location": "Les Terres de Nataé, LDT Kerruisseau, 56620 Pont-Scorff, France",
+      "name": "Les terres de Nataé",
+      "location": "Les Terres de Nataé, Pont Scave, 56602, Quéven, Kermerien, Morbihan, Bretagne, France",
       "year": 2023,
       "notes": "",
       "imageIds": [
@@ -3772,8 +3776,17 @@
         "img_0192_001"
       ],
       "createdAt": "2025-09-07T18:24:12Z",
-      "updatedAt": "2025-09-13T09:48:46Z",
-      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F"
+      "updatedAt": "2026-07-16T06:36:30.850Z",
+      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "A653DE4B-E044-483D-B92D-17EA7C2BE120",
