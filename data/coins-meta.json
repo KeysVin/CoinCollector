@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:39:19.043Z",
+  "savedAt": "2026-07-16T06:39:23.646Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -4554,7 +4554,7 @@
     {
       "id": "C67140B5-3336-44FA-9F2D-E843F7339765",
       "name": "Requins - grand aquarium de Saint Malo",
-      "location": "Grand Aquarium de Saint-Malo, 28 Rue Isidore Jouanny, 35400 Saint-Malo, France",
+      "location": "Grand Aquarium - Saint-Malo, Rue du Général Patton, 35400, Saint-Malo, La Madeleine - Bellevue, Ille-et-Vilaine, Bretagne, France",
       "year": 2024,
       "notes": "",
       "imageIds": [
@@ -4562,8 +4562,17 @@
         "img_0229_001"
       ],
       "createdAt": "2025-09-07T19:58:35Z",
-      "updatedAt": "2025-09-13T09:48:44Z",
-      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673"
+      "updatedAt": "2026-07-16T06:39:23.646Z",
+      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "C72442E2-6BF3-41AC-B4FE-9C6FC0B32078",
