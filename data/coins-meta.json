@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:33:13.088Z",
+  "savedAt": "2026-07-16T06:33:21.606Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -642,6 +642,10 @@
     "Fort la Latte, Rue de La Latte, 22240, Plévenon, La Roche Lessoie, Côtes-d'Armor, Bretagne, France": {
       "lat": 48.6682033,
       "lon": -2.2848699
+    },
+    "Futuroscope, Les Lodges des Berges, 86360, Chasseneuil-du-Poitou, Vienne, Nouvelle-Aquitaine, France": {
+      "lat": 46.6703886,
+      "lon": 0.3701107
     }
   },
   "coins": [
@@ -4828,8 +4832,8 @@
     },
     {
       "id": "E4FADAB8-432E-438B-A594-B7D05858EE90",
-      "name": "Futuroscope ",
-      "location": "Hotel du Futuroscope, 16 Avenue du Parc du Futur, 86130 Jaunay-Marigny, France",
+      "name": "Futuroscope",
+      "location": "Futuroscope, Les Lodges des Berges, 86360, Chasseneuil-du-Poitou, Vienne, Nouvelle-Aquitaine, France",
       "year": 2022,
       "notes": "",
       "imageIds": [
@@ -4837,8 +4841,17 @@
         "img_0274_001"
       ],
       "createdAt": "2025-09-14T18:23:02Z",
-      "updatedAt": "2025-09-14T18:36:43Z",
-      "collectionId": "29EA1E19-CAF7-42D7-B988-7512DF3D94AE"
+      "updatedAt": "2026-07-16T06:33:21.605Z",
+      "collectionId": "29EA1E19-CAF7-42D7-B988-7512DF3D94AE",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "E6246BEE-64FB-40C6-AAC8-7E2F4226FE8A",
