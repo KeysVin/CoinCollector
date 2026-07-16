@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:32:55.774Z",
+  "savedAt": "2026-07-16T06:33:02.874Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -630,6 +630,10 @@
     "ZooParc de Beauval, Route de l'Herbaudière, 41110, Saint-Aignan, La Poterie, Loir-et-Cher, Centre-Val de Loire, France": {
       "lat": 47.2464882,
       "lon": 1.3480504
+    },
+    "Zoo et Parc de Thoiry, Route de Versailles, 78770, Thoiry, Yvelines, Île-de-France, France": {
+      "lat": 48.8618631,
+      "lon": 1.7924425
     }
   },
   "coins": [
@@ -4534,7 +4538,7 @@
     {
       "id": "D7800AFF-FE72-40AB-858D-04FF1E772F2C",
       "name": "Éléphant - Zoo de Thoiry",
-      "location": "ZooSafari de Thoiry, 7 Rue du Pavillon de Montreuil, 78770 Thoiry, France",
+      "location": "Zoo et Parc de Thoiry, Route de Versailles, 78770, Thoiry, Yvelines, Île-de-France, France",
       "year": 2024,
       "notes": "",
       "imageIds": [
@@ -4542,8 +4546,17 @@
         "img_0257_001"
       ],
       "createdAt": "2025-09-07T18:31:10Z",
-      "updatedAt": "2025-09-13T09:48:46Z",
-      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F"
+      "updatedAt": "2026-07-16T06:33:02.873Z",
+      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "D7F2FE77-C8CC-4938-B273-5F9C673E1B7F",
