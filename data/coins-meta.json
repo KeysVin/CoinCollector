@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:40:14.179Z",
+  "savedAt": "2026-07-16T06:41:07.500Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -896,8 +896,8 @@
     },
     {
       "id": "0F6A2D34-6E34-4708-9C0A-6DC1935D46B7",
-      "name": "Tour Eiffel et les monuments de Paris ",
-      "location": "Tour Eiffel-Champs de Mars, Paris, France",
+      "name": "Tour Eiffel et les monuments de Paris",
+      "location": "Tour Eiffel, 5 Avenue Anatole France, 75007, Paris, Île-de-France, France",
       "year": 2019,
       "notes": "",
       "imageIds": [
@@ -905,8 +905,17 @@
         "img_0009_001"
       ],
       "createdAt": "2025-09-11T20:56:39Z",
-      "updatedAt": "2025-09-13T09:48:37Z",
-      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF"
+      "updatedAt": "2026-07-16T06:41:07.499Z",
+      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "10B56CAD-6958-44EE-93EF-9FD11EBE0066",
