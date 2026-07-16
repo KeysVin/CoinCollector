@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:35:29.761Z",
+  "savedAt": "2026-07-16T06:35:37.008Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -678,6 +678,10 @@
     "Tour Saint-Nicolas, Rue de l'Armide, 17000, La Rochelle, Charente-Maritime, Nouvelle-Aquitaine, France": {
       "lat": 46.1557713,
       "lon": -1.1533317
+    },
+    "Pont transbordeur du Martrou, Rue du Transbordeur, 17620, Échillais, Charente-Maritime, Nouvelle-Aquitaine, France": {
+      "lat": 45.9160979,
+      "lon": -0.9607072
     }
   },
   "coins": [
@@ -3321,8 +3325,8 @@
     },
     {
       "id": "9418484B-6EE8-42FC-8EEA-0F4D74EA7C7B",
-      "name": "Le chantier du pont transbordeur ",
-      "location": "Pont Transbordeur, 76 Avenue Jacques Demy, 17300 Rochefort, France",
+      "name": "Le chantier du pont transbordeur",
+      "location": "Pont transbordeur du Martrou, Rue du Transbordeur, 17620, Échillais, Charente-Maritime, Nouvelle-Aquitaine, France",
       "year": 2019,
       "notes": "",
       "imageIds": [
@@ -3330,8 +3334,17 @@
         "img_0168_001"
       ],
       "createdAt": "2025-09-14T10:48:12Z",
-      "updatedAt": "2025-09-14T18:30:35Z",
-      "collectionId": "3B2C2538-2699-48CA-982A-7FBFF537448B"
+      "updatedAt": "2026-07-16T06:35:37.008Z",
+      "collectionId": "3B2C2538-2699-48CA-982A-7FBFF537448B",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "9432B6D7-2BD4-4ADB-A8F2-40E44644E6AA",
