@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:41:07.500Z",
+  "savedAt": "2026-07-16T06:41:15.029Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -948,7 +948,7 @@
     {
       "id": "1526E62A-B06E-4B17-BD0E-F852B75E0696",
       "name": "Venus de Milo - musée du Louvre",
-      "location": "Musée du Louvre, 93 Rue de Rivoli, 75001 Paris, France",
+      "location": "Musée du Louvre, Place du Palais Royal, 75001, Paris, Île-de-France, France",
       "year": 2025,
       "notes": "",
       "imageIds": [
@@ -956,8 +956,17 @@
         "img_0012_001"
       ],
       "createdAt": "2025-09-07T20:18:21Z",
-      "updatedAt": "2025-09-13T09:48:42Z",
-      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF"
+      "updatedAt": "2026-07-16T06:41:15.028Z",
+      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "15B65472-A2E0-4F97-84AE-E2D3F09398EA",
