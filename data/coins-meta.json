@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:33:50.942Z",
+  "savedAt": "2026-07-16T06:33:57.557Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -3342,7 +3342,7 @@
     {
       "id": "98116675-71AB-4B83-853D-21301F9A9982",
       "name": "Grand aquarium de Touraine",
-      "location": "Grand Aquarium De Touraine, Route de Civray-de-Touraine, 37400 Amboise, France",
+      "location": "Aquarium de Touraine, Route des Montils, 37400, Lussault-sur-Loire, Le Pommier, Indre-et-Loire, Centre-Val de Loire, France",
       "year": 2023,
       "notes": "",
       "imageIds": [
@@ -3350,8 +3350,17 @@
         "img_0174_001"
       ],
       "createdAt": "2025-09-07T20:00:29Z",
-      "updatedAt": "2025-09-13T09:48:44Z",
-      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673"
+      "updatedAt": "2026-07-16T06:33:57.557Z",
+      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "98360241-6A86-4552-AE01-E663369A173E",
