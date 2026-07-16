@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:34:58.373Z",
+  "savedAt": "2026-07-16T06:35:04.064Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -666,6 +666,10 @@
     "Tour de la Chaîne, Balade Jean-Louis Foulquier, 17000, La Rochelle, Charente-Maritime, Nouvelle-Aquitaine, France": {
       "lat": 46.1558078,
       "lon": -1.1541903
+    },
+    "Tour de la Lanterne, Rue sur les Murs, 17000, La Rochelle, Charente-Maritime, Nouvelle-Aquitaine, France": {
+      "lat": 46.1557831,
+      "lon": -1.1571175
     }
   },
   "coins": [
@@ -3903,8 +3907,8 @@
     },
     {
       "id": "B33D560E-EAFD-46F8-B9FB-6F01AF3D155E",
-      "name": "La tour de la Lanterne ",
-      "location": "Tour de la Lanterne, 2 Rue sur les Murs, 17000 La Rochelle, France",
+      "name": "La tour de la Lanterne",
+      "location": "Tour de la Lanterne, Rue sur les Murs, 17000, La Rochelle, Charente-Maritime, Nouvelle-Aquitaine, France",
       "year": 2024,
       "notes": "",
       "imageIds": [
@@ -3912,8 +3916,17 @@
         "img_0206_001"
       ],
       "createdAt": "2025-09-07T20:54:20Z",
-      "updatedAt": "2025-09-13T09:48:40Z",
-      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD"
+      "updatedAt": "2026-07-16T06:35:04.064Z",
+      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "B37E2CDA-1368-47E8-81D6-F0486F154208",
