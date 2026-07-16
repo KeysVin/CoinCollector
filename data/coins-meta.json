@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:34:34.655Z",
+  "savedAt": "2026-07-16T06:34:40.112Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -658,6 +658,10 @@
     "Grottes du Régulus, Boulevard de la Falaise, 17132, Meschers-sur-Gironde, Charente-Maritime, Nouvelle-Aquitaine, France": {
       "lat": 45.5556854,
       "lon": -0.9581225
+    },
+    "Musée du Louvre, Place du Palais Royal, 75001, Paris, Île-de-France, France": {
+      "lat": 48.8611473,
+      "lon": 2.3380277
     }
   },
   "coins": [
@@ -2091,8 +2095,8 @@
     },
     {
       "id": "55A6AF7A-D933-4F4F-B49A-78C4549ABB1A",
-      "name": "La Joconde - Musée du Louvre ",
-      "location": "Musée du Louvre, 93 Rue de Rivoli, 75001 Paris, France",
+      "name": "La Joconde - Musée du Louvre",
+      "location": "Musée du Louvre, Place du Palais Royal, 75001, Paris, Île-de-France, France",
       "year": 2025,
       "notes": "",
       "imageIds": [
@@ -2100,8 +2104,17 @@
         "img_0089_001"
       ],
       "createdAt": "2025-09-07T20:19:23Z",
-      "updatedAt": "2025-09-13T09:48:42Z",
-      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF"
+      "updatedAt": "2026-07-16T06:34:40.112Z",
+      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "5767CF87-1E02-4D6C-926B-0D9F89C8AFE5",
