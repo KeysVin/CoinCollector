@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:39:46.231Z",
+  "savedAt": "2026-07-16T06:39:50.277Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -2831,7 +2831,7 @@
     {
       "id": "7278368F-9ADD-4E78-A84A-62E605114F11",
       "name": "Sous marin Flore et son Musée - Lorient",
-      "location": "Le Sous-Marin Flore - S645, Rue Roland Morillot\n56100 Lorient\nFrance",
+      "location": "Le sous-marin Flore S645, Rue Henri Honoré d'Estienne d'Orves, 56100, Lorient, Lanveur, Morbihan, Bretagne, France",
       "year": 2024,
       "notes": "",
       "imageIds": [
@@ -2839,8 +2839,17 @@
         "img_0124_001"
       ],
       "createdAt": "2025-09-07T20:49:47Z",
-      "updatedAt": "2025-09-13T09:48:40Z",
-      "collectionId": "552BB707-A179-4DAA-9D21-46E20378008F"
+      "updatedAt": "2026-07-16T06:39:50.277Z",
+      "collectionId": "552BB707-A179-4DAA-9D21-46E20378008F",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "7284D970-3AE0-466E-A089-C1F053612D56",
