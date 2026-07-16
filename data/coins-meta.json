@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:30:58.839Z",
+  "savedAt": "2026-07-16T06:31:07.039Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -582,6 +582,10 @@
     "Azay-le-Rideau, 37190, Indre-et-Loire, Centre-Val de Loire, France": {
       "lat": 47.2614793,
       "lon": 0.4667128
+    },
+    "Domaine de Chaumont-sur-Loire, 41150, Chaumont-sur-Loire, Le Château, Loir-et-Cher, Centre-Val de Loire, France": {
+      "lat": 47.4772306,
+      "lon": 1.1844926
     }
   },
   "coins": [
@@ -4611,7 +4615,7 @@
     {
       "id": "E3EEB894-5D07-43C9-B078-4DE062F09C58",
       "name": "Château de Chaumont sur Loire",
-      "location": "Domaine de Chaumont-sur-Loire, , 3–5 Rampe du Château, 41150 Chaumont-sur-Loire, France",
+      "location": "Domaine de Chaumont-sur-Loire, 41150, Chaumont-sur-Loire, Le Château, Loir-et-Cher, Centre-Val de Loire, France",
       "year": 2024,
       "notes": "",
       "imageIds": [
@@ -4619,8 +4623,17 @@
         "img_0273_001"
       ],
       "createdAt": "2025-09-07T17:45:35Z",
-      "updatedAt": "2025-09-13T09:48:47Z",
-      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541"
+      "updatedAt": "2026-07-16T06:31:07.039Z",
+      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "E4FADAB8-432E-438B-A594-B7D05858EE90",
