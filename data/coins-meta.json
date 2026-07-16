@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:37:38.907Z",
+  "savedAt": "2026-07-16T06:37:44.609Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -2679,15 +2679,24 @@
     {
       "id": "6FF3C265-6BD6-4E96-8DE5-4FE73839FF75",
       "name": "Ok corral",
-      "location": "OK Corral, D8N, 13780 Cuges-les-Pins, France",
+      "location": "OK Corral, Route de Riboux, 13780, Cuges-les-Pins, La Curasse, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France",
       "year": 2018,
       "notes": "",
       "imageIds": [
         "img_0118_000"
       ],
       "createdAt": "2025-09-14T17:09:56Z",
-      "updatedAt": "2025-09-14T18:35:38Z",
-      "collectionId": "D7130534-8E94-4461-A7EE-A220046A823F"
+      "updatedAt": "2026-07-16T06:37:44.608Z",
+      "collectionId": "D7130534-8E94-4461-A7EE-A220046A823F",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "701583C7-FF9C-4261-AF37-C1CBDB69255A",
