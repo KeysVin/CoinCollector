@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:32:10.460Z",
+  "savedAt": "2026-07-16T06:32:20.270Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -606,6 +606,10 @@
     "Chemin des Millandes, 19270, Ussac, La Rode, Corrèze, Nouvelle-Aquitaine, France": {
       "lat": 45.2083687,
       "lon": 1.4827665
+    },
+    "Château de Beynac, Place du Château de Beynac, 24220, Beynac-et-Cazenac, La Porte, Dordogne, Nouvelle-Aquitaine, France": {
+      "lat": 44.8401415,
+      "lon": 1.1455347
     }
   },
   "coins": [
@@ -3890,8 +3894,8 @@
     },
     {
       "id": "BCBD7BA0-DA24-41B5-A31C-E701F88C3010",
-      "name": "Château Féodal de Beynac ",
-      "location": "Beynac Castle, Route du Château, 24220 Beynac-et-Cazenac, France",
+      "name": "Château Féodal de Beynac",
+      "location": "Château de Beynac, Place du Château de Beynac, 24220, Beynac-et-Cazenac, La Porte, Dordogne, Nouvelle-Aquitaine, France",
       "year": 2022,
       "notes": "",
       "imageIds": [
@@ -3899,8 +3903,17 @@
         "img_0219_001"
       ],
       "createdAt": "2025-09-14T17:30:48Z",
-      "updatedAt": "2025-09-14T18:31:59Z",
-      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541"
+      "updatedAt": "2026-07-16T06:32:20.270Z",
+      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "BCE60A89-8837-47F5-9178-A8DB55787914",
