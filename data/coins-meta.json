@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:37:05.989Z",
+  "savedAt": "2026-07-16T06:37:13.308Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -710,6 +710,10 @@
     "Mercat Central, Plaça de la Ciutat de Bruges, 46001, Valence, Ciutat Vella, Comarca de València, Communauté valencienne, Espagne": {
       "lat": 39.4734917,
       "lon": -0.3789053
+    },
+    "Basilique Notre-Dame de la Garde, Montée de l'Oratoire, 13006, Marseille, 6e Arrondissement, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France": {
+      "lat": 43.2839455,
+      "lon": 5.371242
     }
   },
   "coins": [
@@ -3148,8 +3152,8 @@
     },
     {
       "id": "8687A5A6-2166-42B7-8449-5411D4F0CBF6",
-      "name": "Musée 800 ans d’histoire de notre dame de la garde ",
-      "location": "Basilique Notre-Dame de la Garde, Rue Fort du Sanctuaire, 13006 Marseille, France",
+      "name": "Musée 800 ans d’histoire de notre dame de la garde",
+      "location": "Basilique Notre-Dame de la Garde, Montée de l'Oratoire, 13006, Marseille, 6e Arrondissement, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France",
       "year": 2014,
       "notes": "",
       "imageIds": [
@@ -3157,8 +3161,17 @@
         "img_0152_001"
       ],
       "createdAt": "2025-09-11T20:16:27Z",
-      "updatedAt": "2025-09-13T09:48:38Z",
-      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541"
+      "updatedAt": "2026-07-16T06:37:13.308Z",
+      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "87A8AC45-A418-4C84-B39B-9ED56F8242ED",
