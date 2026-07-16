@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:36:57.253Z",
+  "savedAt": "2026-07-16T06:37:05.989Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -706,6 +706,10 @@
     "Marineland, Route de Biot, 06600, Antibes, Alpes-Maritimes, Provence-Alpes-Côte d'Azur, France": {
       "lat": 43.6130828,
       "lon": 7.1242623
+    },
+    "Mercat Central, Plaça de la Ciutat de Bruges, 46001, Valence, Ciutat Vella, Comarca de València, Communauté valencienne, Espagne": {
+      "lat": 39.4734917,
+      "lon": -0.3789053
     }
   },
   "coins": [
@@ -3695,8 +3699,8 @@
     },
     {
       "id": "9E9ECA97-3D2B-437D-8DCC-CCDBE9F76E92",
-      "name": "Mercado Central 1928 ",
-      "location": "Mercat Central València, , Plaça de la Ciutat de Bruges, s/n, 46001 València, Valencia, Spain",
+      "name": "Mercado Central 1928",
+      "location": "Mercat Central, Plaça de la Ciutat de Bruges, 46001, Valence, Ciutat Vella, Comarca de València, Communauté valencienne, Espagne",
       "year": 2023,
       "notes": "",
       "imageIds": [
@@ -3704,8 +3708,17 @@
         "img_0185_001"
       ],
       "createdAt": "2025-09-07T21:05:50Z",
-      "updatedAt": "2025-09-13T09:48:39Z",
-      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD"
+      "updatedAt": "2026-07-16T06:37:05.989Z",
+      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD",
+      "country": "Espagne",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "9F3DF52A-442B-4249-8863-732C008DEF63",
