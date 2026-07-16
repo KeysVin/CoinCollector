@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:35:04.064Z",
+  "savedAt": "2026-07-16T06:35:09.929Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -670,6 +670,10 @@
     "Tour de la Lanterne, Rue sur les Murs, 17000, La Rochelle, Charente-Maritime, Nouvelle-Aquitaine, France": {
       "lat": 46.1557831,
       "lon": -1.1571175
+    },
+    "Champ de Mars - Tour Eiffel, Promenade d'Australie, 75015, Paris, Île-de-France, France": {
+      "lat": 48.8560791,
+      "lon": 2.2894654
     }
   },
   "coins": [
@@ -3751,7 +3755,7 @@
     {
       "id": "A871FE7E-78E6-4354-952B-BC51923625F9",
       "name": "La Tour Eiffel 2019",
-      "location": "Tour Eiffel-Champs de Mars, Paris, France",
+      "location": "Champ de Mars - Tour Eiffel, Promenade d'Australie, 75015, Paris, Île-de-France, France",
       "year": 2019,
       "notes": "",
       "imageIds": [
@@ -3759,8 +3763,17 @@
         "img_0196_001"
       ],
       "createdAt": "2025-09-11T20:58:10Z",
-      "updatedAt": "2025-09-13T09:48:37Z",
-      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF"
+      "updatedAt": "2026-07-16T06:35:09.929Z",
+      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "A8A8B9D6-2AFC-4BB0-AEF3-C01484E703CD",
