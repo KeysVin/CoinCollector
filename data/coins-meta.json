@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:36:43.416Z",
+  "savedAt": "2026-07-16T06:36:57.253Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -702,6 +702,10 @@
     "Zoo de La Boissière-du-Doré, Route de la Boissière, 49270, Orée d'Anjou, La Garillère, Maine-et-Loire, Pays de la Loire, France": {
       "lat": 47.2470277,
       "lon": -1.1963759
+    },
+    "Marineland, Route de Biot, 06600, Antibes, Alpes-Maritimes, Provence-Alpes-Côte d'Azur, France": {
+      "lat": 43.6130828,
+      "lon": 7.1242623
     }
   },
   "coins": [
@@ -2904,8 +2908,8 @@
     },
     {
       "id": "7DD2AF60-356F-4818-80C1-76E99EACC6E3",
-      "name": "Marineland ",
-      "location": "Marineland, 306 Avenue Mozart, 06600 Antibes, France",
+      "name": "Marineland",
+      "location": "Marineland, Route de Biot, 06600, Antibes, Alpes-Maritimes, Provence-Alpes-Côte d'Azur, France",
       "year": 2013,
       "notes": "",
       "imageIds": [
@@ -2913,8 +2917,17 @@
         "img_0137_001"
       ],
       "createdAt": "2025-09-14T17:08:32Z",
-      "updatedAt": "2025-09-14T17:08:32Z",
-      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673"
+      "updatedAt": "2026-07-16T06:36:57.253Z",
+      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "7E00CCB9-E78A-4F7E-937B-759FFC63921A",
