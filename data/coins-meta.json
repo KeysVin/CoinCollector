@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:36:16.310Z",
+  "savedAt": "2026-07-16T06:36:20.617Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -690,6 +690,10 @@
     "Le Vieux Port de La Rochelle, Place du Commandant de la Motte Rouge, 17000, La Rochelle, Charente-Maritime, Nouvelle-Aquitaine, France": {
       "lat": 46.155875,
       "lon": -1.1494546
+    },
+    "Château d'Amboise, Rue de la Concorde, 37400, Amboise, La Ville-Sud, Indre-et-Loire, Centre-Val de Loire, France": {
+      "lat": 47.4136291,
+      "lon": 0.9859719
     }
   },
   "coins": [
@@ -4690,8 +4694,8 @@
     },
     {
       "id": "D3D8D0B5-C0E7-41BD-9D8F-F0367B6E078C",
-      "name": "Léonard de Vinci - Château royal de Amboise ",
-      "location": "Château d'Amboise, Montée de l'Emir Abd El Kader, 37400 Amboise, France",
+      "name": "Léonard de Vinci - Château royal de Amboise",
+      "location": "Château d'Amboise, Rue de la Concorde, 37400, Amboise, La Ville-Sud, Indre-et-Loire, Centre-Val de Loire, France",
       "year": 2024,
       "notes": "",
       "imageIds": [
@@ -4699,8 +4703,17 @@
         "img_0253_001"
       ],
       "createdAt": "2025-09-07T18:20:17Z",
-      "updatedAt": "2025-09-13T09:48:46Z",
-      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541"
+      "updatedAt": "2026-07-16T06:36:20.617Z",
+      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "D442796C-4949-49DA-BDFA-2CB039734206",
