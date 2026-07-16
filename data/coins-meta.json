@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-07T07:14:40.385Z",
+  "savedAt": "2026-07-16T06:27:25.192Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -562,6 +562,10 @@
     "Château d'If, Chemin de Saint-Estève, 13007, Marseille, 7e Arrondissement, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France": {
       "lat": 43.279856,
       "lon": 5.325284
+    },
+    "Bateaux-Mouches, Port de la Conférence, 75008, Paris, Île-de-France, France": {
+      "lat": 48.8639784,
+      "lon": 2.3058261
     }
   },
   "coins": [
@@ -618,8 +622,8 @@
     },
     {
       "id": "077E9618-143C-428A-BB3D-22059B11960B",
-      "name": "Bateaux mouches - Pont de l’Alma ",
-      "location": "Bateaux Mouches, Pont de l’Alma, Rive Droite, 75008 Paris, France",
+      "name": "Bateaux mouches - Pont de l’Alma",
+      "location": "Bateaux-Mouches, Port de la Conférence, 75008, Paris, Île-de-France, France",
       "year": 2019,
       "notes": "",
       "imageIds": [
@@ -627,8 +631,17 @@
         "img_0003_001"
       ],
       "createdAt": "2025-09-11T20:55:29Z",
-      "updatedAt": "2025-09-13T09:48:37Z",
-      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF"
+      "updatedAt": "2026-07-16T06:27:25.191Z",
+      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "0790B25D-B913-4AE1-B40B-EFDC9BEC027F",
