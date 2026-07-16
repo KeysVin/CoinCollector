@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:33:02.874Z",
+  "savedAt": "2026-07-16T06:33:07.878Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -634,6 +634,10 @@
     "Zoo et Parc de Thoiry, Route de Versailles, 78770, Thoiry, Yvelines, Île-de-France, France": {
       "lat": 48.8618631,
       "lon": 1.7924425
+    },
+    "Les Machines de l’Île, Parvis des Nefs, 44003, Nantes, Île de Nantes, Loire-Atlantique, Pays de la Loire, France": {
+      "lat": 47.2059999,
+      "lon": -1.5643402
     }
   },
   "coins": [
@@ -1745,8 +1749,8 @@
     },
     {
       "id": "477060C4-3347-4EDF-800D-25F75D1ED5D6",
-      "name": "Éléphant des machines de l’île ",
-      "location": "Les Machines de l’Île, 1 Rue Crucy, 44000 Nantes, France",
+      "name": "Éléphant des machines de l’île",
+      "location": "Les Machines de l’Île, Parvis des Nefs, 44003, Nantes, Île de Nantes, Loire-Atlantique, Pays de la Loire, France",
       "year": 2022,
       "notes": "",
       "imageIds": [
@@ -1754,8 +1758,17 @@
         "img_0071_001"
       ],
       "createdAt": "2025-09-14T18:08:22Z",
-      "updatedAt": "2025-09-14T18:36:53Z",
-      "collectionId": "552BB707-A179-4DAA-9D21-46E20378008F"
+      "updatedAt": "2026-07-16T06:33:07.878Z",
+      "collectionId": "552BB707-A179-4DAA-9D21-46E20378008F",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "477CFCC2-243F-4E79-AFE6-3112C9CB4AF1",
