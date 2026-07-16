@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:39:23.646Z",
+  "savedAt": "2026-07-16T06:39:28.012Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -3590,8 +3590,8 @@
     },
     {
       "id": "94E77844-3071-4A6E-8AC6-10F7810F1F10",
-      "name": "Seaquarium Grau du roi ",
-      "location": "Seaquarium Institut Marin, Avenue du Palais de la Mer, 30240 Le Grau-du-Roi, France",
+      "name": "Seaquarium Grau du roi",
+      "location": "Le Grau-du-Roi, 30240, Gard, Occitanie, France",
       "year": 2016,
       "notes": "",
       "imageIds": [
@@ -3599,8 +3599,17 @@
         "img_0171_001"
       ],
       "createdAt": "2025-09-11T20:47:53Z",
-      "updatedAt": "2025-09-13T09:48:38Z",
-      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673"
+      "updatedAt": "2026-07-16T06:39:28.012Z",
+      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "958A807B-53A9-4016-A053-3C338F619DB7",
