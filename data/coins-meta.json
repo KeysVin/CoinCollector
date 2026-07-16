@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:31:07.039Z",
+  "savedAt": "2026-07-16T06:31:21.689Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -586,6 +586,10 @@
     "Domaine de Chaumont-sur-Loire, 41150, Chaumont-sur-Loire, Le Château, Loir-et-Cher, Centre-Val de Loire, France": {
       "lat": 47.4772306,
       "lon": 1.1844926
+    },
+    "Château de Fougères, Place Pierre Symon, 35300, Fougères, Montaubert - Rillé - Saint-Sulpice, Ille-et-Vilaine, Bretagne, France": {
+      "lat": 48.3537219,
+      "lon": -1.2104315
     }
   },
   "coins": [
@@ -1044,8 +1048,8 @@
     },
     {
       "id": "21B2E3A5-0592-4DB9-8011-63E68856D937",
-      "name": "Château de Fougères ",
-      "location": "Château de Fougères, 83 Rue de la Pinterie, 35300 Fougères, France",
+      "name": "Château de Fougères",
+      "location": "Château de Fougères, Place Pierre Symon, 35300, Fougères, Montaubert - Rillé - Saint-Sulpice, Ille-et-Vilaine, Bretagne, France",
       "year": 2022,
       "notes": "",
       "imageIds": [
@@ -1053,8 +1057,17 @@
         "img_0030_001"
       ],
       "createdAt": "2025-09-14T18:06:57Z",
-      "updatedAt": "2025-09-14T18:31:59Z",
-      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541"
+      "updatedAt": "2026-07-16T06:31:21.689Z",
+      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "2220104D-9450-42F8-8483-2EAEF888C7B1",
