@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:34:49.552Z",
+  "savedAt": "2026-07-16T06:34:58.373Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -662,6 +662,10 @@
     "Musée du Louvre, Place du Palais Royal, 75001, Paris, Île-de-France, France": {
       "lat": 48.8611473,
       "lon": 2.3380277
+    },
+    "Tour de la Chaîne, Balade Jean-Louis Foulquier, 17000, La Rochelle, Charente-Maritime, Nouvelle-Aquitaine, France": {
+      "lat": 46.1558078,
+      "lon": -1.1541903
     }
   },
   "coins": [
@@ -4627,8 +4631,8 @@
     },
     {
       "id": "D521722B-9567-445F-9639-B425C21429AE",
-      "name": "La tour de la Chaîne - La Rochelle ",
-      "location": "Tour de la Chaîne, 17 Rue de la Chaîne, 17000 La Rochelle, France",
+      "name": "La tour de la Chaîne - La Rochelle",
+      "location": "Tour de la Chaîne, Balade Jean-Louis Foulquier, 17000, La Rochelle, Charente-Maritime, Nouvelle-Aquitaine, France",
       "year": 2024,
       "notes": "",
       "imageIds": [
@@ -4636,8 +4640,17 @@
         "img_0255_001"
       ],
       "createdAt": "2025-09-07T20:53:25Z",
-      "updatedAt": "2025-09-13T09:48:40Z",
-      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD"
+      "updatedAt": "2026-07-16T06:34:58.372Z",
+      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "D5FFD1A0-5D96-4FE1-BD97-E1B623324DD4",
