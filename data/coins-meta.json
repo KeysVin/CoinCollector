@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:32:49.703Z",
+  "savedAt": "2026-07-16T06:32:55.774Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -626,6 +626,10 @@
     "Delicate Arch Trail, Grand, Utah, États-Unis d'Amérique": {
       "lat": 38.7434805,
       "lon": -109.4992732
+    },
+    "ZooParc de Beauval, Route de l'Herbaudière, 41110, Saint-Aignan, La Poterie, Loir-et-Cher, Centre-Val de Loire, France": {
+      "lat": 47.2464882,
+      "lon": 1.3480504
     }
   },
   "coins": [
@@ -3672,7 +3676,7 @@
     {
       "id": "AD41DA28-F353-45CB-AE0B-70A3E3D0AB19",
       "name": "Dôme équatorial - zoo de Beauval",
-      "location": "ZooParc de Beauval, Avenue du Blanc, 41110 Saint-Aignan, France",
+      "location": "ZooParc de Beauval, Route de l'Herbaudière, 41110, Saint-Aignan, La Poterie, Loir-et-Cher, Centre-Val de Loire, France",
       "year": 2025,
       "notes": "",
       "imageIds": [
@@ -3680,8 +3684,17 @@
         "img_0200_001"
       ],
       "createdAt": "2025-09-07T18:36:49Z",
-      "updatedAt": "2025-09-13T09:48:45Z",
-      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F"
+      "updatedAt": "2026-07-16T06:32:55.773Z",
+      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "AF420711-FB64-43A5-A97C-8FD8176A8E43",
