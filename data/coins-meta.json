@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:33:41.320Z",
+  "savedAt": "2026-07-16T06:33:46.103Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -646,6 +646,10 @@
     "Futuroscope, Les Lodges des Berges, 86360, Chasseneuil-du-Poitou, Vienne, Nouvelle-Aquitaine, France": {
       "lat": 46.6703886,
       "lon": 0.3701107
+    },
+    "Grand Aquarium - Saint-Malo, Rue du Général Patton, 35400, Saint-Malo, La Madeleine - Bellevue, Ille-et-Vilaine, Bretagne, France": {
+      "lat": 48.6194055,
+      "lon": -1.9944157
     }
   },
   "coins": [
@@ -4799,8 +4803,8 @@
     },
     {
       "id": "E30838B7-35A3-4825-8ABB-27059FFE1766",
-      "name": "Grand aquarium de Saint Malo ",
-      "location": "Grand Aquarium de Saint-Malo, 28 Rue Isidore Jouanny, 35400 Saint-Malo, France",
+      "name": "Grand aquarium de Saint Malo",
+      "location": "Grand Aquarium - Saint-Malo, Rue du Général Patton, 35400, Saint-Malo, La Madeleine - Bellevue, Ille-et-Vilaine, Bretagne, France",
       "year": 2023,
       "notes": "",
       "imageIds": [
@@ -4808,8 +4812,17 @@
         "img_0271_001"
       ],
       "createdAt": "2025-09-14T18:15:23Z",
-      "updatedAt": "2025-09-14T18:15:23Z",
-      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673"
+      "updatedAt": "2026-07-16T06:33:46.102Z",
+      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "E3B4516A-92CC-4792-8B74-FEDE10C215E0",
