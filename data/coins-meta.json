@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:41:28.420Z",
+  "savedAt": "2026-07-16T06:41:34.871Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -1107,8 +1107,8 @@
     },
     {
       "id": "1BB1A63C-1FC7-40E4-B2DA-53AFFA1948BB",
-      "name": "Zoo aquarium Madrid ",
-      "location": "Zoo Aquarium, Casa de Campo, s/n, 28011 Madrid, Spain",
+      "name": "Zoo aquarium Madrid",
+      "location": "Zoo Aquarium de Madrid, Camino de Húmera, 28024, Madrid, Aravaca, Communauté de Madrid, Espagne",
       "year": 2023,
       "notes": "",
       "imageIds": [
@@ -1116,8 +1116,17 @@
         "img_0022_001"
       ],
       "createdAt": "2025-09-07T20:02:04Z",
-      "updatedAt": "2025-09-13T09:48:44Z",
-      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673"
+      "updatedAt": "2026-07-16T06:41:34.871Z",
+      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673",
+      "country": "Espagne",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "1D3D88A1-B40C-4C42-B731-5532B82E458D",
