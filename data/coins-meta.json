@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:38:08.727Z",
+  "savedAt": "2026-07-16T06:38:14.484Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -2010,8 +2010,8 @@
     },
     {
       "id": "49D5C595-8A2B-4ACF-90D2-955DE026E14B",
-      "name": "Poisson - Aquarium de La Rochelle ",
-      "location": "Aquarium La Rochelle, 65 Quai Louis Prunier, 17000 La Rochelle, France",
+      "name": "Poisson - Aquarium de La Rochelle",
+      "location": "Aquarium de La Rochelle, Quai Louis Prunier, 17000, La Rochelle, Charente-Maritime, Nouvelle-Aquitaine, France",
       "year": 2013,
       "notes": "",
       "imageIds": [
@@ -2019,8 +2019,17 @@
         "img_0076_001"
       ],
       "createdAt": "2025-09-11T20:37:12Z",
-      "updatedAt": "2025-09-13T09:48:38Z",
-      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673"
+      "updatedAt": "2026-07-16T06:38:14.484Z",
+      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "4BFCEC2B-979F-4BB8-A6A7-F0B81AAB91D5",
