@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:31:31.577Z",
+  "savedAt": "2026-07-16T06:31:44.742Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -594,6 +594,10 @@
     "Château de Villandry, 37510, Villandry, Le Château, Indre-et-Loire, Centre-Val de Loire, France": {
       "lat": 47.3405655,
       "lon": 0.5146063
+    },
+    "Château des Baux-de-Provence, Chemin des Tremais, 13520, Les Baux-de-Provence, Carita, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France": {
+      "lat": 43.7439737,
+      "lon": 4.7968143
     }
   },
   "coins": [
@@ -636,8 +640,8 @@
     },
     {
       "id": "077432A2-ED41-4ADE-8059-731726F4E283",
-      "name": "Château des beaux de Provence ",
-      "location": "Château des Baux-de-Provence, Grand Rue\n13520 Les Baux-de-Provence\nFrance",
+      "name": "Château des beaux de Provence",
+      "location": "Château des Baux-de-Provence, Chemin des Tremais, 13520, Les Baux-de-Provence, Carita, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France",
       "year": 2013,
       "notes": "",
       "imageIds": [
@@ -645,8 +649,17 @@
         "img_0002_001"
       ],
       "createdAt": "2025-09-11T20:17:28Z",
-      "updatedAt": "2025-09-13T09:48:38Z",
-      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541"
+      "updatedAt": "2026-07-16T06:31:44.741Z",
+      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "077E9618-143C-428A-BB3D-22059B11960B",
