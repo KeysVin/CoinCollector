@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:34:30.131Z",
+  "savedAt": "2026-07-16T06:34:34.655Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -4939,8 +4939,8 @@
     },
     {
       "id": "E6246BEE-64FB-40C6-AAC8-7E2F4226FE8A",
-      "name": "L’odyssée des lions de mer - zoo de Beauval ",
-      "location": "ZooParc de Beauval, Avenue du Blanc, 41110 Saint-Aignan, France",
+      "name": "L’odyssée des lions de mer - zoo de Beauval",
+      "location": "ZooParc de Beauval, Route de l'Herbaudière, 41110, Saint-Aignan, La Poterie, Loir-et-Cher, Centre-Val de Loire, France",
       "year": 2025,
       "notes": "",
       "imageIds": [
@@ -4948,8 +4948,17 @@
         "img_0275_001"
       ],
       "createdAt": "2025-09-07T18:39:02Z",
-      "updatedAt": "2025-09-13T09:48:45Z",
-      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F"
+      "updatedAt": "2026-07-16T06:34:34.654Z",
+      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "E6311DC2-FC36-4D4B-B89A-DB4B84247CAB",
