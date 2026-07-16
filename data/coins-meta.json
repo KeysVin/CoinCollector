@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:33:21.606Z",
+  "savedAt": "2026-07-16T06:33:31.593Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -3296,8 +3296,8 @@
     },
     {
       "id": "963A6CCD-844B-4237-BF0A-232CEA3131FE",
-      "name": "Girafe - Zoo de Thoiry ",
-      "location": "ZooSafari de Thoiry, 7 Rue du Pavillon de Montreuil, 78770 Thoiry, France",
+      "name": "Girafe - Zoo de Thoiry",
+      "location": "Zoo et Parc de Thoiry, Route de Versailles, 78770, Thoiry, Yvelines, Île-de-France, France",
       "year": 2024,
       "notes": "",
       "imageIds": [
@@ -3305,8 +3305,17 @@
         "img_0173_001"
       ],
       "createdAt": "2025-09-07T18:30:40Z",
-      "updatedAt": "2025-09-13T09:48:46Z",
-      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F"
+      "updatedAt": "2026-07-16T06:33:31.593Z",
+      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "98116675-71AB-4B83-853D-21301F9A9982",
