@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:37:34.081Z",
+  "savedAt": "2026-07-16T06:37:38.907Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -718,6 +718,10 @@
     "Chapelle Notre-Dame-de-Montligeon, 34390, Olargues, Hérault, Occitanie, France": {
       "lat": 43.548624,
       "lon": 2.8870868
+    },
+    "Palais royal de Madrid, Plaza de la Armería, 28013, Madrid, Palacio, Communauté de Madrid, Espagne": {
+      "lat": 40.4167403,
+      "lon": -3.7136222
     }
   },
   "coins": [
@@ -3169,8 +3173,8 @@
     },
     {
       "id": "8577EEEB-6A03-4F02-BEB3-88E0AF918E88",
-      "name": "Palacio Real Madrid ",
-      "location": "Royal Palace of Madrid, Calle de Bailén, 28071 Madrid, Spain",
+      "name": "Palacio Real Madrid",
+      "location": "Palais royal de Madrid, Plaza de la Armería, 28013, Madrid, Palacio, Communauté de Madrid, Espagne",
       "year": 2023,
       "notes": "",
       "imageIds": [
@@ -3178,8 +3182,17 @@
         "img_0151_001"
       ],
       "createdAt": "2025-09-07T21:03:24Z",
-      "updatedAt": "2025-09-13T09:48:39Z",
-      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD"
+      "updatedAt": "2026-07-16T06:37:38.907Z",
+      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD",
+      "country": "Espagne",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "8687A5A6-2166-42B7-8449-5411D4F0CBF6",
