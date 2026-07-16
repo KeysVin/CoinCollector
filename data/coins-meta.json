@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:39:58.757Z",
+  "savedAt": "2026-07-16T06:40:04.091Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -3449,8 +3449,8 @@
     },
     {
       "id": "8D17B194-7DF3-4E73-B72D-01EAF69E6103",
-      "name": "Tigre - Zoo de Thoiry ",
-      "location": "ZooSafari de Thoiry, 7 Rue du Pavillon de Montreuil, 78770 Thoiry, France",
+      "name": "Tigre - Zoo de Thoiry",
+      "location": "Zoo et Parc de Thoiry, Route de Versailles, 78770, Thoiry, Yvelines, Île-de-France, France",
       "year": 2024,
       "notes": "",
       "imageIds": [
@@ -3458,8 +3458,17 @@
         "img_0160_001"
       ],
       "createdAt": "2025-09-07T18:32:13Z",
-      "updatedAt": "2025-09-13T09:48:46Z",
-      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F"
+      "updatedAt": "2026-07-16T06:40:04.091Z",
+      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "8DADEA71-1B1E-42ED-A64E-B55A00E8A5D8",
