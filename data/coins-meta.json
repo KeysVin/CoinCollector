@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:34:16.128Z",
+  "savedAt": "2026-07-16T06:34:21.820Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -654,6 +654,10 @@
     "Grotte Cosquer, Promenade Robert Laffont, 13002, Marseille, 2e Arrondissement, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France": {
       "lat": 43.2972614,
       "lon": 5.3619941
+    },
+    "Grottes du Régulus, Boulevard de la Falaise, 17132, Meschers-sur-Gironde, Charente-Maritime, Nouvelle-Aquitaine, France": {
+      "lat": 45.5556854,
+      "lon": -0.9581225
     }
   },
   "coins": [
@@ -4820,8 +4824,8 @@
     },
     {
       "id": "E283BEF3-E1C4-49F2-8AD1-0B4916D416CD",
-      "name": "Grotte de Regulus ",
-      "location": "Grottes du Régulus, 81 Boulevard de la Falaise, 17132 Meschers-sur-Gironde, France",
+      "name": "Grotte de Regulus",
+      "location": "Grottes du Régulus, Boulevard de la Falaise, 17132, Meschers-sur-Gironde, Charente-Maritime, Nouvelle-Aquitaine, France",
       "year": 2014,
       "notes": "",
       "imageIds": [
@@ -4829,8 +4833,17 @@
         "img_0270_001"
       ],
       "createdAt": "2025-09-14T11:02:26Z",
-      "updatedAt": "2025-09-14T18:34:11Z",
-      "collectionId": "3B2C2538-2699-48CA-982A-7FBFF537448B"
+      "updatedAt": "2026-07-16T06:34:21.820Z",
+      "collectionId": "3B2C2538-2699-48CA-982A-7FBFF537448B",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "E30838B7-35A3-4825-8ABB-27059FFE1766",
