@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:36:30.850Z",
+  "savedAt": "2026-07-16T06:36:35.962Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -698,6 +698,10 @@
     "Les Terres de Nataé, Pont Scave, 56602, Quéven, Kermerien, Morbihan, Bretagne, France": {
       "lat": 47.8101511,
       "lon": -3.4078997
+    },
+    "Zoo de La Boissière-du-Doré, Route de la Boissière, 49270, Orée d'Anjou, La Garillère, Maine-et-Loire, Pays de la Loire, France": {
+      "lat": 47.2470277,
+      "lon": -1.1963759
     }
   },
   "coins": [
@@ -1581,8 +1585,8 @@
     },
     {
       "id": "3286CE82-0E1E-445E-BC78-E2BB4B27385C",
-      "name": "Lion - zoo de la Boissière du doré ",
-      "location": "Zoo de la Boissiere du Dore, 2 La Châtaigneraie\n44430 La Boissière-du-Doré\nFrance",
+      "name": "Lion - zoo de la Boissière du doré",
+      "location": "Zoo de La Boissière-du-Doré, Route de la Boissière, 49270, Orée d'Anjou, La Garillère, Maine-et-Loire, Pays de la Loire, France",
       "year": 2023,
       "notes": "",
       "imageIds": [
@@ -1590,8 +1594,17 @@
         "img_0054_001"
       ],
       "createdAt": "2025-09-14T17:26:06Z",
-      "updatedAt": "2025-09-14T18:31:34Z",
-      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541"
+      "updatedAt": "2026-07-16T06:36:35.962Z",
+      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "3296EFA8-42D0-430D-B86D-8FD6E152807D",
