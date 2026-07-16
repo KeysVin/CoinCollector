@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:41:34.871Z",
+  "savedAt": "2026-07-16T06:41:41.773Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -4965,8 +4965,8 @@
     },
     {
       "id": "D10EA337-DD62-47D0-B746-043AAFC462C8",
-      "name": "Zoo de Beauval ",
-      "location": "ZooParc de Beauval, Avenue du Blanc, 41110 Saint-Aignan, France",
+      "name": "Zoo de Beauval",
+      "location": "ZooParc de Beauval, Route de l'Herbaudière, 41110, Saint-Aignan, La Poterie, Loir-et-Cher, Centre-Val de Loire, France",
       "year": 2025,
       "notes": "",
       "imageIds": [
@@ -4974,8 +4974,17 @@
         "img_0247_001"
       ],
       "createdAt": "2025-09-07T18:37:23Z",
-      "updatedAt": "2025-09-13T09:48:45Z",
-      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F"
+      "updatedAt": "2026-07-16T06:41:41.773Z",
+      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "D1AD92AB-199E-4A61-8D6A-E4FC15E907AA",
