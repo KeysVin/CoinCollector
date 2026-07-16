@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:27:42.650Z",
+  "savedAt": "2026-07-16T06:27:54.763Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -570,6 +570,10 @@
     "Cathédrale Saint-Julien, 2 Place Saint-Michel, 72000, Le Mans, Sarthe, Pays de la Loire, France": {
       "lat": 48.0093011,
       "lon": 0.198797
+    },
+    "Musée de l'Homme, Parvis des Libertés et des Droits de l'Homme, 75016, Paris, Île-de-France, France": {
+      "lat": 48.8620467,
+      "lon": 2.2876525
     }
   },
   "coins": [
@@ -1335,7 +1339,7 @@
     {
       "id": "2F5502EA-9249-4A38-96D6-29201026796B",
       "name": "Centenaire de la Vénus de Lespugue - Musée de l’homme",
-      "location": "Musée de l'Homme, 17 Place du Trocadéro, 75016 Paris, France",
+      "location": "Musée de l'Homme, Parvis des Libertés et des Droits de l'Homme, 75016, Paris, Île-de-France, France",
       "year": 2024,
       "notes": "",
       "imageIds": [
@@ -1343,8 +1347,17 @@
         "img_0050_001"
       ],
       "createdAt": "2025-09-07T20:17:36Z",
-      "updatedAt": "2025-09-13T09:48:43Z",
-      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF"
+      "updatedAt": "2026-07-16T06:27:54.762Z",
+      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "2F6198EB-21B1-44C4-B557-0AF49FEF714D",
