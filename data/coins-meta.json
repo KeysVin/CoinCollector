@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:37:44.609Z",
+  "savedAt": "2026-07-16T06:37:49.995Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -722,6 +722,10 @@
     "Palais royal de Madrid, Plaza de la Armería, 28013, Madrid, Palacio, Communauté de Madrid, Espagne": {
       "lat": 40.4167403,
       "lon": -3.7136222
+    },
+    "Planète Sauvage, La Chevalerie, 44710, Port-Saint-Père, Loire-Atlantique, Pays de la Loire, France": {
+      "lat": 47.1152281,
+      "lon": -1.7647171
     }
   },
   "coins": [
@@ -2311,8 +2315,8 @@
     },
     {
       "id": "5C0C6FE7-A30F-45F8-8F3F-3854CE624993",
-      "name": "Planète sauvage ",
-      "location": "Planète Sauvage, 44700 Orvault, France",
+      "name": "Planète sauvage",
+      "location": "Planète Sauvage, La Chevalerie, 44710, Port-Saint-Père, Loire-Atlantique, Pays de la Loire, France",
       "year": 2022,
       "notes": "",
       "imageIds": [
@@ -2320,8 +2324,17 @@
         "img_0095_001"
       ],
       "createdAt": "2025-09-14T18:04:02Z",
-      "updatedAt": "2025-09-14T18:04:02Z",
-      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F"
+      "updatedAt": "2026-07-16T06:37:49.995Z",
+      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "5DB834B6-E1AD-424A-8F93-814A7385F17D",
