@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:33:07.878Z",
+  "savedAt": "2026-07-16T06:33:13.088Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -638,6 +638,10 @@
     "Les Machines de l’Île, Parvis des Nefs, 44003, Nantes, Île de Nantes, Loire-Atlantique, Pays de la Loire, France": {
       "lat": 47.2059999,
       "lon": -1.5643402
+    },
+    "Fort la Latte, Rue de La Latte, 22240, Plévenon, La Roche Lessoie, Côtes-d'Armor, Bretagne, France": {
+      "lat": 48.6682033,
+      "lon": -2.2848699
     }
   },
   "coins": [
@@ -1471,8 +1475,8 @@
     },
     {
       "id": "3234C6AC-E279-415F-A308-A9E16E064300",
-      "name": "Fort La Latte ",
-      "location": "Le Fort la Latte, 22240 Plévenon, France",
+      "name": "Fort La Latte",
+      "location": "Fort la Latte, Rue de La Latte, 22240, Plévenon, La Roche Lessoie, Côtes-d'Armor, Bretagne, France",
       "year": 2024,
       "notes": "",
       "imageIds": [
@@ -1480,8 +1484,17 @@
         "img_0053_001"
       ],
       "createdAt": "2025-09-07T20:50:25Z",
-      "updatedAt": "2025-09-13T09:48:40Z",
-      "collectionId": "552BB707-A179-4DAA-9D21-46E20378008F"
+      "updatedAt": "2026-07-16T06:33:13.087Z",
+      "collectionId": "552BB707-A179-4DAA-9D21-46E20378008F",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "3286CE82-0E1E-445E-BC78-E2BB4B27385C",
