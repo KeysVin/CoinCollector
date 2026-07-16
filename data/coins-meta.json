@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:36:20.617Z",
+  "savedAt": "2026-07-16T06:36:24.784Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -2321,8 +2321,8 @@
     },
     {
       "id": "5F36BA23-DCC6-4957-BCDD-38509EC1D9A1",
-      "name": "Les maîtres des airs - Zoo de Beauval ",
-      "location": "ZooParc de Beauval, Avenue du Blanc, 41110 Saint-Aignan, France",
+      "name": "Les maîtres des airs - Zoo de Beauval",
+      "location": "ZooParc de Beauval, Route de l'Herbaudière, 41110, Saint-Aignan, La Poterie, Loir-et-Cher, Centre-Val de Loire, France",
       "year": 2025,
       "notes": "",
       "imageIds": [
@@ -2330,8 +2330,17 @@
         "img_0099_001"
       ],
       "createdAt": "2025-09-07T18:41:26Z",
-      "updatedAt": "2025-09-13T09:48:45Z",
-      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F"
+      "updatedAt": "2026-07-16T06:36:24.784Z",
+      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "5FFE4E8E-BF39-4AA2-899D-6FFD8273EA89",
