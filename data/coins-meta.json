@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:41:51.971Z",
+  "savedAt": "2026-07-16T06:42:07.643Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -1067,16 +1067,25 @@
     },
     {
       "id": "1A6A2098-E341-478D-8D57-B410C7EC25F8",
-      "name": "Zoo fauverie du mont Faron ",
-      "location": "Parc Animalier du Mont Faron, 885–999 Route du Faron, 83200 Toulon, France",
+      "name": "Zoo fauverie du mont Faron",
+      "location": "Zoo du Faron, Route du Faron, 83081, Toulon, Ubac, Var, Provence-Alpes-Côte d'Azur, France",
       "year": 2016,
       "notes": "",
       "imageIds": [
         "img_0019_000"
       ],
       "createdAt": "2025-09-14T17:13:47Z",
-      "updatedAt": "2025-09-14T18:31:34Z",
-      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541"
+      "updatedAt": "2026-07-16T06:42:07.642Z",
+      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "1A7EBF46-68D3-4A3E-B777-367BECB57CE4",
