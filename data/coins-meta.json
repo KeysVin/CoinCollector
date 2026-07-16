@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:32:20.270Z",
+  "savedAt": "2026-07-16T06:32:28.750Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -610,6 +610,10 @@
     "Château de Beynac, Place du Château de Beynac, 24220, Beynac-et-Cazenac, La Porte, Dordogne, Nouvelle-Aquitaine, France": {
       "lat": 44.8401415,
       "lon": 1.1455347
+    },
+    "La Collection de Voitures de SAS le Prince de Monaco, 54 Route de la Piscine, 98000, Monaco, Monaco-Ville": {
+      "lat": 43.7351727,
+      "lon": 7.4215683
     }
   },
   "coins": [
@@ -3123,7 +3127,7 @@
     {
       "id": "937FB349-4DE3-4490-A152-C1ED7EF6FC77",
       "name": "Collection de voiture Monaco",
-      "location": "La Collection de Voitures de S.A.S. le Prince de Monaco, 54 route de la piscine\n98000 Monaco\nMonaco",
+      "location": "La Collection de Voitures de SAS le Prince de Monaco, 54 Route de la Piscine, 98000, Monaco, Monaco-Ville",
       "year": 2023,
       "notes": "",
       "imageIds": [
@@ -3131,8 +3135,17 @@
         "img_0167_001"
       ],
       "createdAt": "2025-09-14T18:22:30Z",
-      "updatedAt": "2025-09-14T18:35:38Z",
-      "collectionId": "D7130534-8E94-4461-A7EE-A220046A823F"
+      "updatedAt": "2026-07-16T06:32:28.750Z",
+      "collectionId": "D7130534-8E94-4461-A7EE-A220046A823F",
+      "country": "Monaco",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "9418484B-6EE8-42FC-8EEA-0F4D74EA7C7B",
