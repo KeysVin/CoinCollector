@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:32:28.750Z",
+  "savedAt": "2026-07-16T06:32:36.280Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -614,6 +614,10 @@
     "La Collection de Voitures de SAS le Prince de Monaco, 54 Route de la Piscine, 98000, Monaco, Monaco-Ville": {
       "lat": 43.7351727,
       "lon": 7.4215683
+    },
+    "Collégiale Saint-Aubin, Place Jean XXIII, 44350, Guérande, Intramuros, Loire-Atlantique, Pays de la Loire, France": {
+      "lat": 47.3280728,
+      "lon": -2.4290546
     }
   },
   "coins": [
@@ -2838,8 +2842,8 @@
     },
     {
       "id": "8321C41C-376E-4039-95D7-BB19DA18404C",
-      "name": "Collégiale saint Aubin - Guerande ",
-      "location": "Collégiale Saint-Aubin, 1 Ruelle du Saint-Esprit, 44350 Guérande, France",
+      "name": "Collégiale saint Aubin - Guerande",
+      "location": "Collégiale Saint-Aubin, Place Jean XXIII, 44350, Guérande, Intramuros, Loire-Atlantique, Pays de la Loire, France",
       "year": 2025,
       "notes": "",
       "imageIds": [
@@ -2847,8 +2851,17 @@
         "img_0147_001"
       ],
       "createdAt": "2025-09-07T20:35:49Z",
-      "updatedAt": "2025-09-13T09:48:41Z",
-      "collectionId": "FDDE85B4-5804-4BE1-AA6A-9E4ED7013AAC"
+      "updatedAt": "2026-07-16T06:32:36.280Z",
+      "collectionId": "FDDE85B4-5804-4BE1-AA6A-9E4ED7013AAC",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "83992065-3AC9-4DD8-B482-064EB5070FFC",
