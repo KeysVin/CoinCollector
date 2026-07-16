@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:36:35.962Z",
+  "savedAt": "2026-07-16T06:36:43.416Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -4043,8 +4043,8 @@
     },
     {
       "id": "B37E2CDA-1368-47E8-81D6-F0486F154208",
-      "name": "Lions - zoo de Beauval ",
-      "location": "ZooParc de Beauval, Avenue du Blanc, 41110 Saint-Aignan, France",
+      "name": "Lions - zoo de Beauval",
+      "location": "ZooParc de Beauval, Route de l'Herbaudière, 41110, Saint-Aignan, La Poterie, Loir-et-Cher, Centre-Val de Loire, France",
       "year": 2025,
       "notes": "",
       "imageIds": [
@@ -4052,8 +4052,17 @@
         "img_0207_001"
       ],
       "createdAt": "2025-09-07T18:37:58Z",
-      "updatedAt": "2025-09-13T09:48:45Z",
-      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F"
+      "updatedAt": "2026-07-16T06:36:43.416Z",
+      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "B40486B8-377F-4EAF-BB03-968C5C9587FA",
