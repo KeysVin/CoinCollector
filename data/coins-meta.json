@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:39:06.890Z",
+  "savedAt": "2026-07-16T06:39:19.043Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -2840,8 +2840,8 @@
     },
     {
       "id": "7284D970-3AE0-466E-A089-C1F053612D56",
-      "name": "Requin - Aquarium du Grau du roi ",
-      "location": "Seaquarium Institut Marin, Avenue du Palais de la Mer, 30240 Le Grau-du-Roi, France",
+      "name": "Requin - Aquarium du Grau du roi",
+      "location": "Le Grau-du-Roi, 30240, Gard, Occitanie, France",
       "year": 2016,
       "notes": "",
       "imageIds": [
@@ -2849,8 +2849,17 @@
         "img_0125_001"
       ],
       "createdAt": "2025-09-11T20:54:02Z",
-      "updatedAt": "2025-09-13T09:48:37Z",
-      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673"
+      "updatedAt": "2026-07-16T06:39:19.042Z",
+      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "72F741AB-1352-40AE-91E2-F50FACB6785B",
