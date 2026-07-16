@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:35:20.355Z",
+  "savedAt": "2026-07-16T06:35:29.761Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -2254,8 +2254,8 @@
     },
     {
       "id": "5DB834B6-E1AD-424A-8F93-814A7385F17D",
-      "name": "Lapins cretins - Futuroscope ",
-      "location": "Hôtel du Futuroscope, 16 Avenue du Parc du Futur, 86130 Jaunay-Marigny, France",
+      "name": "Lapins cretins - Futuroscope",
+      "location": "Futuroscope, Les Lodges des Berges, 86360, Chasseneuil-du-Poitou, Vienne, Nouvelle-Aquitaine, France",
       "year": 2018,
       "notes": "",
       "imageIds": [
@@ -2263,8 +2263,17 @@
         "img_0096_001"
       ],
       "createdAt": "2025-09-11T21:26:54Z",
-      "updatedAt": "2025-09-13T09:48:36Z",
-      "collectionId": "29EA1E19-CAF7-42D7-B988-7512DF3D94AE"
+      "updatedAt": "2026-07-16T06:35:29.760Z",
+      "collectionId": "29EA1E19-CAF7-42D7-B988-7512DF3D94AE",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "5E258A2F-BD4B-457C-A833-32A20C7F9766",
