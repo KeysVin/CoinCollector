@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:33:57.557Z",
+  "savedAt": "2026-07-16T06:34:16.128Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -650,6 +650,10 @@
     "Grand Aquarium - Saint-Malo, Rue du Général Patton, 35400, Saint-Malo, La Madeleine - Bellevue, Ille-et-Vilaine, Bretagne, France": {
       "lat": 48.6194055,
       "lon": -1.9944157
+    },
+    "Grotte Cosquer, Promenade Robert Laffont, 13002, Marseille, 2e Arrondissement, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France": {
+      "lat": 43.2972614,
+      "lon": 5.3619941
     }
   },
   "coins": [
@@ -1728,8 +1732,8 @@
     },
     {
       "id": "44A73353-EA26-4B9F-96BE-1ECC4B05909F",
-      "name": "Grotte Cosquer ",
-      "location": "Cosquer Méditerranée, 7 Promenade Robert Laffont, 13002 Marseille, France",
+      "name": "Grotte Cosquer",
+      "location": "Grotte Cosquer, Promenade Robert Laffont, 13002, Marseille, 2e Arrondissement, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France",
       "year": 2023,
       "notes": "",
       "imageIds": [
@@ -1737,8 +1741,17 @@
         "img_0068_001"
       ],
       "createdAt": "2025-09-11T21:33:23Z",
-      "updatedAt": "2025-09-13T09:48:35Z",
-      "collectionId": "0127EDF7-F7F4-498F-8087-689CD002427D"
+      "updatedAt": "2026-07-16T06:34:16.127Z",
+      "collectionId": "0127EDF7-F7F4-498F-8087-689CD002427D",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "458BD067-6B91-4C1A-A396-2955994D1F2B",
