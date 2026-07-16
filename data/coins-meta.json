@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:31:44.742Z",
+  "savedAt": "2026-07-16T06:31:55.209Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -598,6 +598,10 @@
     "Château des Baux-de-Provence, Chemin des Tremais, 13520, Les Baux-de-Provence, Carita, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France": {
       "lat": 43.7439737,
       "lon": 4.7968143
+    },
+    "Château Musée des Comtes du Perche, Rue des Marches du Saint-Jean, 28400, Nogent-le-Rotrou, Montgasnier, Eure-et-Loir, Centre-Val de Loire, France": {
+      "lat": 48.3143308,
+      "lon": 0.820474
     }
   },
   "coins": [
@@ -3315,8 +3319,8 @@
     },
     {
       "id": "9D1976E3-FD9F-46D6-99F6-411279AB0DD4",
-      "name": "Château des comtes du perche ",
-      "location": "Le château des Comtes du Perche, 1 Place Émile Maquaire, 28400 Nogent-le-Rotrou, France",
+      "name": "Château des comtes du perche",
+      "location": "Château Musée des Comtes du Perche, Rue des Marches du Saint-Jean, 28400, Nogent-le-Rotrou, Montgasnier, Eure-et-Loir, Centre-Val de Loire, France",
       "year": 2022,
       "notes": "",
       "imageIds": [
@@ -3324,8 +3328,17 @@
         "img_0181_001"
       ],
       "createdAt": "2025-09-07T18:11:15Z",
-      "updatedAt": "2025-09-13T09:48:47Z",
-      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541"
+      "updatedAt": "2026-07-16T06:31:55.209Z",
+      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "9D37A64E-824B-4128-9887-C402D4300F57",
