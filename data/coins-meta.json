@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:36:04.783Z",
+  "savedAt": "2026-07-16T06:36:10.863Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -2749,8 +2749,8 @@
     },
     {
       "id": "76CFA2A6-F37E-4529-BA97-60CCF24E1F8D",
-      "name": "Le pont transbordeur ",
-      "location": "Pont Transbordeur, 76 Avenue Jacques Demy, 17300 Rochefort, France",
+      "name": "Le pont transbordeur",
+      "location": "Pont transbordeur du Martrou, Rue du Transbordeur, 17620, Échillais, Charente-Maritime, Nouvelle-Aquitaine, France",
       "year": 2013,
       "notes": "",
       "imageIds": [
@@ -2758,8 +2758,17 @@
         "img_0129_001"
       ],
       "createdAt": "2025-09-14T10:44:38Z",
-      "updatedAt": "2025-09-14T18:30:35Z",
-      "collectionId": "3B2C2538-2699-48CA-982A-7FBFF537448B"
+      "updatedAt": "2026-07-16T06:36:10.863Z",
+      "collectionId": "3B2C2538-2699-48CA-982A-7FBFF537448B",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "776765D3-B104-4D3E-82F0-06CC010D40E9",
