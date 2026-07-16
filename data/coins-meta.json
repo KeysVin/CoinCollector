@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:34:44.967Z",
+  "savedAt": "2026-07-16T06:34:49.552Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -1245,8 +1245,8 @@
     },
     {
       "id": "251E10E1-024C-46CE-8532-DD6DCD8330D3",
-      "name": "La tortue - Aquarium de La Rochelle ",
-      "location": "Aquarium La Rochelle, 65 Quai Louis Prunier, 17000 La Rochelle, France",
+      "name": "La tortue - Aquarium de La Rochelle",
+      "location": "Aquarium de La Rochelle, Quai Louis Prunier, 17000, La Rochelle, Charente-Maritime, Nouvelle-Aquitaine, France",
       "year": 2014,
       "notes": "",
       "imageIds": [
@@ -1254,8 +1254,17 @@
         "img_0037_001"
       ],
       "createdAt": "2025-09-11T21:02:52Z",
-      "updatedAt": "2025-09-13T09:48:37Z",
-      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673"
+      "updatedAt": "2026-07-16T06:34:49.551Z",
+      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "25B08A15-C92F-4F28-8875-538FC595986B",
