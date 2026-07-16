@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:27:54.763Z",
+  "savedAt": "2026-07-16T06:28:52.213Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -574,6 +574,10 @@
     "Musée de l'Homme, Parvis des Libertés et des Droits de l'Homme, 75016, Paris, Île-de-France, France": {
       "lat": 48.8620467,
       "lon": 2.2876525
+    },
+    "Zoo du Faron, Route du Faron, 83081, Toulon, Ubac, Var, Provence-Alpes-Côte d'Azur, France": {
+      "lat": 43.1528907,
+      "lon": 5.9404842
     }
   },
   "coins": [
@@ -1840,16 +1844,25 @@
     },
     {
       "id": "51CB19C0-45A0-4AB6-A4F4-085DA0AA93DA",
-      "name": "Centre d’élevage - la panthère ",
-      "location": "",
+      "name": "Centre d’élevage - la panthère",
+      "location": "Zoo du Faron, Route du Faron, 83081, Toulon, Ubac, Var, Provence-Alpes-Côte d'Azur, France",
       "year": 2016,
       "notes": "",
       "imageIds": [
         "img_0084_000"
       ],
       "createdAt": "2025-09-14T17:14:20Z",
-      "updatedAt": "2025-09-14T18:37:34Z",
-      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD"
+      "updatedAt": "2026-07-16T06:28:52.213Z",
+      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "52A7E5A5-062C-4433-B7A0-BA0477AA9C1F",
