@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:34:40.112Z",
+  "savedAt": "2026-07-16T06:34:44.967Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -4832,8 +4832,8 @@
     },
     {
       "id": "E23F8DAB-064C-4AA5-9B21-EA01951D27DE",
-      "name": "La liberté guidant le peuple - Eugène Delacroix - Musée du Louvre ",
-      "location": "Musée du Louvre, 93 Rue de Rivoli, 75001 Paris, France",
+      "name": "La liberté guidant le peuple - Eugène Delacroix - Musée du Louvre",
+      "location": "Musée du Louvre, Place du Palais Royal, 75001, Paris, Île-de-France, France",
       "year": 2025,
       "notes": "",
       "imageIds": [
@@ -4841,8 +4841,17 @@
         "img_0269_001"
       ],
       "createdAt": "2025-09-07T20:20:25Z",
-      "updatedAt": "2025-09-13T09:48:42Z",
-      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF"
+      "updatedAt": "2026-07-16T06:34:44.965Z",
+      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "E283BEF3-E1C4-49F2-8AD1-0B4916D416CD",
