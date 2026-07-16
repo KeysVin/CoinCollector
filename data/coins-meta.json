@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:31:21.689Z",
+  "savedAt": "2026-07-16T06:31:31.577Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -590,6 +590,10 @@
     "Château de Fougères, Place Pierre Symon, 35300, Fougères, Montaubert - Rillé - Saint-Sulpice, Ille-et-Vilaine, Bretagne, France": {
       "lat": 48.3537219,
       "lon": -1.2104315
+    },
+    "Château de Villandry, 37510, Villandry, Le Château, Indre-et-Loire, Centre-Val de Loire, France": {
+      "lat": 47.3405655,
+      "lon": 0.5146063
     }
   },
   "coins": [
@@ -4310,8 +4314,8 @@
     },
     {
       "id": "D2BAC4D6-DA24-4783-8D8C-03C1E95C82DD",
-      "name": "Château de Villandry ",
-      "location": "Château de Villandry, 3 Rue Principale, 37510 Villandry, France",
+      "name": "Château de Villandry",
+      "location": "Château de Villandry, 37510, Villandry, Le Château, Indre-et-Loire, Centre-Val de Loire, France",
       "year": 2024,
       "notes": "",
       "imageIds": [
@@ -4319,8 +4323,17 @@
         "img_0251_001"
       ],
       "createdAt": "2025-09-07T18:04:21Z",
-      "updatedAt": "2025-09-13T09:48:47Z",
-      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541"
+      "updatedAt": "2026-07-16T06:31:31.577Z",
+      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "D39CA15A-3703-4035-AC74-849801CF3518",
