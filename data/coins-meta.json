@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:32:43.348Z",
+  "savedAt": "2026-07-16T06:32:49.703Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -622,6 +622,10 @@
     "Zoo Aquarium de Madrid, Camino de Húmera, 28024, Madrid, Aravaca, Communauté de Madrid, Espagne": {
       "lat": 40.4091046,
       "lon": -3.7642658
+    },
+    "Delicate Arch Trail, Grand, Utah, États-Unis d'Amérique": {
+      "lat": 38.7434805,
+      "lon": -109.4992732
     }
   },
   "coins": [
@@ -1697,7 +1701,7 @@
     {
       "id": "458BD067-6B91-4C1A-A396-2955994D1F2B",
       "name": "Délicate Arch - Utah",
-      "location": "Delicate Arch Trail, Moab, UT, United States",
+      "location": "Delicate Arch Trail, Grand, Utah, États-Unis d'Amérique",
       "year": 2022,
       "notes": "",
       "imageIds": [
@@ -1705,8 +1709,17 @@
         "img_0069_001"
       ],
       "createdAt": "2025-09-07T21:08:59Z",
-      "updatedAt": "2025-09-13T09:48:39Z",
-      "collectionId": "EE11585D-828E-452B-9AF2-F42696F2E6CA"
+      "updatedAt": "2026-07-16T06:32:49.703Z",
+      "collectionId": "EE11585D-828E-452B-9AF2-F42696F2E6CA",
+      "country": "États-Unis d'Amérique",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "466F0CA5-CBA7-43AB-8C34-2A52B0D4CECF",
