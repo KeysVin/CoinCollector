@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:37:13.308Z",
+  "savedAt": "2026-07-16T06:37:18.288Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -1925,8 +1925,8 @@
     },
     {
       "id": "48216C82-E945-4923-ABB1-E44BA30AA892",
-      "name": "Naissance des bébés pandas - Zoo de Beauval ",
-      "location": "ZooParc de Beauval, Avenue du Blanc, 41110 Saint-Aignan, France",
+      "name": "Naissance des bébés pandas - Zoo de Beauval",
+      "location": "ZooParc de Beauval, Route de l'Herbaudière, 41110, Saint-Aignan, La Poterie, Loir-et-Cher, Centre-Val de Loire, France",
       "year": 2025,
       "notes": "",
       "imageIds": [
@@ -1934,8 +1934,17 @@
         "img_0073_001"
       ],
       "createdAt": "2025-09-07T18:39:39Z",
-      "updatedAt": "2025-09-13T09:48:45Z",
-      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF"
+      "updatedAt": "2026-07-16T06:37:18.288Z",
+      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "4844AB22-ED19-4656-9359-C52C34AFD8BC",
