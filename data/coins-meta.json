@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:41:15.029Z",
+  "savedAt": "2026-07-16T06:41:19.928Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -3236,8 +3236,8 @@
     },
     {
       "id": "823BF7B3-717A-47FA-BFF4-E80CD36E5BA3",
-      "name": "Victoire de Samothrace ",
-      "location": "Musée du Louvre, 93 Rue de Rivoli, 75001 Paris, France",
+      "name": "Victoire de Samothrace",
+      "location": "Musée du Louvre, Place du Palais Royal, 75001, Paris, Île-de-France, France",
       "year": 2025,
       "notes": "",
       "imageIds": [
@@ -3245,8 +3245,17 @@
         "img_0146_001"
       ],
       "createdAt": "2025-09-07T20:21:24Z",
-      "updatedAt": "2025-09-13T09:48:42Z",
-      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF"
+      "updatedAt": "2026-07-16T06:41:19.927Z",
+      "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "8321C41C-376E-4039-95D7-BB19DA18404C",
