@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:38:25.277Z",
+  "savedAt": "2026-07-16T06:38:30.321Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -730,6 +730,10 @@
     "Pointe du Raz, 29770, Plogoff, Finistère, Bretagne, France": {
       "lat": 48.0395181,
       "lon": -4.7352759
+    },
+    "Château Royal de Blois, Rampe des Fossés du Château, 41000, Blois, Centre, Loir-et-Cher, Centre-Val de Loire, France": {
+      "lat": 47.5855886,
+      "lon": 1.330242
     }
   },
   "coins": [
@@ -1337,7 +1341,7 @@
     {
       "id": "25B08A15-C92F-4F28-8875-538FC595986B",
       "name": "Porc-Epic - Château Royal de Blois",
-      "location": "Château Royal de Blois, 6 Place du Château, 41000 Blois, France",
+      "location": "Château Royal de Blois, Rampe des Fossés du Château, 41000, Blois, Centre, Loir-et-Cher, Centre-Val de Loire, France",
       "year": 2025,
       "notes": "",
       "imageIds": [
@@ -1345,8 +1349,17 @@
         "img_0038_001"
       ],
       "createdAt": "2025-09-07T18:17:13Z",
-      "updatedAt": "2025-09-13T09:48:47Z",
-      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541"
+      "updatedAt": "2026-07-16T06:38:30.321Z",
+      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "2697A1EB-45A5-4558-A14C-E44A210800DF",
