@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:41:19.928Z",
+  "savedAt": "2026-07-16T06:41:28.420Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -738,6 +738,10 @@
     "Le sous-marin Flore S645, Rue Henri Honoré d'Estienne d'Orves, 56100, Lorient, Lanveur, Morbihan, Bretagne, France": {
       "lat": 47.7297344,
       "lon": -3.3715573
+    },
+    "Parc animalier et botanique de Branféré, Kerouar, 56190, Le Guerno, Morbihan, Bretagne, France": {
+      "lat": 47.5957547,
+      "lon": -2.3976637
     }
   },
   "coins": [
@@ -3394,7 +3398,7 @@
     {
       "id": "89E0DE2E-0BAA-47D4-BF3F-6817B9B7E29E",
       "name": "Wallaby - Branféré",
-      "location": "Parc de Branféré, , 56190 Le Guerno, France",
+      "location": "Parc animalier et botanique de Branféré, Kerouar, 56190, Le Guerno, Morbihan, Bretagne, France",
       "year": 2024,
       "notes": "",
       "imageIds": [
@@ -3402,8 +3406,17 @@
         "img_0154_001"
       ],
       "createdAt": "2025-09-07T18:23:35Z",
-      "updatedAt": "2025-09-13T09:48:46Z",
-      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F"
+      "updatedAt": "2026-07-16T06:41:28.419Z",
+      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "8A971D0C-0375-49CA-B519-5C8350C22C0C",
