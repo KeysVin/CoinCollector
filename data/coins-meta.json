@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:31:55.209Z",
+  "savedAt": "2026-07-16T06:32:03.073Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -602,6 +602,10 @@
     "Château Musée des Comtes du Perche, Rue des Marches du Saint-Jean, 28400, Nogent-le-Rotrou, Montgasnier, Eure-et-Loir, Centre-Val de Loire, France": {
       "lat": 48.3143308,
       "lon": 0.820474
+    },
+    "Chemin des Millandes, 19270, Ussac, La Rode, Corrèze, Nouvelle-Aquitaine, France": {
+      "lat": 45.2083687,
+      "lon": 1.4827665
     }
   },
   "coins": [
@@ -2023,8 +2027,8 @@
     },
     {
       "id": "598F16B8-8F0E-447A-BD8B-FC99D163DBB5",
-      "name": "Château des Millandes ",
-      "location": "Château & Jardins des Milandes, 24 Les Milandes, 24250 Castelnaud-la-Chapelle, France",
+      "name": "Château des Millandes",
+      "location": "Chemin des Millandes, 19270, Ussac, La Rode, Corrèze, Nouvelle-Aquitaine, France",
       "year": 2012,
       "notes": "",
       "imageIds": [
@@ -2032,8 +2036,17 @@
         "img_0092_001"
       ],
       "createdAt": "2025-09-14T10:52:32Z",
-      "updatedAt": "2025-09-14T10:52:32Z",
-      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541"
+      "updatedAt": "2026-07-16T06:32:03.073Z",
+      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "5B72CCCC-59E1-4D63-9EB7-FEAE1CC27782",
