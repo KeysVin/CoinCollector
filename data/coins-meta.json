@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:40:04.091Z",
+  "savedAt": "2026-07-16T06:40:08.708Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -2585,8 +2585,8 @@
     },
     {
       "id": "65C4AAF7-6606-4C98-ABF6-261ED9EE47BC",
-      "name": "Tigres - Zoo de la Boissière du doré ",
-      "location": "Zoo de la Boissiere du Dore, 2 La Châtaigneraie\n44430 La Boissière-du-Doré\nFrance",
+      "name": "Tigres - Zoo de la Boissière du doré",
+      "location": "Zoo de La Boissière-du-Doré, Route de la Boissière, 49270, Orée d'Anjou, La Garillère, Maine-et-Loire, Pays de la Loire, France",
       "year": 2022,
       "notes": "",
       "imageIds": [
@@ -2594,8 +2594,17 @@
         "img_0107_001"
       ],
       "createdAt": "2025-09-14T18:20:05Z",
-      "updatedAt": "2025-09-14T18:20:05Z",
-      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F"
+      "updatedAt": "2026-07-16T06:40:08.707Z",
+      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "67FE7A50-B88C-437A-AB64-79F08A99F3BD",
