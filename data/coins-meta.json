@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:41:46.577Z",
+  "savedAt": "2026-07-16T06:41:51.971Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -5334,8 +5334,8 @@
     },
     {
       "id": "E0439E7A-A0C1-413C-81A4-C0D444629FA8",
-      "name": "Zoo de Thoiry ",
-      "location": "ZooSafari de Thoiry, 7 Rue du Pavillon de Montreuil, 78770 Thoiry, France",
+      "name": "Zoo de Thoiry",
+      "location": "Zoo et Parc de Thoiry, Route de Versailles, 78770, Thoiry, Yvelines, Île-de-France, France",
       "year": 2024,
       "notes": "",
       "imageIds": [
@@ -5343,8 +5343,17 @@
         "img_0267_001"
       ],
       "createdAt": "2025-09-07T18:32:37Z",
-      "updatedAt": "2025-09-13T09:48:46Z",
-      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F"
+      "updatedAt": "2026-07-16T06:41:51.971Z",
+      "collectionId": "AE200620-983C-4E96-BCFA-3A763BFEDC5F",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "E0A81B05-BA97-41EA-B970-560D2C9BFE9E",
