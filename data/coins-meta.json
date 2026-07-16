@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:35:09.929Z",
+  "savedAt": "2026-07-16T06:35:20.355Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -674,6 +674,10 @@
     "Champ de Mars - Tour Eiffel, Promenade d'Australie, 75015, Paris, Île-de-France, France": {
       "lat": 48.8560791,
       "lon": 2.2894654
+    },
+    "Tour Saint-Nicolas, Rue de l'Armide, 17000, La Rochelle, Charente-Maritime, Nouvelle-Aquitaine, France": {
+      "lat": 46.1557713,
+      "lon": -1.1533317
     }
   },
   "coins": [
@@ -3336,8 +3340,8 @@
     },
     {
       "id": "94E62201-EFD4-4AEA-A051-1C7739A537D4",
-      "name": "La tour Saint Nicolas ",
-      "location": "Towers of La Rochelle, Rue Armide\n17000 La Rochelle\nFrance",
+      "name": "La tour Saint Nicolas",
+      "location": "Tour Saint-Nicolas, Rue de l'Armide, 17000, La Rochelle, Charente-Maritime, Nouvelle-Aquitaine, France",
       "year": 2022,
       "notes": "",
       "imageIds": [
@@ -3345,8 +3349,17 @@
         "img_0170_001"
       ],
       "createdAt": "2025-09-07T20:55:06Z",
-      "updatedAt": "2025-09-13T09:48:40Z",
-      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD"
+      "updatedAt": "2026-07-16T06:35:20.355Z",
+      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "94E77844-3071-4A6E-8AC6-10F7810F1F10",
