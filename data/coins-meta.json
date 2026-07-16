@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:36:10.863Z",
+  "savedAt": "2026-07-16T06:36:16.310Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -686,6 +686,10 @@
     "Centre historique d’Avignon : Palais des papes, ensemble épiscopal et Pont d’Avignon, Avignon, Quartier Centre, Vaucluse, Provence-Alpes-Côte d'Azur, France": {
       "lat": 43.9519705,
       "lon": 4.8073778
+    },
+    "Le Vieux Port de La Rochelle, Place du Commandant de la Motte Rouge, 17000, La Rochelle, Charente-Maritime, Nouvelle-Aquitaine, France": {
+      "lat": 46.155875,
+      "lon": -1.1494546
     }
   },
   "coins": [
@@ -5362,8 +5366,8 @@
     },
     {
       "id": "FD135136-63C8-4FD9-BA80-B8844C8386A9",
-      "name": "Le vieux port de La Rochelle ",
-      "location": "Vieux Port de La Rochelle, 1 Quai Valin, 17000 La Rochelle, France",
+      "name": "Le vieux port de La Rochelle",
+      "location": "Le Vieux Port de La Rochelle, Place du Commandant de la Motte Rouge, 17000, La Rochelle, Charente-Maritime, Nouvelle-Aquitaine, France",
       "year": 2016,
       "notes": "",
       "imageIds": [
@@ -5371,8 +5375,17 @@
         "img_0295_001"
       ],
       "createdAt": "2025-09-14T10:49:34Z",
-      "updatedAt": "2025-09-14T18:30:35Z",
-      "collectionId": "3B2C2538-2699-48CA-982A-7FBFF537448B"
+      "updatedAt": "2026-07-16T06:36:16.310Z",
+      "collectionId": "3B2C2538-2699-48CA-982A-7FBFF537448B",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "FEC15B3B-4002-4038-9BCB-00E0CE5BDFFD",
