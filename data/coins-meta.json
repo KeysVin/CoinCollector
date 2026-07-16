@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:32:03.073Z",
+  "savedAt": "2026-07-16T06:32:10.460Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -4094,8 +4094,8 @@
     },
     {
       "id": "C8993D1D-C0A3-4BFA-B0BB-510B1E407FCF",
-      "name": "Château des millandes - Joséphine Baker ",
-      "location": "Château de Castelnaud, 114D Le Châtelard, 24250 Castelnaud-la-Chapelle, France",
+      "name": "Château des millandes - Joséphine Baker",
+      "location": "Chemin des Millandes, 19270, Ussac, La Rode, Corrèze, Nouvelle-Aquitaine, France",
       "year": 2020,
       "notes": "",
       "imageIds": [
@@ -4103,8 +4103,17 @@
         "img_0233_001"
       ],
       "createdAt": "2025-09-14T17:29:59Z",
-      "updatedAt": "2025-09-14T18:31:59Z",
-      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541"
+      "updatedAt": "2026-07-16T06:32:10.460Z",
+      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "C8DB0679-7F2A-45F3-A97C-68ED17599155",
