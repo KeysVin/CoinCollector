@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:39:28.012Z",
+  "savedAt": "2026-07-16T06:39:33.032Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -5205,8 +5205,8 @@
     },
     {
       "id": "E0A81B05-BA97-41EA-B970-560D2C9BFE9E",
-      "name": "Singe - zoo de la Boissière du Doré ",
-      "location": "Zoo de la Boissiere du Dore, 2 La Châtaigneraie\n44430 La Boissière-du-Doré\nFrance",
+      "name": "Singe - zoo de la Boissière du Doré",
+      "location": "Zoo de La Boissière-du-Doré, Route de la Boissière, 49270, Orée d'Anjou, La Garillère, Maine-et-Loire, Pays de la Loire, France",
       "year": 2022,
       "notes": "",
       "imageIds": [
@@ -5214,8 +5214,17 @@
         "img_0268_001"
       ],
       "createdAt": "2025-09-14T18:19:35Z",
-      "updatedAt": "2025-09-14T18:31:34Z",
-      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541"
+      "updatedAt": "2026-07-16T06:39:33.031Z",
+      "collectionId": "1283017C-423E-4F10-94B8-09CCE0658541",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "E23F8DAB-064C-4AA5-9B21-EA01951D27DE",
