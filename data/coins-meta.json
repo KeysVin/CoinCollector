@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:37:29.517Z",
+  "savedAt": "2026-07-16T06:37:34.081Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -714,6 +714,10 @@
     "Basilique Notre-Dame de la Garde, Montée de l'Oratoire, 13006, Marseille, 6e Arrondissement, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France": {
       "lat": 43.2839455,
       "lon": 5.371242
+    },
+    "Chapelle Notre-Dame-de-Montligeon, 34390, Olargues, Hérault, Occitanie, France": {
+      "lat": 43.548624,
+      "lon": 2.8870868
     }
   },
   "coins": [
@@ -1662,8 +1666,8 @@
     },
     {
       "id": "36E17CB4-0268-4612-943E-6BDA5934F6D8",
-      "name": "Notre dame de Montligeon ",
-      "location": "Notre-Dame de Montligeon, 26 Rue Principale, 61400 La Chapelle-Montligeon, France",
+      "name": "Notre dame de Montligeon",
+      "location": "Chapelle Notre-Dame-de-Montligeon, 34390, Olargues, Hérault, Occitanie, France",
       "year": 2019,
       "notes": "",
       "imageIds": [
@@ -1671,8 +1675,17 @@
         "img_0058_001"
       ],
       "createdAt": "2025-09-07T20:37:54Z",
-      "updatedAt": "2025-09-13T09:48:41Z",
-      "collectionId": "FDDE85B4-5804-4BE1-AA6A-9E4ED7013AAC"
+      "updatedAt": "2026-07-16T06:37:34.081Z",
+      "collectionId": "FDDE85B4-5804-4BE1-AA6A-9E4ED7013AAC",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "38722A52-0061-4D90-B3FC-780BC8EB3A1D",
