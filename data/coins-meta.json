@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:35:37.008Z",
+  "savedAt": "2026-07-16T06:36:04.783Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -682,6 +682,10 @@
     "Pont transbordeur du Martrou, Rue du Transbordeur, 17620, Échillais, Charente-Maritime, Nouvelle-Aquitaine, France": {
       "lat": 45.9160979,
       "lon": -0.9607072
+    },
+    "Centre historique d’Avignon : Palais des papes, ensemble épiscopal et Pont d’Avignon, Avignon, Quartier Centre, Vaucluse, Provence-Alpes-Côte d'Azur, France": {
+      "lat": 43.9519705,
+      "lon": 4.8073778
     }
   },
   "coins": [
@@ -3584,8 +3588,8 @@
     },
     {
       "id": "9D37A64E-824B-4128-9887-C402D4300F57",
-      "name": "Le pont d’Avignon ",
-      "location": "Le Pont d'Avignon, Villeneuve-lès-Avignon, France",
+      "name": "Le pont d’Avignon",
+      "location": "Centre historique d’Avignon : Palais des papes, ensemble épiscopal et Pont d’Avignon, Avignon, Quartier Centre, Vaucluse, Provence-Alpes-Côte d'Azur, France",
       "year": 2018,
       "notes": "",
       "imageIds": [
@@ -3593,8 +3597,17 @@
         "img_0182_001"
       ],
       "createdAt": "2025-09-11T21:01:38Z",
-      "updatedAt": "2025-09-13T09:48:37Z",
-      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD"
+      "updatedAt": "2026-07-16T06:36:04.782Z",
+      "collectionId": "06CD7C8E-2CE6-4F50-829B-0A84198687FD",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "9DB0D5A8-B9AD-417D-9ADD-D259CB8857AD",
