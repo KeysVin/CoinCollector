@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:27:25.192Z",
+  "savedAt": "2026-07-16T06:27:42.650Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -566,6 +566,10 @@
     "Bateaux-Mouches, Port de la Conférence, 75008, Paris, Île-de-France, France": {
       "lat": 48.8639784,
       "lon": 2.3058261
+    },
+    "Cathédrale Saint-Julien, 2 Place Saint-Michel, 72000, Le Mans, Sarthe, Pays de la Loire, France": {
+      "lat": 48.0093011,
+      "lon": 0.198797
     }
   },
   "coins": [
@@ -2658,8 +2662,8 @@
     },
     {
       "id": "7FC51C01-C158-4A7A-83DD-9C54B9D784A2",
-      "name": "Cathédrale Saint Julien - Le Mans ",
-      "location": "Cathédrale, 3 Avenue de Paderborn, 72000 Le Mans, France",
+      "name": "Cathédrale Saint Julien - Le Mans",
+      "location": "Cathédrale Saint-Julien, 2 Place Saint-Michel, 72000, Le Mans, Sarthe, Pays de la Loire, France",
       "year": 2024,
       "notes": "",
       "imageIds": [
@@ -2667,8 +2671,17 @@
         "img_0142_001"
       ],
       "createdAt": "2025-09-07T20:36:54Z",
-      "updatedAt": "2025-09-13T09:48:41Z",
-      "collectionId": "FDDE85B4-5804-4BE1-AA6A-9E4ED7013AAC"
+      "updatedAt": "2026-07-16T06:27:42.649Z",
+      "collectionId": "FDDE85B4-5804-4BE1-AA6A-9E4ED7013AAC",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "8088CD31-C022-46DF-86EE-4473DCBE73B4",
