@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:38:34.857Z",
+  "savedAt": "2026-07-16T06:38:38.902Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -4850,8 +4850,8 @@
     },
     {
       "id": "D1BEB076-E0CA-4A3B-833C-E9F6474D3225",
-      "name": "Requin - Aquarium de La Rochelle ",
-      "location": "Aquarium La Rochelle, 65 Quai Louis Prunier, 17000 La Rochelle, France",
+      "name": "Requin - Aquarium de La Rochelle",
+      "location": "Aquarium de La Rochelle, Quai Louis Prunier, 17000, La Rochelle, Charente-Maritime, Nouvelle-Aquitaine, France",
       "year": 2019,
       "notes": "",
       "imageIds": [
@@ -4859,8 +4859,17 @@
         "img_0249_001"
       ],
       "createdAt": "2025-09-11T20:38:04Z",
-      "updatedAt": "2025-09-13T09:48:38Z",
-      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673"
+      "updatedAt": "2026-07-16T06:38:38.901Z",
+      "collectionId": "D6567656-15E5-43FE-A2BE-C6732CA10673",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "D26E25AE-5085-4FDD-8FDF-B63ACBA11BB8",
