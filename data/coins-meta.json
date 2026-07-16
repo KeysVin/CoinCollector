@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:37:49.995Z",
+  "savedAt": "2026-07-16T06:38:08.727Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -726,6 +726,10 @@
     "Planète Sauvage, La Chevalerie, 44710, Port-Saint-Père, Loire-Atlantique, Pays de la Loire, France": {
       "lat": 47.1152281,
       "lon": -1.7647171
+    },
+    "Pointe du Raz, 29770, Plogoff, Finistère, Bretagne, France": {
+      "lat": 48.0395181,
+      "lon": -4.7352759
     }
   },
   "coins": [
@@ -1360,8 +1364,8 @@
     },
     {
       "id": "298D9C7B-B667-4612-9F4F-64956B9BB5BC",
-      "name": "Pointe du Raz - Cap Sizun ",
-      "location": "CC Cap Sizun-Pointe du Raz, France",
+      "name": "Pointe du Raz - Cap Sizun",
+      "location": "Pointe du Raz, 29770, Plogoff, Finistère, Bretagne, France",
       "year": 2025,
       "notes": "",
       "imageIds": [
@@ -1369,8 +1373,17 @@
         "img_0040_001"
       ],
       "createdAt": "2025-09-07T20:42:34Z",
-      "updatedAt": "2025-09-13T09:48:41Z",
-      "collectionId": "552BB707-A179-4DAA-9D21-46E20378008F"
+      "updatedAt": "2026-07-16T06:38:08.727Z",
+      "collectionId": "552BB707-A179-4DAA-9D21-46E20378008F",
+      "country": "France",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "",
+      "tags": []
     },
     {
       "id": "29B051EB-5C43-46FB-BB69-7BCEAA2AA460",
