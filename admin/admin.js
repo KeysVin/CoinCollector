@@ -87,9 +87,12 @@ async function api(path, options = {}) {
 
   if (!response.ok) {
     const text = await response.text();
-    const error = new Error(
-      `GitHub ${response.status} — ${text.slice(0, 220)}`
-    );
+    const message = response.status === 401
+      ? "Token GitHub invalide ou expiré. Crée un nouveau token et colle-le dans le champ ci-dessus."
+      : response.status === 403
+        ? "Accès GitHub refusé. Vérifie que le token autorise le dépôt CoinCollector avec Contents : Read and write."
+        : `GitHub ${response.status} — ${text.slice(0, 220)}`;
+    const error = new Error(message);
 
     error.status = response.status;
     throw error;
@@ -1222,6 +1225,10 @@ async function login(event) {
       await initializeMetadata();
     } else {
       errorElement.textContent = error.message;
+      if (error.status === 401) {
+        $("#tokenInput").value = "";
+        $("#tokenInput").focus();
+      }
       return;
     }
   }
