@@ -8,7 +8,7 @@
   <title>Administration — CoinCollector</title>
   <link rel="icon" href="/assets/icons/coin.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/css/styles.css?v=7">
-  <link rel="stylesheet" href="/admin/admin.css?v=2">
+  <link rel="stylesheet" href="/admin/admin.css?v=3">
 </head>
 
 <body class="admin-body">
@@ -86,6 +86,7 @@
       <aside class="admin-sidebar">
         <div class="sidebar-toolbar">
           <button id="newCoinButton" class="button primary">+ Nouvelle pièce</button>
+          <button id="batchButton" class="button ghost">+ Ajout multiple</button>
           <button id="collectionsButton" class="button ghost">Collections</button>
         </div>
 
@@ -282,6 +283,9 @@
               </label>
 
               <div id="imagePreview" class="admin-images"></div>
+              <button id="identifyCoinButton" type="button" class="button ghost">✨ Proposer les informations avec l’IA</button>
+              <p class="help">L’IA analyse jusqu’à trois photos et recherche des sources sur le web. Vérifie ses propositions avant de publier.</p>
+              <div id="aiSources" class="batch-sources"></div>
             </section>
           </div>
 
@@ -315,6 +319,28 @@
     </p>
   </dialog>
 
-  <script type="module" src="/admin/admin.js?v=2"></script>
+  <dialog id="batchDialog" class="admin-dialog batch-dialog">
+    <div class="dialog-admin-head">
+      <div>
+        <h2>Ajouter plusieurs pièces</h2>
+        <p class="help">Importe les photos, puis affecte chaque vue à la bonne pièce. Vérifie les fiches avant publication.</p>
+      </div>
+      <button id="closeBatchButton" type="button" class="button ghost">Fermer</button>
+    </div>
+    <div class="batch-toolbar">
+      <label class="button primary batch-upload">+ Importer des photos<input id="batchPhotoInput" type="file" accept="image/*" multiple></label>
+      <button id="addBatchCoinButton" type="button" class="button ghost">+ Fiche vide</button>
+      <span id="batchSummary" class="help"></span>
+    </div>
+    <p class="help">En utilisant l’IA, jusqu’à trois photos de la fiche sont transmises à OpenAI pour l’analyse et la recherche web.</p>
+    <div id="batchPhotos" class="batch-photos"></div>
+    <div id="batchCoins" class="batch-coins"></div>
+    <div class="batch-footer">
+      <span id="batchStatus" class="save-status" role="status"></span>
+      <button id="publishBatchButton" type="button" class="button primary">Publier les pièces prêtes</button>
+    </div>
+  </dialog>
+
+  <script type="module" src="/admin/admin.js?v=3"></script>
 </body>
 </html>

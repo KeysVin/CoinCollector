@@ -1,3 +1,6 @@
+import { cropPhoto } from "./photo-tools.js";
+import { initBatch, identifyPhotos } from "./batch.js";
+
 const PATH = "data/coins-meta.json";
 const PHOTON_API = "https://photon.komoot.io/api/";
 
@@ -436,6 +439,7 @@ function updateLocationStatus() {
 }
 
 function editCoin(id) {
+  state.pendingFiles.forEach(file => URL.revokeObjectURL(file.preview));
   state.currentId = id;
   state.pendingFiles = [];
   state.removedImageIds.clear();
@@ -475,9 +479,11 @@ function editCoin(id) {
   renderImages();
   renderList();
   setStatus("");
+  $("#aiSources").innerHTML = "";
 }
 
 function newCoin() {
+  state.pendingFiles.forEach(file => URL.revokeObjectURL(file.preview));
   state.currentId = null;
   state.pendingFiles = [];
   state.removedImageIds.clear();
@@ -500,6 +506,52 @@ function newCoin() {
   renderImages();
   renderList();
   setStatus("");
+  $("#aiSources").innerHTML = "";
+}
+
+async function identifyCurrentCoin() {
+  if (state.busy) return;
+  const selected = state.pendingFiles.slice(0, 3).map(photo => photo.file);
+  if (!selected.length) {
+    const coin = currentCoin();
+    for (const url of imageUrls(coin || { id: "", imageIds: [] }).slice(0, 3)) {
+      try {
+        const response = await fetch(url);
+        if (response.ok) selected.push(await response.blob());
+      } catch { /* Une photo distante peut être momentanément inaccessible. */ }
+    }
+  }
+  if (!selected.length) {
+    setStatus("Ajoute au moins une photo pour utiliser l’IA.", "error");
+    return;
+  }
+  try {
+    setBusy(true, "Analyse des photos et recherche en cours…");
+    const hint = [$("#coinName").value, $("#coinYear").value, $("#coinDenomination").value]
+      .filter(Boolean).join(" · ");
+    const data = await identifyPhotos(selected, hint, state.cfg.token);
+    const mapping = {
+      name: "#coinName", year: "#coinYear", country: "#coinCountry",
+      denomination: "#coinDenomination", metal: "#coinMetal",
+      mint: "#coinMint", notes: "#coinNotes"
+    };
+    for (const [field, selector] of Object.entries(mapping)) {
+      if (!$(selector).value.trim() && data[field] &&
+        (field !== "year" || /^\d{1,4}$/.test(String(data[field])))) {
+        $(selector).value = String(data[field]);
+      }
+    }
+    $("#aiSources").innerHTML = (data.sources || []).filter(source => {
+      try { return new URL(source.url).protocol === "https:"; } catch { return false; }
+    }).slice(0, 5).map(source =>
+      `<a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(source.title || source.url)}</a>`
+    ).join(" · ");
+    setStatus("Propositions ajoutées. Vérifie les informations avant de publier.", "success");
+  } catch (error) {
+    setStatus(error.message, "error");
+  } finally {
+    setBusy(false);
+  }
 }
 
 function renderImages() {
@@ -537,7 +589,7 @@ function renderImages() {
 
         ${
           item.type === "pending"
-            ? '<span class="pending-badge">À publier</span>'
+            ? `<button type="button" class="crop-photo-button" data-action="crop" data-index="${item.index}">Rogner</button><span class="pending-badge">À publier</span>`
             : ""
         }
       </div>
@@ -547,7 +599,23 @@ function renderImages() {
   $("#imagePreview")
     .querySelectorAll("button")
     .forEach(button => {
-      button.addEventListener("click", () => {
+      button.addEventListener("click", async () => {
+        if (button.dataset.action === "crop") {
+          const index = Number(button.dataset.index);
+          const pending = state.pendingFiles[index];
+          if (!pending) return;
+          try {
+            const cropped = await cropPhoto(pending.file);
+            if (!cropped) return;
+            URL.revokeObjectURL(pending.preview);
+            pending.file = cropped;
+            pending.preview = URL.createObjectURL(cropped);
+            renderImages();
+          } catch (error) {
+            setStatus(error.message, "error");
+          }
+          return;
+        }
         if (button.dataset.type === "pending") {
           const index = Number(button.dataset.index);
 
@@ -1187,6 +1255,7 @@ function logout() {
 $("#loginForm").addEventListener("submit", login);
 $("#coinForm").addEventListener("submit", saveCoin);
 $("#newCoinButton").onclick = newCoin;
+$("#identifyCoinButton").onclick = identifyCurrentCoin;
 $("#deleteCoinButton").onclick = deleteCoin;
 $("#logoutButton").onclick = logout;
 
@@ -1226,6 +1295,8 @@ $("#photoInput").addEventListener("change", event => {
   event.target.value = "";
   renderImages();
 });
+
+initBatch({ state, uploadImage, publishMetadata, getMetadata, renderList });
 
 (async () => {
   const saved = sessionStorage.getItem(
