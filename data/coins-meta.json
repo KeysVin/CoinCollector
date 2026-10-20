@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-10-20T06:24:56.065Z",
+  "savedAt": "2026-10-20T06:25:50.070Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -751,6 +751,10 @@
     "Musée Grévin, 10 Boulevard Montmartre, 75009, Paris, Île-de-France, France": {
       "lat": 48.8718365,
       "lon": 2.3420974
+    },
+    "Rome, Roma Capitale, Latium, Italie": {
+      "lat": 41.8933203,
+      "lon": 12.4829321
     }
   },
   "coins": [
@@ -5921,6 +5925,31 @@
       "createdAt": "2026-02-27T06:23:24.415Z",
       "updatedAt": "2026-02-27T06:23:24.415Z",
       "collectionId": "B0337D56-4F08-4B8D-80F8-74C6B91003DF"
+    },
+    {
+      "id": "08582c5c-c6bc-4e0a-95c9-a29bee878ec9",
+      "name": "La louve de Rome",
+      "year": 2026,
+      "collectionId": "ea3af8fe-5221-4e18-a966-286bf930c2e1",
+      "location": "Rome, Roma Capitale, Latium, Italie",
+      "country": "Italie",
+      "denomination": "",
+      "metal": "",
+      "condition": "",
+      "mint": "",
+      "quantity": 1,
+      "estimatedValue": null,
+      "acquisitionDate": "2026-10-11",
+      "tags": [
+        "Voyage"
+      ],
+      "notes": "",
+      "createdAt": "2026-10-20T06:25:45.244Z",
+      "updatedAt": "2026-10-20T06:25:45.244Z",
+      "imageIds": [
+        "eba5776e-2c61-4b88-b859-1f26d3cd2819",
+        "c7bd9722-6ca5-4624-a9ce-bb04347976f0"
+      ]
     }
   ]
 }
