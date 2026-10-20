@@ -8,7 +8,7 @@
   <title>Administration — CoinCollector</title>
   <link rel="icon" href="/assets/icons/coin.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/css/styles.css?v=7">
-  <link rel="stylesheet" href="/admin/admin.css?v=5">
+  <link rel="stylesheet" href="/admin/admin.css?v=6">
 </head>
 
 <body class="admin-body">
@@ -67,6 +67,10 @@
 
         <button class="button primary wide" type="submit">
           Ouvrir l’administration
+        </button>
+
+        <button id="openOfflineDraftButton" class="button ghost wide" type="button" hidden>
+          Reprendre le brouillon local sans connexion
         </button>
 
         <details>
@@ -330,8 +334,10 @@
     <div class="batch-toolbar">
       <label class="button primary batch-upload">+ Importer des photos<input id="batchPhotoInput" type="file" accept="image/*" multiple></label>
       <button id="addBatchCoinButton" type="button" class="button ghost">+ Fiche vide</button>
+      <button id="clearBatchDraftButton" type="button" class="button ghost">Effacer le brouillon</button>
       <span id="batchSummary" class="help"></span>
     </div>
+    <p id="batchDraftStatus" class="batch-draft-status" role="status"></p>
     <p class="help">En utilisant l’IA, jusqu’à trois photos de la fiche sont transmises à OpenAI pour l’analyse et la recherche web.</p>
     <div id="batchCoins" class="batch-coins"></div>
     <div class="batch-footer">
@@ -340,6 +346,6 @@
     </div>
   </dialog>
 
-  <script type="module" src="/admin/admin.js?v=7"></script>
+  <script type="module" src="/admin/admin.js?v=8"></script>
 </body>
 </html>

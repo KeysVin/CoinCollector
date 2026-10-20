@@ -1,4 +1,4 @@
-const CACHE = "coincollector-v6";
+const CACHE = "coincollector-v7";
 
 const ASSETS = [
   "/",
@@ -6,7 +6,14 @@ const ASSETS = [
   "/assets/css/styles.css?v=6",
   "/assets/js/app.js?v=6",
   "/assets/icons/coin.svg",
-  "/manifest.webmanifest"
+  "/manifest.webmanifest",
+  "/admin/",
+  "/admin/index.html",
+  "/admin/admin.css?v=6",
+  "/admin/admin.js?v=8",
+  "/admin/batch.js",
+  "/admin/photo-tools.js",
+  "/admin/offline-store.js"
 ];
 
 self.addEventListener("install", event => {

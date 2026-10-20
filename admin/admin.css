@@ -591,6 +591,8 @@
 }
 
 .batch-toolbar { margin: 18px 0; }
+.batch-draft-status { min-height: 18px; margin: -8px 0 12px; color: var(--muted); font-size: 12px; }
+.button[hidden] { display: none; }
 .batch-upload { position: relative; overflow: hidden; }
 .batch-upload input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
 .batch-coin { border: 1px solid var(--line); border-radius: 15px; padding: 12px; background: #fff; }

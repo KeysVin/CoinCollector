@@ -1,5 +1,6 @@
 import { cropPhoto, rotatePhoto } from "./photo-tools.js";
 import { initBatch, identifyPhotos } from "./batch.js";
+import { metadataKey, readOffline, writeOffline } from "./offline-store.js";
 
 const PATH = "data/coins-meta.json";
 const PHOTON_API = "https://photon.komoot.io/api/";
@@ -12,6 +13,7 @@ const state = {
   pendingFiles: [],
   removedImageIds: new Set(),
   busy: false,
+  offlineMetadata: false,
   selectedGeo: null,
   locationTimer: null,
   locationController: null
@@ -136,6 +138,19 @@ async function getMetadata() {
   state.meta.collections ||= [];
   state.meta.coins ||= [];
   state.meta.geoMap ||= {};
+  state.offlineMetadata = false;
+  await writeOffline(metadataKey(state.cfg), { meta: state.meta, sha: state.metaSha }).catch(() => {});
+}
+
+async function loadCachedMetadata() {
+  const saved = await readOffline(metadataKey(state.cfg)).catch(() => null);
+  if (!saved?.meta || !Array.isArray(saved.meta.coins)) return false;
+  state.meta = saved.meta;
+  state.meta.collections ||= [];
+  state.meta.geoMap ||= {};
+  state.metaSha = saved.sha;
+  state.offlineMetadata = true;
+  return true;
 }
 
 async function publishMetadata(message) {
@@ -157,6 +172,7 @@ async function publishMetadata(message) {
   });
 
   state.metaSha = result.content.sha;
+  await writeOffline(metadataKey(state.cfg), { meta: state.meta, sha: state.metaSha }).catch(() => {});
 }
 
 async function initializeMetadata() {
@@ -782,6 +798,11 @@ function cleanUnusedGeoLocation(oldLocation, newLocation, coinId) {
 async function saveCoin(event) {
   event.preventDefault();
 
+  if (!state.cfg?.token || !navigator.onLine) {
+    setStatus("Connexion GitHub requise pour publier cette fiche. L’enregistrement local concerne l’ajout multiple.", "error");
+    return;
+  }
+
   if (state.busy) {
     return;
   }
@@ -1230,6 +1251,11 @@ async function login(event) {
   try {
     await getMetadata();
   } catch (error) {
+    if (!error.status && await loadCachedMetadata()) {
+      sessionStorage.setItem("coincollector-admin", JSON.stringify(state.cfg));
+      openApp();
+      return;
+    }
     if (
       error.status === 404
       && confirm(
@@ -1263,7 +1289,15 @@ function openApp() {
 
   els.connection.textContent =
     `${state.cfg.owner}/${state.cfg.repo}`
-    + ` · ${state.cfg.branch}`;
+    + ` · ${state.cfg.branch}`
+    + (state.offlineMetadata ? " · brouillon local" : "");
+
+  $("#logoutButton").textContent = state.cfg.token ? "Déconnexion" : "Connexion GitHub";
+  $("#newCoinButton").disabled = !state.cfg.token;
+  $("#collectionsButton").disabled = !state.cfg.token;
+  writeOffline("last-repository", {
+    owner: state.cfg.owner, repo: state.cfg.repo, branch: state.cfg.branch
+  }).catch(() => {});
 
   fillCollections();
   renderList();
@@ -1275,6 +1309,12 @@ function logout() {
 }
 
 $("#loginForm").addEventListener("submit", login);
+$("#openOfflineDraftButton").onclick = async () => {
+  const saved = await readOffline("last-repository").catch(() => null);
+  if (!saved) return;
+  state.cfg = { ...saved, token: "" };
+  if (await loadCachedMetadata()) openApp();
+};
 $("#coinForm").addEventListener("submit", saveCoin);
 $("#newCoinButton").onclick = newCoin;
 $("#identifyCoinButton").onclick = identifyCurrentCoin;
@@ -1321,6 +1361,17 @@ $("#photoInput").addEventListener("change", event => {
 initBatch({ state, uploadImage, publishMetadata, getMetadata, renderList });
 
 (async () => {
+  const saved = await readOffline("last-repository").catch(() => null);
+  if (saved && await readOffline(metadataKey(saved)).catch(() => null)) {
+    $("#openOfflineDraftButton").hidden = false;
+  }
+})();
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js").catch(() => {});
+}
+
+(async () => {
   const saved = sessionStorage.getItem(
     "coincollector-admin"
   );
@@ -1333,7 +1384,11 @@ initBatch({ state, uploadImage, publishMetadata, getMetadata, renderList });
     state.cfg = JSON.parse(saved);
     await getMetadata();
     openApp();
-  } catch {
-    sessionStorage.removeItem("coincollector-admin");
+  } catch (error) {
+    if (!error.status && await loadCachedMetadata()) {
+      openApp();
+    } else {
+      sessionStorage.removeItem("coincollector-admin");
+    }
   }
 })();

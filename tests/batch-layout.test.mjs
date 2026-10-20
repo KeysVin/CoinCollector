@@ -2,11 +2,13 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { initBatch } from "../admin/batch.js";
 
-test("sixty imported photos stay beside their thirty coin forms after reassignment", () => {
+test("sixty imported photos stay beside their thirty coin forms after reassignment", async () => {
   const elements = new Map();
+  const saved = new Map();
   for (const id of [
     "batchDialog", "batchCoins", "batchStatus", "batchSummary", "batchButton",
-    "closeBatchButton", "addBatchCoinButton", "publishBatchButton", "batchPhotoInput"
+    "batchDraftStatus", "clearBatchDraftButton", "closeBatchButton",
+    "addBatchCoinButton", "publishBatchButton", "batchPhotoInput"
   ]) {
     elements.set(`#${id}`, {
       innerHTML: "", textContent: "", handlers: {},
@@ -21,11 +23,17 @@ test("sixty imported photos stay beside their thirty coin forms after reassignme
     addEventListener() {}
   };
   try {
-    initBatch({
-      state: { meta: { collections: [], geoMap: {} } },
-      uploadImage() {}, publishMetadata() {}, getMetadata() {}, renderList() {}
-    });
-    elements.get("#batchButton").onclick();
+    const options = {
+      state: { cfg: { owner: "test", repo: "coins", branch: "main" }, meta: { collections: [], geoMap: {} } },
+      uploadImage() {}, publishMetadata() {}, getMetadata() {}, renderList() {},
+      offlineStore: {
+        async readOffline(key) { return saved.get(key); },
+        async writeOffline(key, value) { saved.set(key, value); },
+        async removeOffline(key) { saved.delete(key); }
+      }
+    };
+    initBatch(options);
+    await elements.get("#batchButton").onclick();
     const files = Array.from({ length: 60 }, (_, index) =>
       new File([`photo ${index}`], `photo-${index}.jpg`, { type: "image/jpeg" }));
     elements.get("#batchPhotoInput").onchange({ target: { files, value: "photos" } });
@@ -47,6 +55,14 @@ test("sixty imported photos stay beside their thirty coin forms after reassignme
     cards = [...markup.matchAll(/<section class="batch-coin" data-group="([^"]+)">([\s\S]*?)<\/section>/g)];
     assert.equal([...cards[0][2].matchAll(/class="batch-photo"/g)].length, 1);
     assert.equal([...cards[29][2].matchAll(/class="batch-photo"/g)].length, 3);
+    elements.get("#batchDialog").handlers.close.forEach(handler => handler());
+    await new Promise(resolve => setImmediate(resolve));
+    assert.equal(saved.get("draft:test/coins/main").photos.length, 60);
+    assert.ok(saved.get(`draft:test/coins/main:photo:${photoId}`) instanceof File);
+
+    initBatch(options);
+    await elements.get("#batchButton").onclick();
+    assert.equal([...elements.get("#batchCoins").innerHTML.matchAll(/class="batch-photo"/g)].length, 60);
   } finally {
     globalThis.document = previousDocument;
   }

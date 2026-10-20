@@ -1,4 +1,5 @@
 import { cropPhoto, imageDataUrl, rotatePhoto } from "./photo-tools.js";
+import { draftKey, readOffline, removeOffline, writeOffline } from "./offline-store.js";
 
 const $ = selector => document.querySelector(selector);
 const safe = value => String(value ?? "").replace(/[&<>"']/g, character => ({
@@ -43,18 +44,115 @@ export async function identifyPhotos(files, hint, token) {
   return data;
 }
 
-export function initBatch({ state, uploadImage, publishMetadata, getMetadata, renderList }) {
+export function initBatch({ state, uploadImage, publishMetadata, getMetadata, renderList,
+  offlineStore = { readOffline, writeOffline, removeOffline } }) {
   const dialog = $("#batchDialog");
   const coinsElement = $("#batchCoins");
   const statusElement = $("#batchStatus");
+  const draftElement = $("#batchDraftStatus");
   const groups = [];
   const photos = [];
+  const pendingPhotoVersions = new Map();
   const locationSearches = new Map();
   let busy = false;
+  let draftReady = false;
+  let draftTimer = null;
+  let draftRevision = 0;
+  let saveQueue = Promise.resolve();
 
   function status(message, type = "") {
     statusElement.textContent = message;
     statusElement.className = `save-status ${type}`;
+  }
+
+  const photoKey = id => `${draftKey(state.cfg)}:photo:${id}`;
+
+  function draftSnapshot() {
+    return {
+      version: 1,
+      groups: groups.map(group => ({ ...group })),
+      photos: photos.map(({ id, groupId, file }) => ({ id, groupId, name: file.name, type: file.type }))
+    };
+  }
+
+  function markPhotoForSave(photo) {
+    pendingPhotoVersions.set(photo.id, (pendingPhotoVersions.get(photo.id) || 0) + 1);
+  }
+
+  async function persistDraft() {
+    for (const [id, version] of pendingPhotoVersions) {
+      const photo = photos.find(item => item.id === id);
+      if (!photo) {
+        pendingPhotoVersions.delete(id);
+        continue;
+      }
+      await offlineStore.writeOffline(photoKey(id), photo.file);
+      if (pendingPhotoVersions.get(id) === version) pendingPhotoVersions.delete(id);
+    }
+    if (pendingPhotoVersions.size) return persistDraft();
+    await offlineStore.writeOffline(draftKey(state.cfg), draftSnapshot());
+  }
+
+  function queueDraftSave(task) {
+    if (!draftReady || !state.cfg) return Promise.resolve();
+    const revision = ++draftRevision;
+    draftElement.textContent = "Enregistrement local…";
+    saveQueue = saveQueue.catch(() => {}).then(task);
+    saveQueue.then(() => {
+      if (revision === draftRevision) draftElement.textContent = "Brouillon enregistré sur cet appareil";
+    }).catch(() => {
+      if (revision === draftRevision) draftElement.textContent = "Échec de la sauvegarde locale : vérifie l’espace disponible";
+    });
+    return saveQueue;
+  }
+
+  function scheduleDraftSave() {
+    if (!draftReady) return;
+    clearTimeout(draftTimer);
+    draftElement.textContent = "Enregistrement local…";
+    draftTimer = setTimeout(() => queueDraftSave(persistDraft), 350);
+  }
+
+  async function restoreDraft() {
+    if (draftReady) return;
+    try {
+      const saved = await offlineStore.readOffline(draftKey(state.cfg));
+      if (saved?.version === 1 && Array.isArray(saved.groups) && Array.isArray(saved.photos)) {
+        groups.push(...saved.groups.filter(group => group && typeof group.id === "string"
+          && typeof group.name === "string" && typeof group.location === "string"));
+        for (const item of saved.photos) {
+          if (!item || typeof item.id !== "string" || !groups.some(group => group.id === item.groupId)) continue;
+          const file = await offlineStore.readOffline(photoKey(item.id));
+          if (file instanceof Blob) {
+            const restored = file instanceof File ? file
+              : new File([file], item.name || "photo.jpg", { type: item.type || file.type });
+            photos.push({ id: item.id, groupId: item.groupId, file: restored,
+              preview: URL.createObjectURL(restored), imageId: null, uploadedGroupId: null });
+          }
+        }
+        draftElement.textContent = photos.length
+          ? `Brouillon local retrouvé · ${photos.length} photo(s)` : "Brouillon local retrouvé";
+      } else {
+        draftElement.textContent = "Brouillon conservé sur cet appareil";
+      }
+    } catch {
+      draftElement.textContent = "Sauvegarde locale indisponible sur ce navigateur";
+    } finally {
+      draftReady = true;
+    }
+  }
+
+  async function clearDraft() {
+    clearTimeout(draftTimer);
+    await saveQueue.catch(() => {});
+    const saved = await offlineStore.readOffline(draftKey(state.cfg)).catch(() => null);
+    const ids = new Set([...photos.map(photo => photo.id),
+      ...(Array.isArray(saved?.photos) ? saved.photos.map(photo => photo.id) : [])]);
+    await Promise.all([...ids].filter(id => typeof id === "string")
+      .map(id => offlineStore.removeOffline(photoKey(id))));
+    await offlineStore.removeOffline(draftKey(state.cfg));
+    pendingPhotoVersions.clear();
+    draftElement.textContent = "Brouillon local effacé";
   }
 
   function addGroup(shouldRender = true) {
@@ -63,7 +161,10 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
       location: "", geo: null, country: "", denomination: "", metal: "", mint: "", notes: "", sources: []
     };
     groups.push(group);
-    if (shouldRender) render();
+    if (shouldRender) {
+      render();
+      scheduleDraftSave();
+    }
     return group;
   }
 
@@ -155,7 +256,7 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
         <div class="batch-coin-head">
           <h3>Pièce ${index + 1} <small>· ${assigned.length} photo(s)</small></h3>
           <div>
-            <button type="button" class="button ghost" data-action="identify" data-group="${group.id}" ${assigned.length ? "" : "disabled"}>✨ Proposer avec l’IA</button>
+            <button type="button" class="button ghost" data-action="identify" data-group="${group.id}" ${assigned.length && state.cfg?.token ? "" : "disabled"}>✨ Proposer avec l’IA</button>
             <button type="button" class="button ghost" data-action="remove-group" data-group="${group.id}" ${groups.length === 1 ? "disabled" : ""}>Retirer la fiche</button>
           </div>
         </div>
@@ -215,11 +316,17 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
     const valid = files.filter(file => file.type.startsWith("image/"));
     if (valid.length !== files.length) status("Certains fichiers ne sont pas des images.", "error");
     let current = groups.find(group => groupPhotos(group.id).length < 2);
+    const added = [];
     for (const file of valid) {
       if (!current || groupPhotos(current.id).length >= 2) current = addGroup(false);
-      photos.push({ id: crypto.randomUUID(), groupId: current.id, file, preview: URL.createObjectURL(file), imageId: null, uploadedGroupId: null });
+      const photo = { id: crypto.randomUUID(), groupId: current.id, file,
+        preview: URL.createObjectURL(file), imageId: null, uploadedGroupId: null };
+      photos.push(photo);
+      added.push(photo);
+      markPhotoForSave(photo);
     }
     render();
+    if (added.length) queueDraftSave(persistDraft);
   }
 
   async function identify(group) {
@@ -237,6 +344,7 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
         try { return new URL(source.url).protocol === "https:"; } catch { return false; }
       }).slice(0, 5) : [];
       render();
+      scheduleDraftSave();
       status("Proposition ajoutée. Vérifie les informations et les sources avant de publier.", "success");
     } catch (error) {
       status(error.message, "error");
@@ -247,6 +355,19 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
 
   async function publish() {
     if (busy) return;
+    if (!state.cfg?.token) return status("Connecte-toi à GitHub pour publier le brouillon local.", "error");
+    if (!navigator.onLine) return status("Hors connexion : le brouillon reste sur cet appareil. Publie quand le réseau revient.", "error");
+    if (state.offlineMetadata) {
+      try {
+        await getMetadata();
+        state.offlineMetadata = false;
+        renderList();
+        render();
+      } catch (error) {
+        return status(error.status ? error.message
+          : "Impossible de joindre GitHub. Le brouillon reste enregistré sur cet appareil.", "error");
+      }
+    }
     if (photos.some(photo => photo.editing)) return status("Attends la fin de la modification des photos avant de publier.", "error");
     const ready = groups.filter(group => groupPhotos(group.id).length);
     if (!ready.length) return status("Ajoute au moins une photo à une fiche.", "error");
@@ -310,13 +431,21 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
         applyLocations();
         await publishMetadata(`Ajout de ${created.length} pièces`);
       }
+      let draftCleared = true;
+      try {
+        await clearDraft();
+      } catch {
+        draftCleared = false;
+        draftElement.textContent = "Publication réussie, mais le brouillon local doit être effacé manuellement";
+      }
       photos.forEach(photo => URL.revokeObjectURL(photo.preview));
       for (const groupId of locationSearches.keys()) stopLocationSearch(groupId);
       photos.length = 0;
       groups.length = 0;
-      addGroup();
+      addGroup(false);
+      render();
       renderList();
-      status(`${created.length} pièce(s) publiées.`, "success");
+      status(`${created.length} pièce(s) publiées.${draftCleared ? "" : " Efface le brouillon local avant de recommencer."}`, "success");
     } catch (error) {
       state.meta.coins = previousCoins;
       state.meta.geoMap = previousGeoMap;
@@ -330,7 +459,8 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
     }
   }
 
-  $("#batchButton").onclick = () => {
+  $("#batchButton").onclick = async () => {
+    await restoreDraft();
     if (!groups.length) addGroup(false);
     render();
     dialog.showModal();
@@ -338,8 +468,27 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
   $("#closeBatchButton").onclick = () => dialog.close();
   dialog.addEventListener("close", () => {
     for (const groupId of locationSearches.keys()) stopLocationSearch(groupId);
+    if (draftTimer) {
+      clearTimeout(draftTimer);
+      draftTimer = null;
+      queueDraftSave(persistDraft);
+    }
   });
   $("#addBatchCoinButton").onclick = () => addGroup();
+  $("#clearBatchDraftButton").onclick = async () => {
+    if (busy || !confirm("Effacer toutes les fiches et photos non publiées de ce navigateur ?")) return;
+    try {
+      await clearDraft();
+      photos.forEach(photo => URL.revokeObjectURL(photo.preview));
+      photos.length = 0;
+      groups.length = 0;
+      addGroup(false);
+      render();
+      status("Brouillon local effacé.", "success");
+    } catch {
+      status("Impossible d’effacer le brouillon local.", "error");
+    }
+  };
   $("#publishBatchButton").onclick = publish;
   $("#batchPhotoInput").onchange = event => {
     addPhotos([...event.target.files]);
@@ -356,6 +505,7 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
     }
     render();
     if (moved) coinsElement.querySelector(`[data-group="${destination}"]`)?.scrollIntoView({ block: "nearest" });
+    scheduleDraftSave();
   });
   coinsElement.addEventListener("click", async event => {
     const button = event.target.closest("button[data-action]");
@@ -367,7 +517,12 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
       if (photo.editing) return;
       URL.revokeObjectURL(photo.preview);
       photos.splice(index, 1);
+      pendingPhotoVersions.delete(photo.id);
       render();
+      queueDraftSave(async () => {
+        await offlineStore.removeOffline(photoKey(photo.id));
+        await persistDraft();
+      });
     } else if (["crop", "rotate-left", "rotate-right"].includes(button.dataset.action)) {
       if (photo.editing) return;
       photo.editing = true;
@@ -380,7 +535,9 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
         photo.file = edited;
         photo.preview = URL.createObjectURL(edited);
         photo.imageId = null;
+        markPhotoForSave(photo);
         render();
+        queueDraftSave(persistDraft);
       } catch (error) {
         status(error.message, "error");
       } finally {
@@ -392,6 +549,7 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
     const group = groups.find(item => item.id === event.target.closest("[data-group]")?.dataset.group);
     if (!group || !event.target.dataset.field) return;
     group[event.target.dataset.field] = event.target.value;
+    scheduleDraftSave();
     if (event.target.dataset.field !== "location") return;
     stopLocationSearch(group.id);
     group.geo = coordinatesForLocation(state.meta, group.location.trim());
@@ -407,7 +565,10 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
   });
   coinsElement.addEventListener("change", event => {
     const group = groups.find(item => item.id === event.target.closest("[data-group]")?.dataset.group);
-    if (group && event.target.dataset.field) group[event.target.dataset.field] = event.target.value;
+    if (group && event.target.dataset.field) {
+      group[event.target.dataset.field] = event.target.value;
+      scheduleDraftSave();
+    }
   });
   coinsElement.addEventListener("click", event => {
     const button = event.target.closest("button[data-action]");
@@ -427,6 +588,7 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
       if (feature.properties?.country) selected.country = feature.properties.country;
       stopLocationSearch(selected.id);
       render();
+      scheduleDraftSave();
       return;
     }
     if (!group) return;
@@ -439,6 +601,7 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
       });
       groups.splice(groups.indexOf(group), 1);
       render();
+      scheduleDraftSave();
     }
   });
   coinsElement.addEventListener("keydown", event => {
@@ -457,5 +620,11 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
       stopLocationSearch(group.id);
       hideLocationSuggestions(group);
     });
+  });
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden || !draftTimer) return;
+    clearTimeout(draftTimer);
+    draftTimer = null;
+    queueDraftSave(persistDraft);
   });
 }
