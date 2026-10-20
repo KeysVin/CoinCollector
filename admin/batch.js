@@ -4,6 +4,32 @@ const $ = selector => document.querySelector(selector);
 const safe = value => String(value ?? "").replace(/[&<>"']/g, character => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
 })[character]);
+const PHOTON_API = "https://photon.komoot.io/api/";
+
+function locationParts(properties) {
+  const main = properties.name || properties.street || properties.city || properties.county
+    || properties.state || properties.country || "Lieu";
+  const candidates = [
+    properties.housenumber && properties.street
+      ? `${properties.housenumber} ${properties.street}` : properties.street,
+    properties.postcode, properties.city, properties.district, properties.county,
+    properties.state, properties.country
+  ];
+  const seen = new Set([String(main).toLowerCase()]);
+  const details = candidates.filter(Boolean).filter(value => {
+    const normalized = String(value).toLowerCase();
+    if (seen.has(normalized)) return false;
+    seen.add(normalized);
+    return true;
+  });
+  return { main, details: details.join(", "), label: [main, ...details].join(", ") };
+}
+
+function coordinatesForLocation(meta, location) {
+  const coordinates = meta.geoMap?.[location];
+  return coordinates && Number.isFinite(Number(coordinates.lat)) && Number.isFinite(Number(coordinates.lon))
+    ? { lat: Number(coordinates.lat), lon: Number(coordinates.lon) } : null;
+}
 
 export async function identifyPhotos(files, hint, token) {
   const images = await Promise.all(files.slice(0, 3).map(file => imageDataUrl(file)));
@@ -24,6 +50,7 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
   const statusElement = $("#batchStatus");
   const groups = [];
   const photos = [];
+  const locationSearches = new Map();
   let busy = false;
 
   function status(message, type = "") {
@@ -34,7 +61,7 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
   function addGroup() {
     const group = {
       id: crypto.randomUUID(), name: "", year: "", collectionId: "",
-      country: "", denomination: "", metal: "", mint: "", notes: "", sources: []
+      location: "", geo: null, country: "", denomination: "", metal: "", mint: "", notes: "", sources: []
     };
     groups.push(group);
     render();
@@ -43,6 +70,80 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
 
   function groupPhotos(groupId) {
     return photos.filter(photo => photo.groupId === groupId);
+  }
+
+  function locationStatus(group) {
+    if (!group.location.trim()) return { kind: "no-location", text: "Aucun lieu renseigné" };
+    if (group.geo || coordinatesForLocation(state.meta, group.location.trim())) {
+      return { kind: "positioned", text: "Position prête pour la carte" };
+    }
+    return { kind: "no-coordinates", text: "Choisis une suggestion pour enregistrer la position" };
+  }
+
+  function stopLocationSearch(groupId) {
+    const search = locationSearches.get(groupId);
+    if (search) {
+      clearTimeout(search.timer);
+      search.controller?.abort();
+      locationSearches.delete(groupId);
+    }
+  }
+
+  function showLocationMessage(group, message) {
+    const section = coinsElement.querySelector(`[data-group="${group.id}"]`);
+    const suggestions = section?.querySelector(".location-suggestions");
+    const input = section?.querySelector('[data-field="location"]');
+    if (!suggestions || !input) return;
+    suggestions.innerHTML = `<div class="location-suggestion-message">${safe(message)}</div>`;
+    suggestions.hidden = false;
+    input.setAttribute("aria-expanded", "true");
+  }
+
+  function hideLocationSuggestions(group) {
+    const section = coinsElement.querySelector(`[data-group="${group.id}"]`);
+    const suggestions = section?.querySelector(".location-suggestions");
+    const input = section?.querySelector('[data-field="location"]');
+    if (suggestions) suggestions.hidden = true;
+    if (input) input.setAttribute("aria-expanded", "false");
+  }
+
+  async function searchLocations(group, query) {
+    const search = locationSearches.get(group.id);
+    if (!search) return;
+    search.controller = new AbortController();
+    showLocationMessage(group, "Recherche en cours…");
+    try {
+      const url = new URL(PHOTON_API);
+      url.searchParams.set("q", query);
+      url.searchParams.set("limit", "6");
+      url.searchParams.set("lang", "fr");
+      const response = await fetch(url, {
+        signal: search.controller.signal,
+        headers: { Accept: "application/json" }
+      });
+      if (!response.ok) throw new Error(`Service de recherche ${response.status}`);
+      const data = await response.json();
+      if (locationSearches.get(group.id) !== search || group.location.trim() !== query) return;
+      const features = Array.isArray(data.features) ? data.features : [];
+      search.features = features;
+      if (!features.length) return showLocationMessage(group, "Aucun lieu trouvé.");
+      const section = coinsElement.querySelector(`[data-group="${group.id}"]`);
+      const suggestions = section?.querySelector(".location-suggestions");
+      const input = section?.querySelector('[data-field="location"]');
+      if (!suggestions || !input) return;
+      suggestions.innerHTML = features.map((feature, index) => {
+        const parts = locationParts(feature.properties || {});
+        return `<button type="button" class="location-suggestion" role="option" data-action="select-location" data-index="${index}">
+          <strong>${safe(parts.main)}</strong><small>${safe(parts.details || parts.label)}</small>
+        </button>`;
+      }).join("");
+      suggestions.hidden = false;
+      input.setAttribute("aria-expanded", "true");
+    } catch (error) {
+      if (error.name !== "AbortError" && locationSearches.get(group.id) === search) {
+        showLocationMessage(group, "La recherche de lieux est momentanément indisponible.");
+      }
+    }
   }
 
   function render() {
@@ -63,7 +164,9 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
         </div>
       </div>`).join("") : '<p class="help">Ajoute plusieurs photos. Elles seront réparties deux par deux, puis tu pourras les déplacer.</p>';
 
-    coinsElement.innerHTML = groups.map((group, index) => `
+    coinsElement.innerHTML = groups.map((group, index) => {
+      const place = locationStatus(group);
+      return `
       <section class="batch-coin" data-group="${group.id}">
         <div class="batch-coin-head">
           <h3>Pièce ${index + 1} <small>· ${groupPhotos(group.id).length} photo(s)</small></h3>
@@ -79,6 +182,14 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
             <option value="">Sans collection</option>
             ${state.meta.collections.map(collection => `<option value="${safe(collection.id)}" ${collection.id === group.collectionId ? "selected" : ""}>${safe(collection.name)}</option>`).join("")}
           </select></label>
+          <label class="location-label">Lieu / adresse
+            <div class="location-control">
+              <input class="admin-input" data-field="location" value="${safe(group.location)}" placeholder="Commence à écrire un lieu…" autocomplete="off"
+                aria-autocomplete="list" aria-controls="locationSuggestions-${group.id}" aria-expanded="false">
+              <div id="locationSuggestions-${group.id}" class="location-suggestions" role="listbox" hidden></div>
+            </div>
+            <span class="location-status ${place.kind}">${place.text}</span>
+          </label>
           <label>Pays<input class="admin-input" data-field="country" value="${safe(group.country)}"></label>
           <label>Valeur / dénomination<input class="admin-input" data-field="denomination" value="${safe(group.denomination)}"></label>
           <label>Métal<input class="admin-input" data-field="metal" value="${safe(group.metal)}"></label>
@@ -86,7 +197,8 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
         </div>
         <label>Notes<textarea class="admin-textarea" data-field="notes" rows="2">${safe(group.notes)}</textarea></label>
         ${group.sources.length ? `<div class="batch-sources"><strong>Sources proposées par l’IA :</strong> ${group.sources.map(source => `<a href="${safe(source.url)}" target="_blank" rel="noopener noreferrer">${safe(source.title || source.url)}</a>`).join(" · ")}</div>` : ""}
-      </section>`).join("");
+      </section>`;
+    }).join("");
   }
 
   function addPhotos(files) {
@@ -130,9 +242,30 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
     if (!ready.length) return status("Ajoute au moins une photo à une fiche.", "error");
     const invalid = ready.find(group => !group.name.trim() || !/^\d{1,4}$/.test(String(group.year)));
     if (invalid) return status("Renseigne un nom et une année valide pour chaque pièce avec photo.", "error");
+    const locations = ready.map(group => ({
+      group, location: group.location.trim(),
+      coordinates: group.geo || coordinatesForLocation(state.meta, group.location.trim())
+    }));
+    const unlocated = locations.find(item => item.location && !item.coordinates)?.group;
+    if (unlocated) {
+      coinsElement.querySelector(`[data-group="${unlocated.id}"] [data-field="location"]`)?.focus();
+      return status("Choisis une adresse proposée pour enregistrer sa position sur la carte.", "error");
+    }
     busy = true;
     $("#publishBatchButton").disabled = true;
+    $("#batchPhotoInput").disabled = true;
+    $("#addBatchCoinButton").disabled = true;
+    coinsElement.querySelectorAll("input,select,textarea").forEach(field => { field.disabled = true; });
+    photosElement.querySelectorAll("select").forEach(field => { field.disabled = true; });
     const created = [];
+    let previousCoins = state.meta.coins;
+    let previousGeoMap = state.meta.geoMap;
+    const applyLocations = () => {
+      state.meta.geoMap = { ...state.meta.geoMap };
+      locations.forEach(({ location, coordinates }) => {
+        if (location && coordinates) state.meta.geoMap[location] = coordinates;
+      });
+    };
     try {
       for (const [groupIndex, group] of ready.entries()) {
         status(`Publication de la pièce ${groupIndex + 1}/${ready.length}…`);
@@ -147,40 +280,45 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
           id: group.id, name: group.name.trim(), year: Number(group.year),
           collectionId: group.collectionId || null, country: group.country.trim(),
           denomination: group.denomination.trim(), metal: group.metal.trim(), mint: group.mint.trim(),
-          location: "", condition: "", quantity: 1, estimatedValue: null,
+          location: group.location.trim(), condition: "", quantity: 1, estimatedValue: null,
           acquisitionDate: "", tags: [], notes: group.notes.trim(),
           imageIds: groupPhotos(group.id).map(photo => photo.imageId),
           createdAt: timestamp, updatedAt: timestamp
         });
       }
-      let previous = state.meta.coins;
-      state.meta.coins = [...previous, ...created];
+      state.meta.coins = [...previousCoins, ...created];
+      applyLocations();
       try {
         await publishMetadata(`Ajout de ${created.length} pièces`);
       } catch (error) {
-        state.meta.coins = previous;
+        state.meta.coins = previousCoins;
+        state.meta.geoMap = previousGeoMap;
         if (error.status !== 409) throw error;
         await getMetadata();
-        previous = state.meta.coins;
-        state.meta.coins = [...previous, ...created];
-        try {
-          await publishMetadata(`Ajout de ${created.length} pièces`);
-        } catch (retryError) {
-          state.meta.coins = previous;
-          throw retryError;
-        }
+        previousCoins = state.meta.coins;
+        previousGeoMap = state.meta.geoMap;
+        state.meta.coins = [...previousCoins, ...created];
+        applyLocations();
+        await publishMetadata(`Ajout de ${created.length} pièces`);
       }
       photos.forEach(photo => URL.revokeObjectURL(photo.preview));
+      for (const groupId of locationSearches.keys()) stopLocationSearch(groupId);
       photos.length = 0;
       groups.length = 0;
       addGroup();
       renderList();
       status(`${created.length} pièce(s) publiées.`, "success");
     } catch (error) {
+      state.meta.coins = previousCoins;
+      state.meta.geoMap = previousGeoMap;
       status(error.status === 409 ? "Conflit GitHub : les fiches sont conservées, mais la publication a échoué. Réessaie plus tard." : error.message, "error");
     } finally {
       busy = false;
       $("#publishBatchButton").disabled = false;
+      $("#batchPhotoInput").disabled = false;
+      $("#addBatchCoinButton").disabled = false;
+      coinsElement.querySelectorAll("input,select,textarea").forEach(field => { field.disabled = false; });
+      photosElement.querySelectorAll("select").forEach(field => { field.disabled = false; });
     }
   }
 
@@ -190,6 +328,9 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
     dialog.showModal();
   };
   $("#closeBatchButton").onclick = () => dialog.close();
+  dialog.addEventListener("close", () => {
+    for (const groupId of locationSearches.keys()) stopLocationSearch(groupId);
+  });
   $("#addBatchCoinButton").onclick = () => addGroup();
   $("#publishBatchButton").onclick = publish;
   $("#batchPhotoInput").onchange = event => {
@@ -238,7 +379,20 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
   });
   coinsElement.addEventListener("input", event => {
     const group = groups.find(item => item.id === event.target.closest("[data-group]")?.dataset.group);
-    if (group && event.target.dataset.field) group[event.target.dataset.field] = event.target.value;
+    if (!group || !event.target.dataset.field) return;
+    group[event.target.dataset.field] = event.target.value;
+    if (event.target.dataset.field !== "location") return;
+    stopLocationSearch(group.id);
+    group.geo = coordinatesForLocation(state.meta, group.location.trim());
+    const place = locationStatus(group);
+    const indicator = event.target.closest(".location-label").querySelector(".location-status");
+    indicator.className = `location-status ${place.kind}`;
+    indicator.textContent = place.text;
+    const query = group.location.trim();
+    if (query.length < 3) return hideLocationSuggestions(group);
+    const search = { timer: null, controller: null, features: [] };
+    locationSearches.set(group.id, search);
+    search.timer = setTimeout(() => searchLocations(group, query), 450);
   });
   coinsElement.addEventListener("change", event => {
     const group = groups.find(item => item.id === event.target.closest("[data-group]")?.dataset.group);
@@ -248,9 +402,26 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
     const button = event.target.closest("button[data-action]");
     if (!button || busy) return;
     const group = groups.find(item => item.id === button.dataset.group);
+    if (button.dataset.action === "select-location") {
+      const selected = groups.find(item => item.id === button.closest("[data-group]")?.dataset.group);
+      const feature = locationSearches.get(selected?.id)?.features[Number(button.dataset.index)];
+      if (!selected || !feature) return;
+      const longitude = Number(feature.geometry?.coordinates?.[0]);
+      const latitude = Number(feature.geometry?.coordinates?.[1]);
+      if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+        return showLocationMessage(selected, "Cette proposition ne contient pas de coordonnées.");
+      }
+      selected.location = locationParts(feature.properties || {}).label;
+      selected.geo = { lat: latitude, lon: longitude };
+      if (feature.properties?.country) selected.country = feature.properties.country;
+      stopLocationSearch(selected.id);
+      render();
+      return;
+    }
     if (!group) return;
     if (button.dataset.action === "identify") identify(group);
     if (button.dataset.action === "remove-group" && groups.length > 1) {
+      stopLocationSearch(group.id);
       photos.filter(photo => photo.groupId === group.id).forEach(photo => {
         photo.groupId = groups.find(item => item.id !== group.id).id;
         photo.imageId = null;
@@ -258,5 +429,22 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
       groups.splice(groups.indexOf(group), 1);
       render();
     }
+  });
+  coinsElement.addEventListener("keydown", event => {
+    if (event.key !== "Escape" || event.target.dataset.field !== "location") return;
+    const group = groups.find(item => item.id === event.target.closest("[data-group]")?.dataset.group);
+    if (group) {
+      stopLocationSearch(group.id);
+      hideLocationSuggestions(group);
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  });
+  document.addEventListener("click", event => {
+    if (!dialog.open || event.target.closest("#batchCoins .location-control")) return;
+    groups.forEach(group => {
+      stopLocationSearch(group.id);
+      hideLocationSuggestions(group);
+    });
   });
 }

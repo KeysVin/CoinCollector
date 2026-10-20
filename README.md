@@ -6,7 +6,7 @@ Lis d’abord [GUIDE_INSTALLATION.md](GUIDE_INSTALLATION.md).
 
 ## Ajout de plusieurs pièces
 
-Dans l’administration, **Ajout multiple** permet d’importer plusieurs photos en une fois. Une fiche est proposée pour chaque paire de photos ; chaque photo peut ensuite être affectée à une autre fiche. Les nouvelles photos peuvent être rognées ou tournées de 90° à gauche ou à droite avant publication. Renseigne au minimum un nom et une année pour chaque fiche contenant des photos, puis publie le lot.
+Dans l’administration, **Ajout multiple** permet d’importer plusieurs photos en une fois. Une fiche est proposée pour chaque paire de photos ; chaque photo peut ensuite être affectée à une autre fiche. Les nouvelles photos peuvent être rognées ou tournées de 90° à gauche ou à droite avant publication. Chaque fiche peut aussi rechercher une adresse et enregistrer sa position sur la carte. Renseigne au minimum un nom et une année pour chaque fiche contenant des photos, puis publie le lot.
 
 Le bouton **Proposer avec l’IA** utilise jusqu’à trois photos de la fiche, recherche des informations sur le web et complète les champs encore vides. Les propositions et leurs sources sont à vérifier avant publication. Une photo peut aussi être rognée ou tournée dans le formulaire d’ajout classique.
 
