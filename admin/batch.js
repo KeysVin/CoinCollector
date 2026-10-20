@@ -45,7 +45,6 @@ export async function identifyPhotos(files, hint, token) {
 
 export function initBatch({ state, uploadImage, publishMetadata, getMetadata, renderList }) {
   const dialog = $("#batchDialog");
-  const photosElement = $("#batchPhotos");
   const coinsElement = $("#batchCoins");
   const statusElement = $("#batchStatus");
   const groups = [];
@@ -58,13 +57,13 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
     statusElement.className = `save-status ${type}`;
   }
 
-  function addGroup() {
+  function addGroup(shouldRender = true) {
     const group = {
       id: crypto.randomUUID(), name: "", year: "", collectionId: "",
       location: "", geo: null, country: "", denomination: "", metal: "", mint: "", notes: "", sources: []
     };
     groups.push(group);
-    render();
+    if (shouldRender) render();
     return group;
   }
 
@@ -148,55 +147,66 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
 
   function render() {
     $("#batchSummary").textContent = `${photos.length} photo(s) · ${groups.length} fiche(s)`;
-    photosElement.innerHTML = photos.length ? photos.map(photo => `
-      <div class="batch-photo">
-        <img src="${safe(photo.preview)}" alt="Photo à affecter">
-        <label>Pièce
-          <select class="admin-select" data-photo="${photo.id}" data-action="assign">
-            ${groups.map((group, index) => `<option value="${group.id}" ${group.id === photo.groupId ? "selected" : ""}>${safe(group.name || `Pièce ${index + 1}`)}</option>`).join("")}
-          </select>
-        </label>
-        <div class="batch-photo-actions">
-          <button type="button" class="button ghost" data-action="rotate-left" data-photo="${photo.id}" aria-label="Tourner la photo à gauche" title="Tourner à gauche">↶</button>
-          <button type="button" class="button ghost" data-action="rotate-right" data-photo="${photo.id}" aria-label="Tourner la photo à droite" title="Tourner à droite">↷</button>
-          <button type="button" class="button ghost" data-action="crop" data-photo="${photo.id}">Rogner</button>
-          <button type="button" class="button ghost" data-action="remove-photo" data-photo="${photo.id}" aria-label="Retirer la photo">×</button>
-        </div>
-      </div>`).join("") : '<p class="help">Ajoute plusieurs photos. Elles seront réparties deux par deux, puis tu pourras les déplacer.</p>';
-
-    coinsElement.innerHTML = groups.map((group, index) => {
+    coinsElement.innerHTML = (photos.length ? "" : '<p class="help">Ajoute plusieurs photos. Elles seront réparties deux par deux, puis tu pourras les déplacer.</p>') + groups.map((group, index) => {
       const place = locationStatus(group);
+      const assigned = groupPhotos(group.id);
       return `
       <section class="batch-coin" data-group="${group.id}">
         <div class="batch-coin-head">
-          <h3>Pièce ${index + 1} <small>· ${groupPhotos(group.id).length} photo(s)</small></h3>
+          <h3>Pièce ${index + 1} <small>· ${assigned.length} photo(s)</small></h3>
           <div>
-            <button type="button" class="button ghost" data-action="identify" data-group="${group.id}" ${groupPhotos(group.id).length ? "" : "disabled"}>✨ Proposer avec l’IA</button>
+            <button type="button" class="button ghost" data-action="identify" data-group="${group.id}" ${assigned.length ? "" : "disabled"}>✨ Proposer avec l’IA</button>
             <button type="button" class="button ghost" data-action="remove-group" data-group="${group.id}" ${groups.length === 1 ? "disabled" : ""}>Retirer la fiche</button>
           </div>
         </div>
-        <div class="admin-grid two">
-          <label>Nom *<input class="admin-input" data-field="name" value="${safe(group.name)}" required></label>
-          <label>Année *<input class="admin-input" data-field="year" type="number" value="${safe(group.year)}" required></label>
-          <label>Collection<select class="admin-select" data-field="collectionId">
-            <option value="">Sans collection</option>
-            ${state.meta.collections.map(collection => `<option value="${safe(collection.id)}" ${collection.id === group.collectionId ? "selected" : ""}>${safe(collection.name)}</option>`).join("")}
-          </select></label>
-          <label class="location-label">Lieu / adresse
-            <div class="location-control">
-              <input class="admin-input" data-field="location" value="${safe(group.location)}" placeholder="Commence à écrire un lieu…" autocomplete="off"
-                aria-autocomplete="list" aria-controls="locationSuggestions-${group.id}" aria-expanded="false">
-              <div id="locationSuggestions-${group.id}" class="location-suggestions" role="listbox" hidden></div>
+        <div class="batch-coin-content">
+          <div class="batch-coin-details">
+            <div class="admin-grid two">
+              <label>Nom *<input class="admin-input" data-field="name" value="${safe(group.name)}" required></label>
+              <label>Année *<input class="admin-input" data-field="year" type="number" value="${safe(group.year)}" required></label>
+              <label>Collection<select class="admin-select" data-field="collectionId">
+                <option value="">Sans collection</option>
+                ${state.meta.collections.map(collection => `<option value="${safe(collection.id)}" ${collection.id === group.collectionId ? "selected" : ""}>${safe(collection.name)}</option>`).join("")}
+              </select></label>
+              <label class="location-label">Lieu / adresse
+                <div class="location-control">
+                  <input class="admin-input" data-field="location" value="${safe(group.location)}" placeholder="Commence à écrire un lieu…" autocomplete="off"
+                    aria-autocomplete="list" aria-controls="locationSuggestions-${group.id}" aria-expanded="false">
+                  <div id="locationSuggestions-${group.id}" class="location-suggestions" role="listbox" hidden></div>
+                </div>
+                <span class="location-status ${place.kind}">${place.text}</span>
+              </label>
+              <label>Pays<input class="admin-input" data-field="country" value="${safe(group.country)}"></label>
+              <label>Valeur / dénomination<input class="admin-input" data-field="denomination" value="${safe(group.denomination)}"></label>
+              <label>Métal<input class="admin-input" data-field="metal" value="${safe(group.metal)}"></label>
+              <label>Atelier / fabricant<input class="admin-input" data-field="mint" value="${safe(group.mint)}"></label>
             </div>
-            <span class="location-status ${place.kind}">${place.text}</span>
-          </label>
-          <label>Pays<input class="admin-input" data-field="country" value="${safe(group.country)}"></label>
-          <label>Valeur / dénomination<input class="admin-input" data-field="denomination" value="${safe(group.denomination)}"></label>
-          <label>Métal<input class="admin-input" data-field="metal" value="${safe(group.metal)}"></label>
-          <label>Atelier / fabricant<input class="admin-input" data-field="mint" value="${safe(group.mint)}"></label>
+            <label>Notes<textarea class="admin-textarea" data-field="notes" rows="2">${safe(group.notes)}</textarea></label>
+            ${group.sources.length ? `<div class="batch-sources"><strong>Sources proposées par l’IA :</strong> ${group.sources.map(source => `<a href="${safe(source.url)}" target="_blank" rel="noopener noreferrer">${safe(source.title || source.url)}</a>`).join(" · ")}</div>` : ""}
+          </div>
+          <aside class="batch-coin-photo-panel" aria-label="Photos de la pièce ${index + 1}">
+            <strong>Photos associées</strong>
+            <div class="batch-coin-photos">
+              ${assigned.length ? assigned.map((photo, photoIndex) => `
+                <div class="batch-photo">
+                  <img src="${safe(photo.preview)}" alt="Photo ${photoIndex + 1} de la pièce ${index + 1}" loading="lazy">
+                  <div class="batch-photo-controls">
+                    <label>Déplacer vers
+                      <select class="admin-select" data-photo="${photo.id}" data-action="assign">
+                        ${groups.map((target, targetIndex) => `<option value="${target.id}" ${target.id === photo.groupId ? "selected" : ""}>${safe(target.name || `Pièce ${targetIndex + 1}`)}</option>`).join("")}
+                      </select>
+                    </label>
+                    <div class="batch-photo-actions">
+                      <button type="button" class="button ghost" data-action="rotate-left" data-photo="${photo.id}" aria-label="Tourner la photo à gauche" title="Tourner à gauche">↶</button>
+                      <button type="button" class="button ghost" data-action="rotate-right" data-photo="${photo.id}" aria-label="Tourner la photo à droite" title="Tourner à droite">↷</button>
+                      <button type="button" class="button ghost" data-action="crop" data-photo="${photo.id}">Rogner</button>
+                      <button type="button" class="button ghost" data-action="remove-photo" data-photo="${photo.id}" aria-label="Retirer la photo">×</button>
+                    </div>
+                  </div>
+                </div>`).join("") : '<p class="help">Aucune photo associée.</p>'}
+            </div>
+          </aside>
         </div>
-        <label>Notes<textarea class="admin-textarea" data-field="notes" rows="2">${safe(group.notes)}</textarea></label>
-        ${group.sources.length ? `<div class="batch-sources"><strong>Sources proposées par l’IA :</strong> ${group.sources.map(source => `<a href="${safe(source.url)}" target="_blank" rel="noopener noreferrer">${safe(source.title || source.url)}</a>`).join(" · ")}</div>` : ""}
       </section>`;
     }).join("");
   }
@@ -206,7 +216,7 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
     if (valid.length !== files.length) status("Certains fichiers ne sont pas des images.", "error");
     let current = groups.find(group => groupPhotos(group.id).length < 2);
     for (const file of valid) {
-      if (!current || groupPhotos(current.id).length >= 2) current = addGroup();
+      if (!current || groupPhotos(current.id).length >= 2) current = addGroup(false);
       photos.push({ id: crypto.randomUUID(), groupId: current.id, file, preview: URL.createObjectURL(file), imageId: null, uploadedGroupId: null });
     }
     render();
@@ -256,7 +266,6 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
     $("#batchPhotoInput").disabled = true;
     $("#addBatchCoinButton").disabled = true;
     coinsElement.querySelectorAll("input,select,textarea").forEach(field => { field.disabled = true; });
-    photosElement.querySelectorAll("select").forEach(field => { field.disabled = true; });
     const created = [];
     let previousCoins = state.meta.coins;
     let previousGeoMap = state.meta.geoMap;
@@ -318,12 +327,11 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
       $("#batchPhotoInput").disabled = false;
       $("#addBatchCoinButton").disabled = false;
       coinsElement.querySelectorAll("input,select,textarea").forEach(field => { field.disabled = false; });
-      photosElement.querySelectorAll("select").forEach(field => { field.disabled = false; });
     }
   }
 
   $("#batchButton").onclick = () => {
-    if (!groups.length) addGroup();
+    if (!groups.length) addGroup(false);
     render();
     dialog.showModal();
   };
@@ -337,16 +345,19 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
     addPhotos([...event.target.files]);
     event.target.value = "";
   };
-  photosElement.addEventListener("change", event => {
+  coinsElement.addEventListener("change", event => {
     if (event.target.dataset.action !== "assign") return;
     const photo = photos.find(item => item.id === event.target.dataset.photo);
+    const destination = event.target.value;
+    const moved = photo && photo.groupId !== destination;
     if (photo) {
-      photo.groupId = event.target.value;
+      photo.groupId = destination;
       if (photo.uploadedGroupId !== photo.groupId) photo.imageId = null;
     }
     render();
+    if (moved) coinsElement.querySelector(`[data-group="${destination}"]`)?.scrollIntoView({ block: "nearest" });
   });
-  photosElement.addEventListener("click", async event => {
+  coinsElement.addEventListener("click", async event => {
     const button = event.target.closest("button[data-action]");
     if (!button || busy) return;
     const index = photos.findIndex(photo => photo.id === button.dataset.photo);
