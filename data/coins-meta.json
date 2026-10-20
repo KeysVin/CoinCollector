@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "savedAt": "2026-07-16T06:42:56.052Z",
+  "savedAt": "2026-10-20T06:24:56.065Z",
   "collections": [
     {
       "id": "0127EDF7-F7F4-498F-8087-689CD002427D",
@@ -76,6 +76,11 @@
       "id": "FDDE85B4-5804-4BE1-AA6A-9E4ED7013AAC",
       "name": "Religieux",
       "createdAt": "2025-09-07T20:28:50Z"
+    },
+    {
+      "id": "ea3af8fe-5221-4e18-a966-286bf930c2e1",
+      "name": "Italie",
+      "createdAt": "2026-10-20T06:24:56.065Z"
     }
   ],
   "geoMap": {
