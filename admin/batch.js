@@ -1,4 +1,4 @@
-import { cropPhoto, imageDataUrl } from "./photo-tools.js";
+import { cropPhoto, imageDataUrl, rotatePhoto } from "./photo-tools.js";
 
 const $ = selector => document.querySelector(selector);
 const safe = value => String(value ?? "").replace(/[&<>"']/g, character => ({
@@ -56,6 +56,8 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
           </select>
         </label>
         <div class="batch-photo-actions">
+          <button type="button" class="button ghost" data-action="rotate-left" data-photo="${photo.id}" aria-label="Tourner la photo à gauche" title="Tourner à gauche">↶</button>
+          <button type="button" class="button ghost" data-action="rotate-right" data-photo="${photo.id}" aria-label="Tourner la photo à droite" title="Tourner à droite">↷</button>
           <button type="button" class="button ghost" data-action="crop" data-photo="${photo.id}">Rogner</button>
           <button type="button" class="button ghost" data-action="remove-photo" data-photo="${photo.id}" aria-label="Retirer la photo">×</button>
         </div>
@@ -123,6 +125,7 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
 
   async function publish() {
     if (busy) return;
+    if (photos.some(photo => photo.editing)) return status("Attends la fin de la modification des photos avant de publier.", "error");
     const ready = groups.filter(group => groupPhotos(group.id).length);
     if (!ready.length) return status("Ajoute au moins une photo à une fiche.", "error");
     const invalid = ready.find(group => !group.name.trim() || !/^\d{1,4}$/.test(String(group.year)));
@@ -209,20 +212,27 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
     if (index < 0) return;
     const photo = photos[index];
     if (button.dataset.action === "remove-photo") {
+      if (photo.editing) return;
       URL.revokeObjectURL(photo.preview);
       photos.splice(index, 1);
       render();
-    } else if (button.dataset.action === "crop") {
+    } else if (["crop", "rotate-left", "rotate-right"].includes(button.dataset.action)) {
+      if (photo.editing) return;
+      photo.editing = true;
       try {
-        const cropped = await cropPhoto(photo.file);
-        if (!cropped) return;
+        const edited = button.dataset.action === "crop"
+          ? await cropPhoto(photo.file)
+          : await rotatePhoto(photo.file, button.dataset.action === "rotate-left" ? "left" : "right");
+        if (!edited || !photos.includes(photo)) return;
         URL.revokeObjectURL(photo.preview);
-        photo.file = cropped;
-        photo.preview = URL.createObjectURL(cropped);
+        photo.file = edited;
+        photo.preview = URL.createObjectURL(edited);
         photo.imageId = null;
         render();
       } catch (error) {
         status(error.message, "error");
+      } finally {
+        photo.editing = false;
       }
     }
   });

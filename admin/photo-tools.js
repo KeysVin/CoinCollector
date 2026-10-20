@@ -9,6 +9,32 @@ export async function imageDataUrl(file, maximum = 1100) {
   return canvas.toDataURL("image/jpeg", 0.82);
 }
 
+export async function rotatePhoto(file, direction) {
+  const bitmap = await createImageBitmap(file);
+  try {
+    const canvas = document.createElement("canvas");
+    canvas.width = bitmap.height;
+    canvas.height = bitmap.width;
+    const context = canvas.getContext("2d");
+    if (direction === "right") {
+      context.translate(canvas.width, 0);
+      context.rotate(Math.PI / 2);
+    } else if (direction === "left") {
+      context.translate(0, canvas.height);
+      context.rotate(-Math.PI / 2);
+    } else {
+      throw new Error("Sens de rotation inconnu.");
+    }
+    context.drawImage(bitmap, 0, 0);
+    const blob = await new Promise((resolve, reject) => {
+      canvas.toBlob(result => result ? resolve(result) : reject(new Error("Impossible de tourner la photo.")), "image/jpeg", 0.92);
+    });
+    return new File([blob], file.name.replace(/\.[^.]+$/, "") + "-tournee.jpg", { type: "image/jpeg" });
+  } finally {
+    bitmap.close();
+  }
+}
+
 export async function cropPhoto(file) {
   const bitmap = await createImageBitmap(file);
   const dialog = document.createElement("dialog");

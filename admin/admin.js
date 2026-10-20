@@ -1,4 +1,4 @@
-import { cropPhoto } from "./photo-tools.js";
+import { cropPhoto, rotatePhoto } from "./photo-tools.js";
 import { initBatch, identifyPhotos } from "./batch.js";
 
 const PATH = "data/coins-meta.json";
@@ -592,7 +592,11 @@ function renderImages() {
 
         ${
           item.type === "pending"
-            ? `<button type="button" class="crop-photo-button" data-action="crop" data-index="${item.index}">Rogner</button><span class="pending-badge">À publier</span>`
+            ? `<div class="photo-edit-actions">
+                <button type="button" data-action="rotate-left" data-index="${item.index}" aria-label="Tourner la photo à gauche" title="Tourner à gauche">↶</button>
+                <button type="button" data-action="rotate-right" data-index="${item.index}" aria-label="Tourner la photo à droite" title="Tourner à droite">↷</button>
+                <button type="button" data-action="crop" data-index="${item.index}">Rogner</button>
+              </div><span class="pending-badge">À publier</span>`
             : ""
         }
       </div>
@@ -603,24 +607,30 @@ function renderImages() {
     .querySelectorAll("button")
     .forEach(button => {
       button.addEventListener("click", async () => {
-        if (button.dataset.action === "crop") {
+        if (["crop", "rotate-left", "rotate-right"].includes(button.dataset.action)) {
           const index = Number(button.dataset.index);
           const pending = state.pendingFiles[index];
-          if (!pending) return;
+          if (!pending || pending.editing) return;
+          pending.editing = true;
           try {
-            const cropped = await cropPhoto(pending.file);
-            if (!cropped) return;
+            const edited = button.dataset.action === "crop"
+              ? await cropPhoto(pending.file)
+              : await rotatePhoto(pending.file, button.dataset.action === "rotate-left" ? "left" : "right");
+            if (!edited || !state.pendingFiles.includes(pending)) return;
             URL.revokeObjectURL(pending.preview);
-            pending.file = cropped;
-            pending.preview = URL.createObjectURL(cropped);
+            pending.file = edited;
+            pending.preview = URL.createObjectURL(edited);
             renderImages();
           } catch (error) {
             setStatus(error.message, "error");
+          } finally {
+            pending.editing = false;
           }
           return;
         }
         if (button.dataset.type === "pending") {
           const index = Number(button.dataset.index);
+          if (!state.pendingFiles[index] || state.pendingFiles[index].editing) return;
 
           URL.revokeObjectURL(
             state.pendingFiles[index].preview
@@ -773,6 +783,11 @@ async function saveCoin(event) {
   event.preventDefault();
 
   if (state.busy) {
+    return;
+  }
+
+  if (state.pendingFiles.some(file => file.editing)) {
+    setStatus("Attends la fin de la modification des photos avant de publier.", "error");
     return;
   }
 

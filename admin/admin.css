@@ -486,22 +486,28 @@
   cursor: pointer;
 }
 
-.admin-image .crop-photo-button {
-  top: auto;
+.admin-image .photo-edit-actions {
+  position: absolute;
   right: 7px;
   bottom: 7px;
+  display: flex;
+  gap: 4px;
+}
+
+.admin-image .photo-edit-actions button {
+  position: static;
   width: auto;
   height: auto;
-  padding: 6px 8px;
+  padding: 6px;
   border-radius: 8px;
   background: rgba(23, 63, 53, 0.92);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .pending-badge {
   position: absolute;
   left: 7px;
-  bottom: 7px;
+  top: 7px;
   padding: 4px 7px;
   border-radius: 999px;
   color: #fff;
