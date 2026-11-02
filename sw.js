@@ -1,4 +1,4 @@
-const CACHE = "coincollector-v7";
+const CACHE = "coincollector-v8";
 
 const ASSETS = [
   "/",
@@ -9,7 +9,7 @@ const ASSETS = [
   "/manifest.webmanifest",
   "/admin/",
   "/admin/index.html",
-  "/admin/admin.css?v=6",
+  "/admin/admin.css?v=7",
   "/admin/admin.js?v=8",
   "/admin/batch.js",
   "/admin/photo-tools.js",

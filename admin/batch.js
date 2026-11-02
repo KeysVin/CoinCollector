@@ -290,7 +290,10 @@ export function initBatch({ state, uploadImage, publishMetadata, getMetadata, re
             <div class="batch-coin-photos">
               ${assigned.length ? assigned.map((photo, photoIndex) => `
                 <div class="batch-photo">
-                  <img src="${safe(photo.preview)}" alt="Photo ${photoIndex + 1} de la pièce ${index + 1}" loading="lazy">
+                  <button type="button" class="batch-photo-zoom-trigger" aria-label="Agrandir la photo ${photoIndex + 1} de la pièce ${index + 1}" title="Survoler ou toucher pour agrandir">
+                    <img class="batch-photo-thumbnail" src="${safe(photo.preview)}" alt="" loading="lazy">
+                    <span class="batch-photo-zoom" aria-hidden="true"><img src="${safe(photo.preview)}" alt=""></span>
+                  </button>
                   <div class="batch-photo-controls">
                     <label>Déplacer vers
                       <select class="admin-select" data-photo="${photo.id}" data-action="assign">
